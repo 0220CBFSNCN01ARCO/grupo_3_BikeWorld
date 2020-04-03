@@ -22,3 +22,16 @@ El objetivo fue buscar sitios de referencia nacionales e internacionales:
 
 La idea es tener referencias de cómo se venden presentan las webs en cada uno
 de los mercados, tanto nacional como internacional.
+
+Paleta de colores
+-----------------
+
+![](palette.png)
+
+https://colorhunt.co/palette/170419
+
+Tipografías
+-----------
+
+- [Montserrat](https://fonts.google.com/specimen/Montserrat)
+- [Open Sans](https://fonts.google.com/specimen/Open+Sans)
