@@ -2,7 +2,7 @@ BikeWorld
 =========
 
 Una tienda en línea de bicicletas y accesorios, dirigida especialmente a
-aficionados y profesionales del ciclismo. Será difundida a vía redes sociales,
+aficionados y profesionales del ciclismo. Será difundida vía redes sociales,
 eventos y medios especializados.
 
 Sitios de referencia
@@ -20,7 +20,7 @@ El objetivo fue buscar sitios de referencia nacionales e internacionales:
 - Internacional - Inglaterra
   - https://www.chainreactiocycles.com
 
-La idea es tener referencias de cómo se venden presentan las webs en cada uno
+La idea es tener referencias de cómo se venden/presentan las webs en cada uno
 de los mercados, tanto nacional como internacional.
 
 Paleta de colores
