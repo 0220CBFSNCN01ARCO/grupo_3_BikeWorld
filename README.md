@@ -35,3 +35,13 @@ Tipografías
 
 - [Montserrat](https://fonts.google.com/specimen/Montserrat)
 - [Open Sans](https://fonts.google.com/specimen/Open+Sans)
+
+Carpeta de Trabajo
+------------------
+
+Disponemos de una carpeta de trabajo hospedada en Google Drive
+
+https://drive.google.com/folderview?id=1OGTJrf7RXVpiDzgLGbADuiIgw8-sLnz1
+
+En esta carpeta se encuentran los diferentes bocetos y Wireframes, así como
+las reparticiones de tareas y resultados de cada reunión.
