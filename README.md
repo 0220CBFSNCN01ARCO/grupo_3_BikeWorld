@@ -45,3 +45,10 @@ https://drive.google.com/folderview?id=1OGTJrf7RXVpiDzgLGbADuiIgw8-sLnz1
 
 En esta carpeta se encuentran los diferentes bocetos y Wireframes, así como
 las reparticiones de tareas y resultados de cada reunión.
+
+Tablero de trabajo
+------------------
+
+El enlace al tablero de trabajo en Trello es el siguiente
+
+https://trello.com/b/zmgKmOqG
