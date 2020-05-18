@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cargar producto</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
 <body>
@@ -19,8 +20,45 @@
     <form action="" method="post">
       <div class="row">
         <!-- 1 columna cuando móvil y 2 cuando PC -->
-        <div class="col-12 col-md-6">hola</div>
-        <div class="col-12 col-md-6">hola</div>
+        <div class="col-12 col-md-6">
+          <div class="form-group mt-3 mt-md-0">
+            <label for="entradaCodigo">Código</label>
+            <input type="text" class="form-control" id="entradaCodigo">
+          </div>
+          <div class="form-group">
+            <label for="entradaNombre">Nombre</label>
+            <input type="text" class="form-control" id="entradaNombre">
+          </div>
+          <div class="form-group">
+            <label for="entradaProveedor">Proveedor</label>
+            <input type="text" class="form-control" id="entradaProveedor">
+          </div>
+          <div class="form-group">
+            <label for="entradaMarca">Marca</label>
+            <input type="text" class="form-control" id="entradaMarca">
+          </div>
+          <div class="form-group">
+            <label for="entradaPeso">Peso</label>
+            <input type="text" class="form-control" id="entradaPeso">
+          </div>
+          <div class="form-group">
+            <label for="entradaEstadistico">Estadístico</label>
+            <input type="text" class="form-control" id="entradaEstadistico">
+          </div>
+          <div class="form-group">
+            <label for="entradaPrecio">Precio</label>
+            <input type="text" class="form-control" id="entradaPrecio">
+          </div>
+        </div>
+        <div class="col-12 col-md-6 order-first order-md-last">
+          <label for="botonImagen">Imagen</label><br>
+          <button class="btn btn-secondary form-control">Cargar imagen...</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6 mb-3">
+          <button class="btn btn-primary form-control" type="submit">Cargar producto</button>
+        </div>
       </div>
     </form>
   </div>
