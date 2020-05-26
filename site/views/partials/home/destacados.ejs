@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="container products-wrapper">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="products-title">Nuestros productos destacados</h2>
+      </div>
+      <% destacados.forEach(destacado => { %>
+      <div class="col-12 col-sm-6 col-lg-3">
+
+        <section class="product-box">
+          <!-- /products/detail/1 -->
+          <a href="/products/detail/<%= destacado.id %>">
+            <figure class="product-box_image">
+              <img src="/img/products/<%= destacado.image %>" alt="imagen de producto">
+            </figure>
+            <article class="product-box_data">
+              <h2>
+                <%= llevarAMil(destacado.price - (destacado.price * destacado.discount / 100))  %>
+              </h2>
+              <% if (destacado.discount) { %>
+              <span> <%= destacado.discount %>% OFF</span>
+              <% } %>
+              <p> <%= destacado.name %></p>
+              <i class="fas fa-truck"></i>
+            </article>
+          </a>
+        </section>
+      </div>
+      <% }) %>
+      <!-- Show the "visited" products -->
+    </div>
+  </div>
+</div>
