@@ -54,3 +54,9 @@ Tablero de trabajo
 El enlace al tablero de trabajo en Trello es el siguiente
 
 https://trello.com/b/zmgKmOqG
+
+Contribuir
+----------
+
+Al momento de contribuir a este proyecto, por favor revisar el archivo
+[CONTRIBUTING](CONTRIBUTING.md).
