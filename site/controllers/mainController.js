@@ -17,7 +17,7 @@ const mainController = {
 }
 
 const obtenerOfertas = ()=>{
-    let articulos = JSON.parse(fs.readFileSync('src/data/products.json'));
+    let articulos = JSON.parse(fs.readFileSync('site/src/data/products.json'));
     let articulosFiltrados = [];
     articulos.forEach(articulo =>{
         if(articulo.status=='oferta') articulosFiltrados.push(articulo);
@@ -26,7 +26,7 @@ const obtenerOfertas = ()=>{
 }
 
 const obtenerDestacados = () => {
-    let articulos = JSON.parse(fs.readFileSync('src/data/products.json'));
+    let articulos = JSON.parse(fs.readFileSync('site/src/data/products.json'));
     let articulosFiltrados = [];
     articulos.forEach(articulo =>{
         if(articulo.status=='destacado') articulosFiltrados.push(articulo);
