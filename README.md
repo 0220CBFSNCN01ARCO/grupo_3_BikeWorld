@@ -31,7 +31,8 @@ Paleta de colores
 ![](palette.png)
 
 https://colorhunt.co/palette/170419
-
+opción :
+https://colorhunt.co/palette/183111
 Tipografías
 -----------
 
