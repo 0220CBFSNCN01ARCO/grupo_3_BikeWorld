@@ -32,6 +32,10 @@ Paleta de colores
 
 https://colorhunt.co/palette/170419
 
+opción:
+
+https://colorhunt.co/palette/183111
+
 Tipografías
 -----------
 
