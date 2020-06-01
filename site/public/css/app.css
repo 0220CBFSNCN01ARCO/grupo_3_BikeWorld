@@ -289,11 +289,12 @@ hr {
   }
 
 /*====== rows en navBar ======*/
+.row0 .row1 .row2 .row3{
+    width: 100%;
+}
 .row0{
     background-color: #ff6600;
     height: 5px;
-    width: 100vw;
-
 }
 .row1 .row2 .row3{
     padding: 8px;
@@ -312,9 +313,8 @@ hr {
 .row2{
     background-color: white;
     border: 1px solid rgba(100 100, 100, 0.5);
-    padding:2px 10px;
+    padding:2px 20px;
     font-weight: 800;
-
 }
 .row2 input{
     width: 100%;
