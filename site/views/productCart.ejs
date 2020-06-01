@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
         <!-- Head -->
         <%- include('partials/Head') %>
         <!-- Final del head -->
 <body>
     <div class="container">
         <div class="row">
-            
+    <!-- Header -->
+    <%- include('partials/headerNavbar') %>
+    <!-- Final del header -->
         </div>
         <br>
+
         <h1 class="Titulo-pagina">Tu compra</h1>
         <!-- Sección de las tarjetas (cards) -->
-        
-        <!-- Header -->
-        <%- include('partials/headerNavbar') %>
-        <!-- Final del header -->
-        
-        <!-- Card 1 -->
-        <div class="card mb-3" style="max-width: 540px;">
+
+            <!-- Card 1 -->
+            <div class="card mb-3" style="max-width: 540px;">
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <br>
@@ -35,6 +33,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Card 2 -->
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
@@ -52,9 +51,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="card mb-3" style="max-width: 540px;">
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <br>
@@ -70,25 +70,24 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Card 4 Total del carrito -->
-                    <div class="card text-center" style="width: 18rem;">
+            </div>
+
+            <!-- Card 4 Total del carrito -->
+            <div class="card text-center" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Total a pagar</h5>
                             <p class="card-text">Productos(3)</p><p>$247.000</p><p>Envio a Av. Colón 111, Piso 11, Dpto 1</p>
                             <a href="#" class="btn btn-primary">Continuar comprando</a>
                         </div>
-                    </div>
-                    
-                </div>
-                
-                <!-- Footer -->
-                <%- include('partials/footer') %>
-                <!-- /Footer -->
-                
-                <!-- Scripts Bootstrap -->
-                <%- include('partials/bootstrapScripts') %>
-                <!-- /Scripts Bootstrap -->
-            </body>
-            </html>
+            </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('partials/footer') %>
+    <!-- /Footer -->
+
+    <!-- Scripts Bootstrap -->
+    <%- include('partials/bootstrapScripts') %>
+    <!-- /Scripts Bootstrap -->
+</body>
+</html>
