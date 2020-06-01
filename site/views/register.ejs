@@ -1,198 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="../public/stylesheets/style.css">
-  <link href="https://fonts.google.com/specimen/Montserrat" rel="stylesheet"> 
-  <link href="https://fonts.google.com/specimen/Open+Sans" rel="stylesheet"> 
-  <title>Registrate en BikeWorld</title>
-</head>
+ <!-- Head -->
+ <%- include('partials/head' ,{title:'Registro'}) %>
+ <!-- Final del head -->
 <body>
-  <!-- Eliminar margin/padding del body? Viene de style.css -->
   <div class="container">
-    <!-- Eliminar tipografias del body que se estan heredando en algunas etiquetas - Viene del style.css -->
-      <div class="row">
-        <header class="main-header col-12">
-          <!--Click al logotipo lleva al home-->
-          </nav>
-          <nav class="nav navbar navbar-expand-lg navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1"><a class="navbar-brand" href="#">
-              <img src="../public/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="logotipo">   BikeWorld</a>
-          </span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="menuNavegacion">
-              <div class="row">
-                <ul class="barrasuperior navbar-nav">
-                  <!--  Agregar rutas de los hipervinculos barra nav -->
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2" class="btn btn-light btn-lg">Inicio</button></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2" class="btn btn-light btn-lg">Productos</button></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2" class="btn btn-light btn-lg">Carrito</button></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2"class="btn btn-light btn-lg">Registrarse</button></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2"class="btn btn-light btn-lg">Contacto</button></a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </header>
-      </div>
-      <br>
-    <!-- Definir tamaño de letra h1 para media queries-->
+    <div class="row">
+      
+    <!-- Header -->
+    <%- include('partials/headerNavbar') %>
+    <!-- Final del header -->
+    </div>
+    <br>
     <h1 class="Titulo-pagina">Completá tus datos</h1>
-    <!--Definir a donde apunta action-->
+    
+    <!-- Formulario  -->
     <form method="post" action="">
       <div class="container">
         <div class="row">
+          
+          <!-- Campo nombre -->
           <div class="form-group" class="col-sm-12 col-md-6 col-lg4">
             <label for="nombre"></label>
             <input type="text" name="nombre" class="form-control" placeholder="Nombre" id="nombre" aria-describedby="emailHelp" required>
           </div>
+          
+          <!-- Campo Apellido -->
           <div class="form-group" class="col-sm-12 col-md-6 col-lg4">
             <label for="apellido"></label>
             <input type="text" name="apellido" class="form-control" placeholder="Apellido" id="apellido" aria-describedby="emailHelp" required>
           </div>
+          
+          <!-- Campo email -->
           <div class="form-group" class="col-sm-12 col-md-6 col-lg4">
             <label for="email"></label>
             <input type="email" name="email" class="form-control" placeholder="E-mail" id="email" aria-describedby="emailHelp" required>
           </div>
+          
+          <!-- Campo password -->
           <div class="form-group" class="col-sm-12 col-md-6 col-lg4">
             <label for="password"></label>
             <input type="password" name="password" class="form-control" placeholder="Contraseña" id="password" required>
-            <!--  Como validar el mínimo de 6 caracteres?  -->
             <small id="passwordHelpBlock" class="form-text text-muted"> La contraseña debe tener 6 caracteres como mínimo.</small>
           </div>
-          <!--  Subir un poco la siguiente div. Usar class mt-1 en el siguiente form-group? -->
+          
+          <!-- Campo repetir password -->
           <div class="form-group" class="col-sm-12 col-md-6 col-lg4">
             <label for="repetirPassword"></label>
             <input type="password" name="passwordRepeat" class="form-control" placeholder="Repetir contraseña" id="repetirPassword" required>
           </div>
-          <!--  bajar un poco sin usar br-->
-          <!--  centrar -->
+          <br>
+          
+          <!-- Campo botón crear cuenta -->
           <div class="col-sm-12 col-md-6 col-lg4">
             <button type="submit" class="btn btn-primary">Crear Cuenta</button>
           </div>
-          <!--  Bajar este pedazo de texto (con margin?) -->
-          <!--  Completar los href con hipervinculo o aplicar estilo como hipervinculo  -->
-          <!--  Esta bien el nombre de etiquta yaTenesCuenta? -->
+          
+          <!-- Campo ya tenes cuenta? Ingresar -->
           <div class="col-12" class="yaTenesCuenta"> ¿Ya tenes cuenta?<a target="" href="" >  Ingresar</a>
           </div>
         </div>
       </div>
     </form>
+    <!-- Final del formulario -->
+    
+    <!-- Footer -->
+    <%- include('partials/footer') %>
+    <!-- /Footer -->
+    
+    <!-- Scripts Bootstrap -->
+    <%- include('partials/bootstrapScripts') %>
+    <!-- /Scripts Bootstrap -->
   </div>
-  
-  
-  <footer class="page-footer font-small indigo">
-    
-    <!-- Footer Links -->
-    <div class="container">
-      
-      <!-- Grid row-->
-      <div class="row text-center d-flex justify-content-center pt-5 mb-3">
-        
-        <!-- Grid column -->
-        <div class="col-md-2 mb-3">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="#!">Inicio</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
-        
-        <!-- Grid column -->
-        <div class="col-md-2 mb-3">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="#!">Productos</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
-        
-        <!-- Grid column -->
-        <div class="col-md-2 mb-3">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="#!">Carrito</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
-        
-        <!-- Grid column -->
-        <div class="col-md-2 mb-3">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="#!">Registrarse</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
-        
-        <!-- Grid column -->
-        <div class="col-md-2 mb-3">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="#!">Contacto</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
-        
-      </div>
-      <!-- Grid row-->
-      <hr class="rgba-white-light" style="margin: 0 15%;">
-      
-      
-      <!-- Grid row-->
-      <div class="row pb-3">
-        
-        <!-- Grid column -->
-        <div class="col-md-12">
-          
-          <div class="mb-5 flex-center">
-            
-            <!-- Facebook -->
-            <a class="fb-ic">
-              <i class="fab fa-facebook-f fa-lg white-text mr-4"> </i>
-            </a>
-            <!-- Twitter -->
-            <a class="tw-ic">
-              <i class="fab fa-twitter fa-lg white-text mr-4"> </i>
-            </a>
-            <!-- Google +-->
-            <a class="gplus-ic">
-              <i class="fab fa-google-plus-g fa-lg white-text mr-4"> </i>
-            </a>
-            <!--Linkedin -->
-            <a class="li-ic">
-              <i class="fab fa-linkedin-in fa-lg white-text mr-4"> </i>
-            </a>
-            <!--Instagram-->
-            <a class="ins-ic">
-              <i class="fab fa-instagram fa-lg white-text mr-4"> </i>
-            </a>
-            <!--Pinterest-->
-            <a class="pin-ic">
-              <i class="fab fa-pinterest fa-lg white-text"> </i>
-            </a>
-            
-          </div>
-          
-        </div>
-        <!-- Grid column -->
-        
-      </div>
-      <!-- Grid row-->
-      
-    </div>
-    <!-- Footer Links -->
-    
-  </footer>
-  
-  <!-- Footer -->
-  
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<!--
-  - Revisar los tamaños de columnas para sm md lg
-  - Comentar en el codigo las diferentes partes del codigo (ej header, form, scripts, footer)
--->

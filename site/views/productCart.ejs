@@ -1,188 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="../public/stylesheets/style.css">
-  <link href="https://fonts.google.com/specimen/Montserrat" rel="stylesheet"> 
-  <link href="https://fonts.google.com/specimen/Open+Sans" rel="stylesheet"> 
-  <title>Tu compra en BikeWorld</title>
-</head>
+        <!-- Head -->
+        <%- include('partials/Head', {title:'Carrito'}) %>
+        <!-- Final del head -->
 <body>
-  <!-- Eliminar margin/padding del body? Viene de style.css -->
-  <div class="container">
-    <!-- Eliminar tipografias del body que se estan heredando en algunas etiquetas - Viene del style.css -->
-      <div class="row">
-        <header class="main-header col-12">
-          <!--Click al logotipo lleva al home-->
-          </nav>
-          <nav class="nav navbar navbar-expand-lg navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1"><a class="navbar-brand" href="#">
-              <img src="../public/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="logotipo">   BikeWorld</a>
-          </span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="menuNavegacion">
-              <div class="row">
-                <ul class="barrasuperior navbar-nav">
-                  <!--  Agregar rutas de los hipervinculos barra nav -->
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2" class="btn btn-light btn-lg">Inicio</button></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2" class="btn btn-light btn-lg">Productos</button></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2" class="btn btn-light btn-lg">Carrito</button></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2"class="btn btn-light btn-lg">Registrarse</button></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><button type="button col-lg-2"class="btn btn-light btn-lg">Contacto</button></a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </header>
-      </div>
-      <br>
-    <!-- Definir tamaño de letra h1 para media queries-->
-    <h1 class="Titulo-pagina">Tu compra</h1>
-    <!--Definir a donde apunta action-->
-
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-              <br>
-            <img src="../public/images/Bici-1.jpeg" class="card-img" alt="imagen-bici-1">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h4 class="card-title">$ 53.750</h4>
-              <h5 class="card-title">Ghost SL AMR X 7.9 Full Suspension Bike 2019</h5>
-              <p class="card-text">Ghost SL AMR X 7.9 Full Suspension Bike<br>
-                Slamr by name and by nature, the boisterous X7.9 will have you bashing through berms and diving in to dips as you seek the most thrilling trails and rowdiest routes.</p>
-              <p class="card-text"><small class="text-muted">Envio gratis</small></p>
-            </div>
-          </div>
+    <div class="container">
+        <div class="row">
+    <!-- Header -->
+    <%- include('partials/headerNavbar') %>
+    <!-- Final del header -->
         </div>
-      </div>
-      
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <br>
-            <img src="../public/images/bici-3.png" class="card-img" alt="imagen-bici-2">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h4 class="card-title">$ 114.300</h4>
-              <h5 class="card-title">Nukeproof Mega 275 Factory Carbon Bike (XT) 2020</h5>
-              <p class="card-text">Nukeproof Mega 275 Factory Carbon Bike (XT)<br>
-                This Nukeproof Mega model features 27.5” wheels, a carbon/alloy construction, Fox Factory suspension, a Shimano XT 12-Speed groupset and modern geometry.</p>
-              <p class="card-text"><small class="text-muted">Envio gratis</small></p>
+        <br>
+
+        <h1 class="Titulo-pagina">Tu compra</h1>
+        <!-- Sección de las tarjetas (cards) -->
+
+            <!-- Card 1 -->
+            <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <br>
+                    <img src="../public/images/Bici-1.jpeg" class="card-img" alt="imagen-bici-1">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title">$ 53.750</h4>
+                        <h5 class="card-title">Ghost SL AMR X 7.9 Full Suspension Bike 2019</h5>
+                        <p class="card-text">Ghost SL AMR X 7.9 Full Suspension Bike<br>
+                            Slamr by name and by nature, the boisterous X7.9 will have you bashing through berms and diving in to dips as you seek the most thrilling trails and rowdiest routes.</p>
+                            <p class="card-text"><small class="text-muted">Envio gratis</small></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <br>
-            <img src="../public/images/bici-2.png" class="card-img" alt="imagen-bici-3">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h4 class="card-title">$ 78.950</h4>
-              <h5 class="card-title">Cube Acid 29 Hardtail Bike 2020</h5>
-              <p class="card-text">Cube Acid 29 Hardtail Bike<br>
-                Engineered for efficiency and fun on the mountain biking trails of today, this ride features a modern frame design with a refined geometry to match.</p>
-              <p class="card-text"><small class="text-muted">Costo del envio: $1500</small></p>
+
+            <!-- Card 2 -->
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <br>
+                        <img src="../public/images/bici-3.png" class="card-img" alt="imagen-bici-2">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title">$ 114.300</h4>
+                            <h5 class="card-title">Nukeproof Mega 275 Factory Carbon Bike (XT) 2020</h5>
+                            <p class="card-text">Nukeproof Mega 275 Factory Carbon Bike (XT)<br>
+                                This Nukeproof Mega model features 27.5” wheels, a carbon/alloy construction, Fox Factory suspension, a Shimano XT 12-Speed groupset and modern geometry.</p>
+                                <p class="card-text"><small class="text-muted">Envio gratis</small></p>
+                            </div>
+                        </div>
+                    </div>
             </div>
-          </div>
-        </div>
-      </div>
 
+            <!-- Card 3 -->
+            <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <br>
+                            <img src="../public/images/bici-2.png" class="card-img" alt="imagen-bici-3">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="card-title">$ 78.950</h4>
+                                <h5 class="card-title">Cube Acid 29 Hardtail Bike 2020</h5>
+                                <p class="card-text">Cube Acid 29 Hardtail Bike<br>
+                                    Engineered for efficiency and fun on the mountain biking trails of today, this ride features a modern frame design with a refined geometry to match.</p>
+                                    <p class="card-text"><small class="text-muted">Costo del envio: $1500</small></p>
+                                </div>
+                            </div>
+                        </div>
+            </div>
 
-
-
-      <div class="card text-center" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Total a pagar</h5>
-          <p class="card-text">Productos(3)</p><p>$247.000</p><p>Envio a Av. Colón 111, Piso 11, Dpto 1</p>
-          <a href="#" class="btn btn-primary">Continuar comprando</a>
-        </div>
-      </div>
-
-
-
-
-
-
-
-</div>
-  
-  
-<footer class="page-footer font-small indigo">
-  
-  <!-- Footer Links -->
-  <div class="container">
-    
-    <!-- Grid row-->
-    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
-      
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Inicio</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
-      
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Productos</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
-      
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Carrito</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
-      
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Registrarse</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
-      
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Contacto</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
-      
+            <!-- Card 4 Total del carrito -->
+            <div class="card text-center" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Total a pagar</h5>
+                            <p class="card-text">Productos(3)</p><p>$247.000</p><p>Envio a Av. Colón 111, Piso 11, Dpto 1</p>
+                            <a href="#" class="btn btn-primary">Continuar comprando</a>
+                        </div>
+            </div>
     </div>
-    <!-- Grid row-->
-    <hr class="rgba-white-light" style="margin: 0 15%;">
-    
-  <!-- Footer Links -->
-  
-</footer>
 
-<!-- Footer -->
+    <!-- Footer -->
+    <%- include('partials/footer') %>
+    <!-- /Footer -->
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- Scripts Bootstrap -->
+    <%- include('partials/bootstrapScripts') %>
+    <!-- /Scripts Bootstrap -->
 </body>
 </html>
-
-<!--
-- Revisar los tamaños de columnas para sm md lg
-- Comentar en el codigo las diferentes partes del codigo (ej header, form, scripts, footer)
--->
