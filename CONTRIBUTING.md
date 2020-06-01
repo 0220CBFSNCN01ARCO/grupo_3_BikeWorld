@@ -55,3 +55,46 @@ Resumen y explicacion de los cambios
 
 > NOTA: Los cambios deberían ser manejados en ramas independientes y no commitear
 directamente en `master`.
+
+Pasos a realizar para trabajar
+------------------------------
+
+Es importante que antes de empezar a hacer nada, se realice un pull de los cambios
+con
+
+```sh
+git pull
+```
+
+Es importante que todos los cambios los hagan en su propia rama creada para ello,
+así como también es importante atomizar el uso de las ramas, por ejemplo: Si quiero
+trabajar sobre los partials de home, creo una rama `partials-home`, si quiero
+trabajar sobre los datos de los usuarios, creo una rama `datos-usuarios`, y así.
+Luego de finalizado el trabajo, se accede a GitHub y se crea un nuevo Pull Request,
+para poder exponer el trabajo al grupo y que pueda ser revisado.
+
+Las ramas se crean con:
+
+```sh
+git checkout -b <nombre-de-rama>
+```
+
+Y se eliminan con:
+
+```sh
+git branch -D <nombre-de-rama>
+```
+
+> NOTA: Es importante eliminar las ramas luego de mergeado el Pull Request.
+
+También se debe tener en cuenta realizar commits lo más atómicos posibles, y usando
+lo siguiente para crearlos:
+
+```sh
+git add .
+git commit -m "Mensaje del commit"
+```
+
+E intentar siempre hacer push a todos los cambios que hagan con `git push`, o tambien
+`git push -u origin <nombre-de-rama>` si es que es el primer commit que van a
+realizar en la rama en la que se encuentran.
