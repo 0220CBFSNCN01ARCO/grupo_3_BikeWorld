@@ -5,7 +5,7 @@ Una tienda en línea de bicicletas y accesorios, dirigida especialmente a
 aficionados y profesionales del ciclismo. Será difundida vía redes sociales,
 eventos y medios especializados.
 
-> **Aviso:** Antes de querer usar esto, ejecutar `cd site && npm install`
+> **Aviso:** Antes de querer usar esto, ejecutar `npm install`
 
 Sitios de referencia
 --------------------
