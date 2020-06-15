@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Incluir el head -->
+<%- include('partials/head', {title: 'Add Product'}) %>
+
+<body class="home-body">
+
+  <!-- Incluir el header -->
+  <%- include('partials/headerNavbar') %>
+
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>Cargar producto</h2>
+      </div>
+    </div>
+    <form action="/products/add" method="post" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group mt-3 mt-md-0">
+            <label for="entradaCodigo">Código</label>
+            <input type="text" class="form-control" id="entradaCodigo" name="codigo">
+          </div>
+          <% function makeEntries(nombre) { %>
+            <div class="form-group">
+              <label for="entrada<%- nombre %>"><%- nombre %></label>
+              <input type="text" class="form-control" id="entrada<%- nombre%>" name="<%- nombre.toLowerCase() %>" value="">
+            </div>
+          <% } %>
+          <% makeEntries('Nombre') %>
+          <% makeEntries('Proveedor') %>
+          <% makeEntries('Marca') %>
+          <% makeEntries('Peso') %>
+          <% makeEntries('Estadistico') %>
+          <% makeEntries('Precio') %>
+        </div>
+        <div class="col-12 col-md-6 order-first order-md-last">
+          <label for="entradaImagen">Imagen</label><br>
+          <input type="file" id="botonImagen" name="imagen">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6 mb-3">
+          <button class="btn btn-primary form-control" type="submit">Cargar producto</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

@@ -19,6 +19,27 @@
   width: 100vw;
 }
 
+.btn-primary {
+    background: #FF6600;
+    border: #FF6600;
+}
+
+.btn-primary:hover {
+    background: #e55b00;
+    border: #e55b00;
+}
+
+.btn-primary:focus {
+    background: #e55b00;
+    border: #e55b00;
+    box-shadow: 0 0 0 .2rem #ffb27f;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    background: #cc5100;
+    border: #cc5100;
+}
+
 /*====== Basics ======*/
 * {
   box-sizing: border-box;
