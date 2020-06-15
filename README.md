@@ -5,7 +5,7 @@ Una tienda en línea de bicicletas y accesorios, dirigida especialmente a
 aficionados y profesionales del ciclismo. Será difundida vía redes sociales,
 eventos y medios especializados.
 
-> **Aviso:** Antes de querer usar esto, ejecutar `cd site && npm install`
+> **Aviso:** Antes de querer usar esto, ejecutar `npm install`
 
 Sitios de referencia
 --------------------
@@ -58,3 +58,9 @@ Tablero de trabajo
 El enlace al tablero de trabajo en Trello es el siguiente
 
 https://trello.com/b/zmgKmOqG
+
+Contribuir
+----------
+
+Al momento de contribuir a este proyecto, por favor revisar el archivo
+[CONTRIBUTING](CONTRIBUTING.md).
