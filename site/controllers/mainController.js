@@ -3,7 +3,7 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 const mainController = {
     index: function (req, res) {
-        res.render('index', { title: 'Express', mensaje: 'Basta chicos' })
+        res.redirect ('/home')
     },
     home: function(req, res){
         const ofertas=obtenerOfertas();
