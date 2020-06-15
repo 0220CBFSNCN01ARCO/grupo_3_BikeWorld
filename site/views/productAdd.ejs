@@ -1,58 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cargar producto</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-</head>
+<!-- Incluir el head -->
+<%- include('partials/head', {title: 'Add Product'}) %>
 
-<body>
-  <div class="container">
+<body class="home-body">
+
+  <!-- Incluir el header -->
+  <%- include('partials/headerNavbar') %>
+
+  <div class="container mt-5 mb-5">
     <div class="row">
-      <div class="col-12">
-        <!-- Esto puede cambiar -->
+      <div class="col-12 mb-3">
         <h2>Cargar producto</h2>
       </div>
     </div>
-    <form action="" method="post">
+    <form action="/products/add" method="post" enctype="multipart/form-data">
       <div class="row">
-        <!-- 1 columna cuando móvil y 2 cuando PC -->
         <div class="col-12 col-md-6">
           <div class="form-group mt-3 mt-md-0">
             <label for="entradaCodigo">Código</label>
-            <input type="text" class="form-control" id="entradaCodigo">
+            <input type="text" class="form-control" id="entradaCodigo" name="codigo">
           </div>
-          <div class="form-group">
-            <label for="entradaNombre">Nombre</label>
-            <input type="text" class="form-control" id="entradaNombre">
-          </div>
-          <div class="form-group">
-            <label for="entradaProveedor">Proveedor</label>
-            <input type="text" class="form-control" id="entradaProveedor">
-          </div>
-          <div class="form-group">
-            <label for="entradaMarca">Marca</label>
-            <input type="text" class="form-control" id="entradaMarca">
-          </div>
-          <div class="form-group">
-            <label for="entradaPeso">Peso</label>
-            <input type="text" class="form-control" id="entradaPeso">
-          </div>
-          <div class="form-group">
-            <label for="entradaEstadistico">Estadístico</label>
-            <input type="text" class="form-control" id="entradaEstadistico">
-          </div>
-          <div class="form-group">
-            <label for="entradaPrecio">Precio</label>
-            <input type="text" class="form-control" id="entradaPrecio">
-          </div>
+          <% function makeEntries(nombre) { %>
+            <div class="form-group">
+              <label for="entrada<%- nombre %>"><%- nombre %></label>
+              <input type="text" class="form-control" id="entrada<%- nombre%>" name="<%- nombre.toLowerCase() %>" value="">
+            </div>
+          <% } %>
+          <% makeEntries('Nombre') %>
+          <% makeEntries('Proveedor') %>
+          <% makeEntries('Marca') %>
+          <% makeEntries('Peso') %>
+          <% makeEntries('Estadistico') %>
+          <% makeEntries('Precio') %>
         </div>
         <div class="col-12 col-md-6 order-first order-md-last">
-          <label for="botonImagen">Imagen</label><br>
-          <button class="btn btn-secondary form-control">Cargar imagen...</button>
+          <label for="entradaImagen">Imagen</label><br>
+          <input type="file" id="botonImagen" name="imagen">
         </div>
       </div>
       <div class="row">
