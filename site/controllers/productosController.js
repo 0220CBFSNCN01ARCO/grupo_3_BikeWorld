@@ -1,6 +1,6 @@
 const productosController = {
     showView: (req, res) => {
-        return res.render('productAdd')
+        return res.render ('productAdd')
     },
     addProduct: (req, res) => {
         console.log (req.body)
