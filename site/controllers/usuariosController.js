@@ -4,4 +4,4 @@ const usuariosController = {
     }
 }
 
-module.exports = usuariosController;
+module.exports = usuariosController

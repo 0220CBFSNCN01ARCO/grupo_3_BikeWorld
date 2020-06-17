@@ -4,4 +4,4 @@ const carritoController = {
     }
 }
 
-module.exports = carritoController;
+module.exports = carritoController
