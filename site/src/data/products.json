@@ -96,7 +96,7 @@
         "discount": 5,
         "category": "Accesorios",
         "description": "Lubricante para hambientes secos.",
-        "image": "lubricante.jpg",
+        "image": "Lubricante.jpg",
         "status":"oferta"
        },
        {
@@ -106,7 +106,7 @@
         "discount": 5,
         "category": "Accesorios",
         "description": "Tapa rayos, cuida no se ensucie el disco de freno.",
-        "image": "tapaRayos.jpg",
+        "image": "TapaRayos.jpg",
         "status":"oferta"
        },
        {
@@ -116,7 +116,7 @@
         "discount": 10,
         "category": "Bicicletas",
         "description": "Bicicleta de 24 velocidades con frenos a discos mecánicos.",
-        "image": "venzoEolo.jpg",
+        "image": "VenzoEolo.jpg",
         "status":"oferta"
        }
 ]
