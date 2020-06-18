@@ -1,122 +1,122 @@
 [
-    {
-        "id": 1,
-        "name": "Caso",
-        "price": 1576,
-        "discount": 0,
-        "category": "Accesorios",
-        "description": "Casco para uso recreativo ajustable.",
-        "image": "casco.jpg",
-        "status":"destacado"
-    },
-    {
-        "id": 2,
-        "name": "Medidor de cadena",
-        "price": 356,
-        "discount": 0,
-        "category": "Accesorios",
-        "description": "Medidor de desgaste de cadena en 1 y 0.75.",
-        "image": "medidorCadena.jpg",
-        "status":"destacado"
-    },
-    {
-        "id": 3,
-        "name": "Piñon 12 velocidads",
-        "price": 3245,
-        "discount": 0,
-        "category": "Transmición",
-        "description": "Piñon de doce velocidades 11 / 46, cuerpo de aluminio, ligero en peso.",
-        "image": "pinon12v.jpg",
-        "status":"destacado"
-    },
-    {
-        "id": 4,
-        "name": "Shifters integrados",
-        "price": 2356,
-        "discount": 0,
-        "category": "Transmición",
-        "description": "Shifters integrados con manijas de frenos mecánicos.",
-        "image": "shiftersFrenos.jpg",
-        "status":"destacado"
-    },
-    {
-        "id": 5,
-        "name": "Tornillos de frenos",
-        "price": 745,
-        "discount": 0,
-        "category": "Frenos",
-        "description": "Tornillos para frenos a discos anodizados cobre.",
-        "image": "tornilloFrenos.jpg",
-        "status":"destacado"
-    },
-    {
-        "id": 6,
-        "name": "Venzo Skyline 27 v",
-        "price": 38791,
-        "discount": 0,
-        "category": "Bicicletas",
-        "description": "Venzo Skyline de 29 velocidades, frenos hidráulicos y suspeción a elastómeros.",
-        "image": "venzoSkyline.jpg",
-        "status":"destacado"
-    },
-    {
-        "id": 1,
-        "name": "Bici doble suspención",
-        "price": 19671,
-        "discount": 10,
-        "category": "Bicicletas",
-        "description": "Bicicleta doble suspención de 24 velocidades con frenos mecánicos.",
-        "image": "biciDoble.jpg",
-        "status":"oferta"
-       },
-       {
-        "id": 2,
-        "name": "Cadena 10v",
-        "price": 1436,
-        "discount": 15,
-        "category": "Transmición",
-        "description": "Cadena de 10 velocidades.",
-        "image": "cadena.jpg",
-        "status":"oferta"
-       },
-       {
-        "id": 3,
-        "name": "Caliper Freno",
-        "price": 1108,
-        "discount": 10,
-        "category": "Frenos",
-        "description": "Caliper para freno mecánico con pastillas.",
-        "image": "caliperFreno.jpg",
-        "status":"oferta"
-       },
-       {
-        "id": 4,
-        "name": "Lubricante 110 cc",
-        "price": 258,
-        "discount": 5,
-        "category": "Accesorios",
-        "description": "Lubricante para hambientes secos.",
-        "image": "Lubricante.jpg",
-        "status":"oferta"
-       },
-       {
-        "id": 5,
-        "name": "Tapa rayos",
-        "price": 509,
-        "discount": 5,
-        "category": "Accesorios",
-        "description": "Tapa rayos, cuida no se ensucie el disco de freno.",
-        "image": "TapaRayos.jpg",
-        "status":"oferta"
-       },
-       {
-        "id": 6,
-        "name": "Venzo Eolo",
-        "price": 45000,
-        "discount": 10,
-        "category": "Bicicletas",
-        "description": "Bicicleta de 24 velocidades con frenos a discos mecánicos.",
-        "image": "VenzoEolo.jpg",
-        "status":"oferta"
-       }
+  {
+    "id": 1,
+    "name": "Caso",
+    "price": 1576,
+    "discount": 0,
+    "category": "Accesorios",
+    "description": "Casco para uso recreativo ajustable.",
+    "image": "casco.jpg",
+    "status": "destacado"
+  },
+  {
+    "id": 2,
+    "name": "Medidor de cadena",
+    "price": 356,
+    "discount": 0,
+    "category": "Accesorios",
+    "description": "Medidor de desgaste de cadena en 1 y 0.75.",
+    "image": "medidorCadena.jpg",
+    "status": "destacado"
+  },
+  {
+    "id": 3,
+    "name": "Piñon 12 velocidads",
+    "price": 3245,
+    "discount": 0,
+    "category": "Transmición",
+    "description": "Piñon de doce velocidades 11 / 46, cuerpo de aluminio, ligero en peso.",
+    "image": "pinon12v.jpg",
+    "status": "destacado"
+  },
+  {
+    "id": 4,
+    "name": "Shifters integrados",
+    "price": 2356,
+    "discount": 0,
+    "category": "Transmición",
+    "description": "Shifters integrados con manijas de frenos mecánicos.",
+    "image": "shiftersFrenos.jpg",
+    "status": "destacado"
+  },
+  {
+    "id": 5,
+    "name": "Tornillos de frenos",
+    "price": 745,
+    "discount": 0,
+    "category": "Frenos",
+    "description": "Tornillos para frenos a discos anodizados cobre.",
+    "image": "tornilloFrenos.jpg",
+    "status": "destacado"
+  },
+  {
+    "id": 6,
+    "name": "Venzo Skyline 27 v",
+    "price": 38791,
+    "discount": 0,
+    "category": "Bicicletas",
+    "description": "Venzo Skyline de 29 velocidades, frenos hidráulicos y suspeción a elastómeros.",
+    "image": "venzoSkyline.jpg",
+    "status": "destacado"
+  },
+  {
+    "id": 1,
+    "name": "Bici doble suspención",
+    "price": 19671,
+    "discount": 10,
+    "category": "Bicicletas",
+    "description": "Bicicleta doble suspención de 24 velocidades con frenos mecánicos.",
+    "image": "biciDoble.jpg",
+    "status": "oferta"
+  },
+  {
+    "id": 2,
+    "name": "Cadena 10v",
+    "price": 1436,
+    "discount": 15,
+    "category": "Transmición",
+    "description": "Cadena de 10 velocidades.",
+    "image": "cadena.jpg",
+    "status": "oferta"
+  },
+  {
+    "id": 3,
+    "name": "Caliper Freno",
+    "price": 1108,
+    "discount": 10,
+    "category": "Frenos",
+    "description": "Caliper para freno mecánico con pastillas.",
+    "image": "caliperFreno.jpg",
+    "status": "oferta"
+  },
+  {
+    "id": 4,
+    "name": "Lubricante 110 cc",
+    "price": 258,
+    "discount": 5,
+    "category": "Accesorios",
+    "description": "Lubricante para hambientes secos.",
+    "image": "Lubricante.jpg",
+    "status": "oferta"
+  },
+  {
+    "id": 5,
+    "name": "Tapa rayos",
+    "price": 509,
+    "discount": 5,
+    "category": "Accesorios",
+    "description": "Tapa rayos, cuida no se ensucie el disco de freno.",
+    "image": "TapaRayos.jpg",
+    "status": "oferta"
+  },
+  {
+    "id": 6,
+    "name": "Venzo Eolo",
+    "price": 45000,
+    "discount": 10,
+    "category": "Bicicletas",
+    "description": "Bicicleta de 24 velocidades con frenos a discos mecánicos.",
+    "image": "VenzoEolo.jpg",
+    "status": "oferta"
+  }
 ]
