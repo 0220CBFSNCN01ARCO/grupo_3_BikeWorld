@@ -13,14 +13,14 @@ Sitios de referencia
 El objetivo fue buscar sitios de referencia nacionales e internacionales:
 
 - Córdoba:
-  - https://fusionbikes.com.ar
-  - https://www.borabikes.com.ar
-- Nacional: 
-  - https://sin-limite.com.ar
-  - https://www.nitrobikes.com.ar
-  - http://www.bicicleteriapereyra.com.ar
+  - [Fusion Bikes](https://fusionbikes.com.ar)
+  - [Bora Bikes](https://www.borabikes.com.ar)
+- Nacional:
+  - [Sin Límite](https://sin-limite.com.ar)
+  - [Nitro Bikes](https://www.nitrobikes.com.ar)
+  - [Bicicletería Pereyra](http://www.bicicleteriapereyra.com.ar)
 - Internacional - Inglaterra
-  - https://www.chainreactiocycles.com
+  - [Chain Reaction Cycles](https://www.chainreactioncycles.com)
 
 La idea es tener referencias de cómo se venden/presentan las webs en cada uno
 de los mercados, tanto nacional como internacional.
@@ -28,13 +28,13 @@ de los mercados, tanto nacional como internacional.
 Paleta de colores
 -----------------
 
-![](palette.png)
+![Paleta de colores elegida](palette.png)
 
-https://colorhunt.co/palette/170419
+[Link a la paleta de colores](https://colorhunt.co/palette/170419)
 
 opción:
 
-https://colorhunt.co/palette/183111
+[Paleta de colores alternativa](https://colorhunt.co/palette/183111)
 
 Tipografías
 -----------
@@ -47,7 +47,7 @@ Carpeta de Trabajo
 
 Disponemos de una carpeta de trabajo hospedada en Google Drive
 
-https://drive.google.com/folderview?id=1OGTJrf7RXVpiDzgLGbADuiIgw8-sLnz1
+[Enlace](https://drive.google.com/folderview?id=1OGTJrf7RXVpiDzgLGbADuiIgw8-sLnz1)
 
 En esta carpeta se encuentran los diferentes bocetos y Wireframes, así como
 las reparticiones de tareas y resultados de cada reunión.
@@ -57,7 +57,7 @@ Tablero de trabajo
 
 El enlace al tablero de trabajo en Trello es el siguiente
 
-https://trello.com/b/zmgKmOqG
+[Enlace](https://trello.com/b/zmgKmOqG)
 
 Contribuir
 ----------
