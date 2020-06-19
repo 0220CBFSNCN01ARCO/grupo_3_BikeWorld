@@ -30,11 +30,7 @@ Paleta de colores
 
 ![Paleta de colores elegida](palette.png)
 
-[Link a la paleta de colores](https://colorhunt.co/palette/170419)
-
-opción:
-
-[Paleta de colores alternativa](https://colorhunt.co/palette/183111)
+[Link a la paleta de colores](https://colorhunt.co/palette/124611)
 
 Tipografías
 -----------
