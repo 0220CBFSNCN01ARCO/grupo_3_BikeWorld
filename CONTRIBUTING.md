@@ -6,7 +6,7 @@ Estas son las pautas que usaremos al momento de contribuir.
 Arbol de directorios
 --------------------
 
-```
+``` text
 [root]-+ Archivos de configuración y el README
        |
        +-[.vscode] Archivos de configuración de VS Code
@@ -38,13 +38,13 @@ Los commits tienen que muy atomizados y funcionales. El resumen debe explicar en
 no más de 50 caracteres los cambios realizados. El resúmen debería tener el
 siguiente formato:
 
-```
+``` text
 <Zona trabajada>: <Resumen de los cambios>
 ```
 
 Y deberían contar con una descripción con el siguiente formato:
 
-```
+``` text
 Resumen del comportamiento actual
 
 Resumen de los problemas que trae el comportamiento actual, o resumen de los cambios
@@ -62,7 +62,7 @@ Pasos a realizar para trabajar
 Es importante que antes de empezar a hacer nada, se realice un pull de los cambios
 con
 
-```sh
+``` shell
 git pull
 ```
 
@@ -75,13 +75,13 @@ para poder exponer el trabajo al grupo y que pueda ser revisado.
 
 Las ramas se crean con:
 
-```sh
+``` shell
 git checkout -b <nombre-de-rama>
 ```
 
 Y se eliminan con:
 
-```sh
+``` shell
 git branch -D <nombre-de-rama>
 ```
 
@@ -90,7 +90,7 @@ git branch -D <nombre-de-rama>
 También se debe tener en cuenta realizar commits lo más atómicos posibles, y usando
 lo siguiente para crearlos:
 
-```sh
+``` shell
 git add .
 git commit -m "Mensaje del commit"
 ```
