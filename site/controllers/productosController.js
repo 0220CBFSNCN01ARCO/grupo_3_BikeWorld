@@ -1,5 +1,5 @@
 const productosController = {
-  showView: (req, res) => {
+  viewCreateForm: (req, res) => {
     return res.render('productAdd')
   },
   addProduct: (req, res) => {
