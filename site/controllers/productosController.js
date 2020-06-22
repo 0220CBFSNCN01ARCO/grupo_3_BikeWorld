@@ -9,15 +9,15 @@ const productosController = {
   },
 
   viewDetail: (req, res) => {
-    return res.render('productDetail',{
+    return res.render('productDetail', {
       id: 2,
-      name: "Medidor de cadena",
+      name: 'Medidor de cadena',
       price: 356,
       discount: 0,
-      category: "Accesorios",
-      description: "Medidor de desgaste de cadena en 1 y 0.75.",
-      image: "medidorCadena.jpg",
-      status: "destacado"
+      category: 'Accesorios',
+      description: 'Medidor de desgaste de cadena en 1 y 0.75.',
+      image: 'medidorCadena.jpg',
+      status: 'destacado'
     })
   }
 }
