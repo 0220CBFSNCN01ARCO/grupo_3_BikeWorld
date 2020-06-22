@@ -1,13 +1,38 @@
+const fs = require('fs')
+
+let productos = []
+fs.readFile('site/src/data/products.json', 'utf-8', (err, data) => {
+  if (err) {
+    throw err
+  }
+
+  productos = JSON.parse(data)
+})
+
 const productosController = {
   viewCreateForm: (req, res) => {
     return res.render('productAdd')
   },
   addProduct: (req, res) => {
-    console.log(req.body)
-    console.log(req.file)
-    return res.redirect('/products/add')
-  },
+    productos.push({
+      id: productos.length + 1,
+      name: req.body.name,
+      price: Number(req.body.price),
+      discount: Number(req.body.discount),
+      category: req.body.category,
+      description: req.body.description,
+      image: req.file.filename,
+      status: req.body.status
+    })
 
+    fs.writeFile('site/src/data/products.json', JSON.stringify(productos, null, 2), (err) => {
+      if (err) {
+        throw err
+      }
+
+      return res.redirect('/products/create')
+    })
+  },
   viewDetail: (req, res) => {
     return res.render('productDetail', {
       id: 2,
