@@ -10,41 +10,49 @@
   <%- include('partials/headerNavbar') %>
 
   <div class="container mt-5 mb-5">
+
     <div class="row">
       <div class="col-12 mb-3">
         <h2>Cargar producto</h2>
       </div>
     </div>
+
     <form action="/products" method="post" enctype="multipart/form-data">
+
       <div class="row">
-        <div class="col-12 col-md-6">
-          <div class="form-group mt-3 mt-md-0">
-            <label for="entradaCodigo">Código</label>
-            <input type="text" class="form-control" id="entradaCodigo" name="codigo">
-          </div>
-          <% function makeEntries(nombre) { %>
+        <div class="col-12 col-md-6 pt-3 pt-md-0">
+
+          <% function makeEntries(label, name, type = 'text') { %>
             <div class="form-group">
-              <label for="entrada<%- nombre %>"><%- nombre %></label>
-              <input type="text" class="form-control" id="entrada<%- nombre%>" name="<%- nombre.toLowerCase() %>" value="">
+              <label for="entrada<%- name %>"><%- label %></label>
+              <input type="<%- type %>"
+                     class="form-control"
+                     id="entrada<%- name%>"
+                     name="<%- name.toLowerCase() %>"
+                     required>
             </div>
           <% } %>
-          <% makeEntries('Nombre') %>
-          <% makeEntries('Proveedor') %>
-          <% makeEntries('Marca') %>
-          <% makeEntries('Peso') %>
-          <% makeEntries('Estadistico') %>
-          <% makeEntries('Precio') %>
+
+          <% makeEntries('Nombre', 'name') %>
+          <% makeEntries('Precio', 'price', 'number') %>
+          <% makeEntries('Descuento', 'discount', 'number') %>
+          <% makeEntries('Categoría', 'category') %>
+          <% makeEntries('Descripción', 'description') %>
+          <% makeEntries('Estado', 'status') %>
+
         </div>
         <div class="col-12 col-md-6 order-first order-md-last">
-          <label for="entradaImagen">Imagen</label><br>
-          <input type="file" id="botonImagen" name="imagen">
+          <label for="inputImage">Imagen</label><br>
+          <input type="file" id="inputImage" name="image" required>
         </div>
       </div>
+
       <div class="row">
         <div class="col-12 col-md-6 mb-3">
           <button class="btn btn-primary form-control" type="submit">Cargar producto</button>
         </div>
       </div>
+
     </form>
   </div>
 
