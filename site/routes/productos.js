@@ -26,8 +26,8 @@ router.get('/:id', (req, res) => {
   return productosController.showView(req, res)
 })
 
-// POST products/add
-router.post('/add', upload.single('imagen'), (req, res, next) => {
+// POST /products
+router.post('/', upload.single('image'), (req, res, next) => {
   return productosController.addProduct(req, res)
 })
 
