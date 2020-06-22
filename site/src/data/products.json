@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "name": "Caso",
+    "name": "Casco",
     "price": 1576,
     "discount": 0,
     "category": "Accesorios",
     "description": "Casco para uso recreativo ajustable.",
-    "image": "casco.jpg",
+    "image": "image-1592795275916.jpg",
     "status": "destacado"
   },
   {
@@ -16,17 +16,17 @@
     "discount": 0,
     "category": "Accesorios",
     "description": "Medidor de desgaste de cadena en 1 y 0.75.",
-    "image": "medidorCadena.jpg",
+    "image": "image-1592795357323.jpg",
     "status": "destacado"
   },
   {
     "id": 3,
-    "name": "Piñon 12 velocidads",
+    "name": "Piñón 12 velocidades",
     "price": 3245,
     "discount": 0,
-    "category": "Transmición",
-    "description": "Piñon de doce velocidades 11 / 46, cuerpo de aluminio, ligero en peso.",
-    "image": "pinon12v.jpg",
+    "category": "Transmisión",
+    "description": "Piñón de 12 velocidades 11 / 46, cuerpo de aluminio, ligero en peso.",
+    "image": "image-1592795451650.jpg",
     "status": "destacado"
   },
   {
@@ -34,9 +34,9 @@
     "name": "Shifters integrados",
     "price": 2356,
     "discount": 0,
-    "category": "Transmición",
+    "category": "Transmisión",
     "description": "Shifters integrados con manijas de frenos mecánicos.",
-    "image": "shiftersFrenos.jpg",
+    "image": "image-1592795528519.jpg",
     "status": "destacado"
   },
   {
@@ -46,7 +46,7 @@
     "discount": 0,
     "category": "Frenos",
     "description": "Tornillos para frenos a discos anodizados cobre.",
-    "image": "tornilloFrenos.jpg",
+    "image": "image-1592795594726.jpg",
     "status": "destacado"
   },
   {
@@ -55,68 +55,68 @@
     "price": 38791,
     "discount": 0,
     "category": "Bicicletas",
-    "description": "Venzo Skyline de 29 velocidades, frenos hidráulicos y suspeción a elastómeros.",
-    "image": "venzoSkyline.jpg",
+    "description": "Venzo Skyline de 29 velocidades, frenos hidráulicos y suspención a elastómeros.",
+    "image": "image-1592795665963.jpg",
     "status": "destacado"
   },
   {
-    "id": 1,
-    "name": "Bici doble suspención",
+    "id": 7,
+    "name": "Bici doble suspensión",
     "price": 19671,
     "discount": 10,
     "category": "Bicicletas",
-    "description": "Bicicleta doble suspención de 24 velocidades con frenos mecánicos.",
-    "image": "biciDoble.jpg",
+    "description": "Bicicleta doble suspensión de 24 velocidades con frenos mecánicos.",
+    "image": "image-1592795758240.jpg",
     "status": "oferta"
   },
   {
-    "id": 2,
+    "id": 8,
     "name": "Cadena 10v",
     "price": 1436,
     "discount": 15,
-    "category": "Transmición",
+    "category": "Transmisión",
     "description": "Cadena de 10 velocidades.",
-    "image": "cadena.jpg",
+    "image": "image-1592795831569.jpg",
     "status": "oferta"
   },
   {
-    "id": 3,
+    "id": 9,
     "name": "Caliper Freno",
     "price": 1108,
     "discount": 10,
     "category": "Frenos",
     "description": "Caliper para freno mecánico con pastillas.",
-    "image": "caliperFreno.jpg",
+    "image": "image-1592795876619.jpg",
     "status": "oferta"
   },
   {
-    "id": 4,
-    "name": "Lubricante 110 cc",
+    "id": 10,
+    "name": "Lubricante 110cc",
     "price": 258,
     "discount": 5,
     "category": "Accesorios",
-    "description": "Lubricante para hambientes secos.",
-    "image": "Lubricante.jpg",
+    "description": "Lubricante para ambientes secos.",
+    "image": "image-1592795917954.jpg",
     "status": "oferta"
   },
   {
-    "id": 5,
+    "id": 11,
     "name": "Tapa rayos",
     "price": 509,
     "discount": 5,
     "category": "Accesorios",
     "description": "Tapa rayos, cuida no se ensucie el disco de freno.",
-    "image": "TapaRayos.jpg",
+    "image": "image-1592795951528.jpg",
     "status": "oferta"
   },
   {
-    "id": 6,
+    "id": 12,
     "name": "Venzo Eolo",
     "price": 45000,
     "discount": 10,
     "category": "Bicicletas",
     "description": "Bicicleta de 24 velocidades con frenos a discos mecánicos.",
-    "image": "VenzoEolo.jpg",
+    "image": "image-1592795991608.jpg",
     "status": "oferta"
   }
 ]
