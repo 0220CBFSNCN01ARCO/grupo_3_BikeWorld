@@ -21,9 +21,9 @@ router.get('/create', (req, res) => {
   return productosController.viewCreateForm(req, res)
 })
 
-// GET products/:id
+// GET /products/:id
 router.get('/:id', (req, res) => {
-  return productosController.showView(req, res)
+  return productosController.viewDetail(req, res)
 })
 
 // POST /products
