@@ -16,9 +16,9 @@ const upload = multer({ storage: storage })
 
 const router = express.Router()
 
-// GET products/add
-router.get('/add', (req, res) => {
-  return productosController.showView(req, res)
+// GET /products/create
+router.get('/create', (req, res) => {
+  return productosController.viewCreateForm(req, res)
 })
 
 // GET products/:id
