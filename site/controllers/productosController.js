@@ -41,7 +41,7 @@ const productosController = {
       discount: 0,
       category: 'Accesorios',
       description: 'Medidor de desgaste de cadena en 1 y 0.75.',
-      image: 'medidorCadena.jpg',
+      image: "/images/products/image-1592795357323.jpg",
       status: 'destacado'
     })
   }
