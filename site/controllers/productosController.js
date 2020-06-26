@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 let productos = []
 fs.readFile('site/src/data/products.json', 'utf-8', (err, data) => {
@@ -34,16 +35,16 @@ const productosController = {
     })
   },
   viewDetail: (req, res) => {
-    return res.render('productDetail', {
-      id: 2,
-      name: 'Medidor de cadena',
-      price: 356,
-      discount: 0,
-      category: 'Accesorios',
-      description: 'Medidor de desgaste de cadena en 1 y 0.75.',
-      image: '/images/products/image-1592795357323.jpg',
-      status: 'destacado'
-    })
+    // Primero obtenemos el producto en cuestión
+    let producto = productos[req.params.id]
+
+    // Luego lo clonamos
+    producto = JSON.parse(JSON.stringify(producto))
+
+    // Y corregimos la propiedad image
+    producto.image = path.resolve('/images', 'products', producto.image)
+
+    return res.render('productDetail', producto)
   }
 }
 
