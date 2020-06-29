@@ -39,18 +39,10 @@ module.exports = {
       return res.redirect('/products')
     })
   },
-  showProductDetails: (req, res) => {
-    // Primero obtenemos el producto en cuestión
-    let producto = products[req.params.id]
-
-    // Luego lo clonamos
-    producto = JSON.parse(JSON.stringify(producto))
-
-    // Y corregimos la propiedad image
-    producto.image = path.resolve('/images', 'products', producto.image)
-
-    return res.render('productDetails', producto)
-  },
+  showProductDetails: (req, res) => res.render('productDetails', {
+    product: products[req.params.id],
+    getProductImagePath: getProductImagePath
+  }),
   showProductEditForm: (req, res) => {},
   editProduct: (req, res) => {},
   deleteProduct: (req, res) => {}
