@@ -36,7 +36,7 @@ module.exports = {
     })
 
     updateProducts(() => {
-      return res.redirect('/products/create')
+      return res.redirect('/products')
     })
   },
   showProductDetails: (req, res) => {
