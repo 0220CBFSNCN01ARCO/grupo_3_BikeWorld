@@ -1,5 +1,5 @@
 const express = require('express')
-const productosController = require('../controllers/productosController')
+const productosController = require('../controllers/productsController')
 const multer = require('multer')
 const path = require('path')
 
