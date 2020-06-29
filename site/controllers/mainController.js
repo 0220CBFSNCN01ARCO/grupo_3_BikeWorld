@@ -2,10 +2,10 @@ const fs = require('fs')
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
 const mainController = {
-  index: function (req, res) {
+  index: (req, res) => {
     return res.redirect('/home')
   },
-  home: function (req, res) {
+  home: (req, res) => {
     const ofertas = obtenerOfertas()
     const destacados = obtenerDestacados()
 
