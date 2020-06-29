@@ -11,10 +11,10 @@ fs.readFile('site/src/data/products.json', 'utf-8', (err, data) => {
 })
 
 const productosController = {
-  viewCreateForm: (req, res) => {
+  showProductCreationForm: (req, res) => {
     return res.render('productAdd')
   },
-  addProduct: (req, res) => {
+  createProduct: (req, res) => {
     productos.push({
       id: productos.length + 1,
       name: req.body.name,
@@ -34,7 +34,7 @@ const productosController = {
       return res.redirect('/products/create')
     })
   },
-  viewDetail: (req, res) => {
+  showProductDetails: (req, res) => {
     // Primero obtenemos el producto en cuestión
     let producto = productos[req.params.id]
 
