@@ -28,7 +28,7 @@ router.get('/:id', productsController.showProductDetails)
 router.get('/', productsController.createProduct)
 
 // GET /products/:id/edit
-router.get('/:id/edit', productControllers.showProductEditForm)
+router.get('/:id/edit', productsController.showProductEditForm)
 
 // PUT /products/:id
 router.put('/:id', productsController.editProduct)

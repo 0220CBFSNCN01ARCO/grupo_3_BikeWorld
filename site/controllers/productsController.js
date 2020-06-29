@@ -14,6 +14,7 @@ const updateProducts = callback => {
 }
 
 module.exports = {
+  showProductList: (req, res) => {},
   showProductCreationForm: (req, res) => res.render('productCreationForm'),
   createProduct: (req, res) => {
     products.push({
@@ -42,5 +43,8 @@ module.exports = {
     producto.image = path.resolve('/images', 'products', producto.image)
 
     return res.render('productDetails', producto)
-  }
+  },
+  showProductEditForm: (req, res) => {},
+  editProduct: (req, res) => {},
+  deleteProduct: (req, res) => {}
 }
