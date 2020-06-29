@@ -17,18 +17,12 @@ const upload = multer({ storage: storage })
 const router = express.Router()
 
 // GET /products/create
-router.get('/create', (req, res) => {
-  return productosController.viewCreateForm(req, res)
-})
+router.get('/create', productosController.showProductCreationForm)
 
 // GET /products/:id
-router.get('/:id', (req, res) => {
-  return productosController.viewDetail(req, res)
-})
+router.get('/:id', productosController.showProductDetails)
 
 // POST /products
-router.post('/', upload.single('image'), (req, res, next) => {
-  return productosController.addProduct(req, res)
-})
+router.post('/', upload.single('image'), productosController.createProduct)
 
 module.exports = router
