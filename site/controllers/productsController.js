@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const products = JSON.parse(fs.readFileSync('site/src/data/products.json', 'utf-8'))
+var products = JSON.parse(fs.readFileSync('site/src/data/products.json', 'utf-8'))
 
 const updateProducts = callback => {
   fs.writeFile('site/src/data/products.json', JSON.stringify(products, null, 2), err => {
@@ -71,5 +71,11 @@ module.exports = {
 
     updateProducts(() => res.redirect('/products'))
   },
-  deleteProduct: (req, res) => {}
+  deleteProduct: (req, res) => {
+    products = products.filter(product => {
+      return product.id != req.params.id
+    })
+
+    updateProducts(() => res.redirect('/products'))
+  }
 }
