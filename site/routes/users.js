@@ -1,11 +1,9 @@
 const express = require('express')
-const controller = require('../controllers/usersController')
+const usersController = require('../controllers/usersController')
 
 const router = express.Router()
 
-// GET /user/register
-router.get('/register', (req, res) => {
-  return controller.registrar(req, res)
-})
+// GET /users/register
+router.get('/register', usersController.showRegistrationForm)
 
 module.exports = router

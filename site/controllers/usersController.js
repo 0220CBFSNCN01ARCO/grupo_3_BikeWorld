@@ -1,7 +1,3 @@
-const usuariosController = {
-  registrar: (req, res) => {
-    return res.render('register')
-  }
+module.exports = {
+  showRegistrationForm: (req, res) => res.render('registrationForm')
 }
-
-module.exports = usuariosController
