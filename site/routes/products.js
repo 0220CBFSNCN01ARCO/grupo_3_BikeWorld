@@ -1,5 +1,5 @@
 const express = require('express')
-const productosController = require('../controllers/productsController')
+const productsController = require('../controllers/productsController')
 const multer = require('multer')
 const path = require('path')
 
@@ -13,16 +13,27 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage })
-
 const router = express.Router()
 
+// GET /products
+router.get('/', productsController.showProductList)
+
 // GET /products/create
-router.get('/create', productosController.showProductCreationForm)
+router.get('/create', productsController.showProductDetails)
 
 // GET /products/:id
-router.get('/:id', productosController.showProductDetails)
+router.get('/:id', productsController.showProductDetails)
 
 // POST /products
-router.post('/', upload.single('image'), productosController.createProduct)
+router.get('/', productsController.createProduct)
+
+// GET /products/:id/edit
+router.get('/:id/edit', productControllers.showProductEditForm)
+
+// PUT /products/:id
+router.put('/:id', productsController.editProduct)
+
+// DELETE /products/:id
+router.delete('/:id', productsController.deleteProduct)
 
 module.exports = router
