@@ -1,7 +1,7 @@
-var express = require('express')
-var mainController = require('../controllers/mainController')
+const express = require('express')
+const mainController = require('../controllers/mainController')
 
-var router = express.Router()
+const router = express.Router()
 
 // GET /
 router.get('/', function (req, res, next) {
