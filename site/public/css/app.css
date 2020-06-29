@@ -400,6 +400,17 @@ hr {
     cursor: pointer;
   }
 
+  /*====== Footer ======*/
+  .page-footer{
+        background-color:#fd5f00;opacity:0.9;;
+
+  }
+
+  ul#listaInline li {
+    display:inline;
+  }
+
+
   /*====== Media-Queries ======*/
   @media (min-width: 768px) {
     header{
