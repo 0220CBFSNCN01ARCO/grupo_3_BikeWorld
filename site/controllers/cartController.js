@@ -1,7 +1,3 @@
-const carritoController = {
-  verCarrito: (req, res) => {
-    return res.render('productCart')
-  }
+module.exports = {
+  showCart: (req, res) => res.render('cart')
 }
-
-module.exports = carritoController
