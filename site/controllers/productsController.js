@@ -35,9 +35,7 @@ module.exports = {
       status: req.body.status
     })
 
-    updateProducts(() => {
-      return res.redirect('/products')
-    })
+    updateProducts(() => res.redirect('/products'))
   },
   showProductDetails: (req, res) => res.render('productDetails', {
     product: products.find(product => {
@@ -51,6 +49,27 @@ module.exports = {
     }),
     getProductImagePath: getProductImagePath
   }),
-  editProduct: (req, res) => {},
+  editProduct: (req, res) => {
+    const productIndex = products.findIndex(product => {
+      return product.id == req.params.id
+    })
+
+    products[productIndex] = {
+      id: Number(req.params.id),
+      name: req.body.name,
+      price: Number(req.body.price),
+      discount: Number(req.body.discount),
+      category: req.body.category,
+      description: req.body.description,
+      status: req.body.status
+    }
+
+    // No `image: req.file?.filename`? Why JS :(
+    if (req.file) {
+      products[productIndex].image = req.file.filename
+    }
+
+    updateProducts(() => res.redirect('/products'))
+  },
   deleteProduct: (req, res) => {}
 }
