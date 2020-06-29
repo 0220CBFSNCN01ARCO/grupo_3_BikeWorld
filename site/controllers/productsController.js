@@ -3,7 +3,7 @@ const path = require('path')
 
 var products = JSON.parse(fs.readFileSync('site/src/data/products.json', 'utf-8'))
 
-const productosController = {
+module.exports = {
   showProductCreationForm: (req, res) => {
     return res.render('productCreationForm')
   },
@@ -40,5 +40,3 @@ const productosController = {
     return res.render('productDetails', producto)
   }
 }
-
-module.exports = productosController
