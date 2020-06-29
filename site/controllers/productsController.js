@@ -25,7 +25,7 @@ module.exports = {
   showProductCreationForm: (req, res) => res.render('productCreationForm'),
   createProduct: (req, res) => {
     products.push({
-      id: products.length + 1,
+      id: Number(products[products.length - 1].id + 1),
       name: req.body.name,
       price: Number(req.body.price),
       discount: Number(req.body.discount),
@@ -40,7 +40,9 @@ module.exports = {
     })
   },
   showProductDetails: (req, res) => res.render('productDetails', {
-    product: products[req.params.id],
+    product: products.find(product => {
+      return product.id == req.params.id
+    }),
     getProductImagePath: getProductImagePath
   }),
   showProductEditForm: (req, res) => {},
