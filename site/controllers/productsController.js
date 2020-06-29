@@ -13,8 +13,15 @@ const updateProducts = callback => {
   })
 }
 
+const getProductImagePath = imageFilename => {
+  return path.resolve('/images/products', imageFilename)
+}
+
 module.exports = {
-  showProductList: (req, res) => {},
+  showProductList: (req, res) => res.render('productList', {
+    products: products,
+    getProductImagePath: getProductImagePath
+  }),
   showProductCreationForm: (req, res) => res.render('productCreationForm'),
   createProduct: (req, res) => {
     products.push({
