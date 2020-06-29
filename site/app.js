@@ -5,9 +5,9 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
 const indexRouter = require('./routes/index')
-const productosRouter = require('./routes/productos')
-const usuariosRouter = require('./routes/usuarios')
-const carritoRouter = require('./routes/carrito')
+const productosRouter = require('./routes/products')
+const usuariosRouter = require('./routes/users')
+const carritoRouter = require('./routes/cart')
 
 const app = express()
 
