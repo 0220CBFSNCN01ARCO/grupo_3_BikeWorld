@@ -4,9 +4,7 @@ const path = require('path')
 var products = JSON.parse(fs.readFileSync('site/src/data/products.json', 'utf-8'))
 
 module.exports = {
-  showProductCreationForm: (req, res) => {
-    return res.render('productCreationForm')
-  },
+  showProductCreationForm: (req, res) => res.render('productCreationForm'),
   createProduct: (req, res) => {
     products.push({
       id: products.length + 1,
@@ -19,7 +17,7 @@ module.exports = {
       status: req.body.status
     })
 
-    fs.writeFile('site/src/data/products.json', JSON.stringify(products, null, 2), (err) => {
+    fs.writeFile('site/src/data/products.json', JSON.stringify(products, null, 2), err => {
       if (err) {
         throw err
       }
