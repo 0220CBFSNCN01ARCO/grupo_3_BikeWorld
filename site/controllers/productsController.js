@@ -45,7 +45,12 @@ module.exports = {
     }),
     getProductImagePath: getProductImagePath
   }),
-  showProductEditForm: (req, res) => {},
+  showProductEditForm: (req, res) => res.render('productEditForm', {
+    product: products.find(product => {
+      return product.id == req.params.id
+    }),
+    getProductImagePath: getProductImagePath
+  }),
   editProduct: (req, res) => {},
   deleteProduct: (req, res) => {}
 }
