@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
  <!-- Head -->
- <%- include('partials/head', { title: 'Product Detail' }) %>
+ <%- include('partials/head', { title: product.name }) %>
  <!-- Final del head -->
 <body>
   <!-- Header -->
@@ -13,7 +13,7 @@
     <br>
     <div class="detalleContainer">
       <div class="col-12 d-flex justify-content-center detalleTitulo ">
-        <h1><%- name %></h1>
+        <h1><%= product.name %></h1>
       </div>
       <div class="row col-12 m-0 p-0">
         <div class="detalleProducto d-flex flex-wrap p-1 m-1">
@@ -21,7 +21,7 @@
             <div class="col-12 col-md-12 p-0 detalleImagenPrincipal">
               <a href="">
                 <figure>
-                  <img src="<%- image %>" alt="imagen de producto">
+                  <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
                 </figure>
               </a>
             </div>
@@ -29,21 +29,21 @@
               <div class="col-md-4 p-1">
                 <a href="">
                   <figure class="detalleImagen">
-                    <img src='<%- image %>' alt="imagen de producto">
+                    <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
                   </figure>
                 </a>
               </div>
               <div class="col-md-4 p-1">
                 <a href="">
                   <figure class="detalleImagen">
-                    <img src='<%- image %>' alt="imagen de producto">
+                    <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
                   </figure>
                 </a>
               </div>
               <div class="col-md-4 p-1">
                 <a href="">
                   <figure class="detalleImagen">
-                    <img src='<%- image %>' alt="imagen de producto">
+                    <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
                   </figure>
                 </a>
               </div>
@@ -51,9 +51,9 @@
           </div>
           <div class="col-12 col-md-8">
             <article class="infoProducto">
-              <h2><strong>$<%- price %></strong></h2>
+              <h2><strong>$<%= product.price %></strong></h2>
               <div class="col-12 p-2 m-0 justify-content-center detalleDescripcion">
-                <p><%- description %>
+                <p><%- product.description %>
                 </p>
               </div>
 
