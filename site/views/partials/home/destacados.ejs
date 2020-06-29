@@ -4,23 +4,23 @@
       <div class="col-12">
         <h2 class="products-title">Nuestros productos destacados</h2>
       </div>
-      <% destacados.forEach(destacado => { %>
+      <% featured.forEach(product => { %>
       <div class="col-12 col-sm-6 col-lg-3">
 
         <section class="product-box">
-          <!-- /products/detail/1 -->
-          <a href="/products/detail/<%= destacado.id %>">
+          <!-- /products/:id -->
+          <a href="/products/<%= product.id %>">
             <figure class="product-box_image">
-              <img src="/images/products/<%= destacado.image %>" alt="imagen de producto">
+              <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
             </figure>
             <article class="product-box_data">
               <h2>
-                <%= llevarAMil(destacado.price - (destacado.price * destacado.discount / 100))  %>
+                <%= toThousand(product.price - (product.price * product.discount / 100))  %>
               </h2>
-              <% if (destacado.discount) { %>
-              <span> <%= destacado.discount %>% OFF</span>
+              <% if (product.discount) { %>
+              <span> <%= product.discount %>% OFF</span>
               <% } %>
-              <p> <%= destacado.name %></p>
+              <p> <%= product.name %></p>
               <i class="fas fa-truck"></i>
             </article>
           </a>

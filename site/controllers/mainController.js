@@ -1,46 +1,21 @@
 const fs = require('fs')
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+const path = require('path')
 
-const mainController = {
-  index: (req, res) => {
-    return res.redirect('/home')
-  },
-  home: (req, res) => {
-    const ofertas = obtenerOfertas()
-    const destacados = obtenerDestacados()
+const products = JSON.parse(fs.readFileSync('site/src/data/products.json', 'utf-8'))
 
-    return res.render('home', {
-      title: 'Home',
-      ofertas: ofertas,
-      destacados: destacados,
-      llevarAMil: toThousand
-    })
-  }
-}
-
-const obtenerOfertas = () => {
-  const articulos = JSON.parse(fs.readFileSync('site/src/data/products.json'))
-  const articulosFiltrados = []
-
-  articulos.forEach(articulo => {
-    if (articulo.status === 'oferta') {
-      articulosFiltrados.push(articulo)
+module.exports = {
+  showHomePage: (req, res) => res.render('homePage', {
+    sales: products.filter(product => {
+      return product.status == 'offer'
+    }),
+    featured: products.filter(product => {
+      return product.status == 'featured'
+    }),
+    toThousand: number => number.toString()
+      .replace('.', ',')
+      .replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
+    getProductImagePath: imageFilename => {
+      return path.resolve('/images/products', imageFilename)
     }
   })
-
-  return articulosFiltrados
 }
-
-const obtenerDestacados = () => {
-  const articulos = JSON.parse(fs.readFileSync('site/src/data/products.json'))
-  const articulosFiltrados = []
-
-  articulos.forEach(articulo => {
-    if (articulo.status === 'destacado') {
-      articulosFiltrados.push(articulo)
-    }
-  })
-  return articulosFiltrados
-  /* return JSON.parse(fs.readFileSync('src/data/destacados.json')); */
-}
-module.exports = mainController
