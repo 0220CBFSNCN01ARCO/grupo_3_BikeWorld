@@ -1,7 +1,17 @@
 const fs = require('fs')
 const path = require('path')
 
-var products = JSON.parse(fs.readFileSync('site/src/data/products.json', 'utf-8'))
+const products = JSON.parse(fs.readFileSync('site/src/data/products.json', 'utf-8'))
+
+const updateProducts = callback => {
+  fs.writeFile('site/src/data/products.json', JSON.stringify(products, null, 2), err => {
+    if (err) {
+      throw err
+    }
+
+    callback()
+  })
+}
 
 module.exports = {
   showProductCreationForm: (req, res) => res.render('productCreationForm'),
@@ -17,11 +27,7 @@ module.exports = {
       status: req.body.status
     })
 
-    fs.writeFile('site/src/data/products.json', JSON.stringify(products, null, 2), err => {
-      if (err) {
-        throw err
-      }
-
+    updateProducts(() => {
       return res.redirect('/products/create')
     })
   },
