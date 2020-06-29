@@ -12,7 +12,7 @@ fs.readFile('site/src/data/products.json', 'utf-8', (err, data) => {
 
 const productosController = {
   showProductCreationForm: (req, res) => {
-    return res.render('productAdd')
+    return res.render('productCreationForm')
   },
   createProduct: (req, res) => {
     productos.push({
@@ -44,7 +44,7 @@ const productosController = {
     // Y corregimos la propiedad image
     producto.image = path.resolve('/images', 'products', producto.image)
 
-    return res.render('productDetail', producto)
+    return res.render('productDetails', producto)
   }
 }
 
