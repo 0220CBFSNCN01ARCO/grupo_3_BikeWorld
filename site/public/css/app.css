@@ -14,7 +14,7 @@
   }
 
 .home-body{
-  
+
   background-repeat: repeat;
   width: 100%;
 }
@@ -401,6 +401,15 @@ hr {
     cursor: pointer;
   }
 
+  /*====== registrationForm ======*/
+
+#formulario{
+  padding: 0px;
+}
+
+#yaTenesCuenta{
+  padding: 0px;
+}
   /*====== Footer ======*/
   .page-footer{
         background-color:#13334c;opacity:0.9;
