@@ -39,19 +39,19 @@ module.exports = {
   },
   showProductDetails: (req, res) => res.render('productDetails', {
     product: products.find(product => {
-      return product.id === req.params.id
+      return product.id === Number(req.params.id)
     }),
     getProductImagePath: getProductImagePath
   }),
   showProductEditForm: (req, res) => res.render('productEditForm', {
     product: products.find(product => {
-      return product.id === req.params.id
+      return product.id === Number(req.params.id)
     }),
     getProductImagePath: getProductImagePath
   }),
   editProduct: (req, res) => {
     const productIndex = products.findIndex(product => {
-      return product.id === req.params.id
+      return product.id === Number(req.params.id)
     })
 
     products[productIndex] = {
@@ -73,7 +73,7 @@ module.exports = {
   },
   deleteProduct: (req, res) => {
     products = products.filter(product => {
-      return product.id !== req.params.id
+      return product.id !== Number(req.params.id)
     })
 
     updateProducts(() => res.redirect('/products'))
