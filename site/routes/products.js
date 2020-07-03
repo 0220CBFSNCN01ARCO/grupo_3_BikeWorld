@@ -19,7 +19,7 @@ const router = express.Router()
 router.get('/', productsController.showProductList)
 
 // GET /products/create
-router.get('/create', productsController.showProductDetails)
+router.get('/create', productsController.showProductCreationForm)
 
 // GET /products/:id
 router.get('/:id', productsController.showProductDetails)
