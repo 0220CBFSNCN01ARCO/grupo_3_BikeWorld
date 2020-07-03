@@ -10,9 +10,8 @@
   <div class="container mt-5 mb-5">
     <div class="row">
     </div>
-    <br>
     <div class="col-12 mb-3">
-      <h1 class="Titulo-pagina">Completá tus datos</h1>
+      <h2 class="Titulo-pagina">Completá tus datos</h2>
     </div>
 
     <!-- Form -->
@@ -22,81 +21,89 @@
 
           <!-- Name -->
           <div id="formulario" class="col-sm-12 col-md-7 col-lg4">
-            <label for="nombre"></label>
-            <input type="text" name="nombre" class="form-control" placeholder="Nombre"
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" class="form-control" placeholder=""
             id="nombre" aria-describedby="emailHelp" required>
           </div>
+          <br>
           <br>
 
           <!-- Last name -->
           <div id="formulario" class="col-sm-12 col-md-7 col-lg4">
-            <label for="apellido"></label>
-            <input type="text" name="apellido" class="form-control" placeholder="Apellido"
+            <label for="apellido">Apellido</label>
+            <input type="text" name="apellido" class="form-control" placeholder=""
             id="apellido" aria-describedby="emailHelp" required>
           </div>
+          <br>
           <br>
 
           <!-- Email -->
           <div id="formulario" class="col-sm-12 col-md-7 col-lg4">
-            <label for="email"></label>
-            <input type="email" name="email" class="form-control" placeholder="E-mail"
+            <label for="email">E-mail</label>
+            <input type="email" name="email" class="form-control" placeholder=""
             id="email" aria-describedby="emailHelp" required>
           </div>
+          <br>
+          <br>
+
+
+          <!-- Password -->
+          <div id="formulario" class="col-sm-12 col-md-7 col-lg4">
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" class="form-control"
+            placeholder="La contraseña debe tener 6 caracteres como mínimo."
+            id="password" required>
+          </div>
+          <br>
+          <br>
+
+          <!-- Repeat password -->
+          <div id="formulario" class="col-sm-12 col-md-7 col-lg4">
+            <label for="repetirPassword">Repetir contraseña</label>
+            <input type="password" name="passwordRepeat" class="form-control"
+            placeholder="" id="repetirPassword" required>
+          </div>
+          <br>
+          <br>
           <br>
 
           <!-- Add image -->
           <div id="formulario" class="col-sm-12 col-md-7 col-lg4">
-            <label for="imagen"></label>
+            <label for="imagen">Añadir imagen</label>
             <input type="file" name="avatar" class="form-control" placeholder="Foto Perfil"
             id="imagen" required>
           </div>
           <br>
+          <br>
+          <br>
 
-          <!-- Password -->
-          <div id="formulario" class="col-sm-12 col-md-7 col-lg4">
-            <label for="password"></label>
-            <input type="password" name="password" class="form-control" placeholder="Contraseña"
-            id="password" required>
-            <small id="passwordHelpBlock" class="form-text text-muted">
-              La contraseña debe tener 6 caracteres como mínimo.</small>
-            </div>
-            <br>
-
-            <!-- Repeat password -->
-            <div id="formulario" class="col-sm-12 col-md-7 col-lg4">
-              <label for="repetirPassword"></label>
-              <input type="password" name="passwordRepeat" class="form-control"
-              placeholder="Repetir contraseña" id="repetirPassword" required>
-            </div>
-            <br>
-            <br>
-            <br>
-
-            <!-- Create account -->
-            <div id="formulario" class="col-12 col-md-7 mb-3">
-              <button type="submit" class="btn btn-primary">Crear Cuenta</button>
-            </div>
-            <br>
-
-            <!-- Already have an account? Enter -->
-            <div class="col-12" class="yaTenesCuenta">
-              ¿Ya tenes cuenta? <a target="" href="" >  Ingresar</a>
-            </div>
-            <br>
-            <br>
-
-          </div>
         </div>
-      </form>
-      <!-- /Form -->
-    </div>
-    <!-- Footer -->
-    <%- include('partials/footer') %>
-    <!-- /Footer -->
+<br>
 
-    <!-- Scripts Bootstrap -->
-    <%- include('partials/bootstrapScripts') %>
-    <!-- /Scripts Bootstrap -->
+        <div>
 
-  </body>
-  </html>
+          <!-- Create account -->
+          <div id="formulario" class="col-12 col-md-7 mb-3">
+            <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+          </div>
+
+          <!-- Already have an account? Enter -->
+          <div class="col-12" id="yaTenesCuenta">
+            ¿Ya tenes cuenta? <a target="" href="" >  Ingresar</a>
+          </div>
+
+        </div>
+      </div>
+    </form>
+    <!-- /Form -->
+  </div>
+  <!-- Footer -->
+  <%- include('partials/footer') %>
+  <!-- /Footer -->
+
+  <!-- Scripts Bootstrap -->
+  <%- include('partials/bootstrapScripts') %>
+  <!-- /Scripts Bootstrap -->
+
+</body>
+</html>
