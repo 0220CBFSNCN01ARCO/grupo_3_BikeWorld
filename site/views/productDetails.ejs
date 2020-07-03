@@ -6,7 +6,7 @@
 <body>
   <!-- Header -->
   <%- include('partials/headerNavbar') %>
-  <!-- Final del header -->
+  <!-- /Header -->
   <div class="container">
     <div class="row">
     </div>
@@ -24,29 +24,6 @@
                   <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
                 </figure>
               </a>
-            </div>
-            <div class="col-12 col-md-12 d-flex p-0 justify-content-center p-0">
-              <div class="col-md-4 p-1">
-                <a href="">
-                  <figure class="detalleImagen">
-                    <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
-                  </figure>
-                </a>
-              </div>
-              <div class="col-md-4 p-1">
-                <a href="">
-                  <figure class="detalleImagen">
-                    <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
-                  </figure>
-                </a>
-              </div>
-              <div class="col-md-4 p-1">
-                <a href="">
-                  <figure class="detalleImagen">
-                    <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
-                  </figure>
-                </a>
-              </div>
             </div>
           </div>
           <div class="col-12 col-md-8">
@@ -67,14 +44,13 @@
         </div>
       </div>
     </div>
-
-    <!-- Footer -->
-    <%- include('partials/footer') %>
-    <!-- /Footer -->
-
-    <!-- Scripts Bootstrap -->
-    <%- include('partials/bootstrapScripts') %>
-    <!-- /Scripts Bootstrap -->
   </div>
+  <!-- Footer -->
+  <%- include('partials/footer') %>
+  <!-- /Footer -->
+
+  <!-- Scripts Bootstrap -->
+  <%- include('partials/bootstrapScripts') %>
+  <!-- /Scripts Bootstrap -->
 </body>
 </html>

@@ -5,13 +5,6 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema ecommercedb
--- -----------------------------------------------------
-
--- -----------------------------------------------------
 -- Schema ecommercedb
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `ecommercedb` DEFAULT CHARACTER SET utf8mb4 ;
@@ -63,8 +56,8 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`productos` (
   `imagen` VARCHAR(100) NULL DEFAULT NULL,
   `status_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `CategoriaProducto_fk` (`categoriaProducto_id` ASC) VISIBLE,
-  INDEX `status_fk` (`status_id` ASC) VISIBLE,
+  INDEX `CategoriaProducto_fk` (`categoriaProducto_id` ASC),
+  INDEX `status_fk` (`status_id` ASC),
   CONSTRAINT `CategoriaProducto_fk`
     FOREIGN KEY (`categoriaProducto_id`)
     REFERENCES `ecommercedb`.`categoriaproductos` (`id`),
@@ -88,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`usuarios` (
   `password` VARCHAR(200) NULL DEFAULT NULL,
   `categoriaUsuario_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `CategoriaUsuario_fk` (`categoriaUsuario_id` ASC) VISIBLE,
+  INDEX `CategoriaUsuario_fk` (`categoriaUsuario_id` ASC),
   CONSTRAINT `CategoriaUsuario_fk`
     FOREIGN KEY (`categoriaUsuario_id`)
     REFERENCES `ecommercedb`.`categoriausuarios` (`id`))
@@ -106,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`ventas` (
   `fecha` DATETIME NULL DEFAULT NULL,
   `usuario_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `Usuario_fk` (`usuario_id` ASC) VISIBLE,
+  INDEX `Usuario_fk` (`usuario_id` ASC),
   CONSTRAINT `Usuario_fk`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `ecommercedb`.`usuarios` (`id`)
@@ -127,8 +120,8 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`ventadetalles` (
   `precio` DOUBLE NULL DEFAULT NULL,
   `descuento` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `venta_fk` (`venta_id` ASC) VISIBLE,
-  INDEX `producto_fk` (`producto_id` ASC) VISIBLE,
+  INDEX `venta_fk` (`venta_id` ASC),
+  INDEX `producto_fk` (`producto_id` ASC),
   CONSTRAINT `producto_fk`
     FOREIGN KEY (`producto_id`)
     REFERENCES `ecommercedb`.`productos` (`id`)
