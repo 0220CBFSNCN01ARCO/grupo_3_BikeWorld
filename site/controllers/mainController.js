@@ -6,10 +6,10 @@ const products = JSON.parse(fs.readFileSync('site/src/data/products.json', 'utf-
 module.exports = {
   showHomePage: (req, res) => res.render('homePage', {
     sales: products.filter(product => {
-      return product.status == 'offer'
+      return product.status === 'offer'
     }),
     featured: products.filter(product => {
-      return product.status == 'featured'
+      return product.status === 'featured'
     }),
     toThousand: number => number.toString()
       .replace('.', ',')

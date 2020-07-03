@@ -25,7 +25,7 @@ router.get('/create', productsController.showProductCreationForm)
 router.get('/:id', productsController.showProductDetails)
 
 // POST /products
-router.get('/', productsController.createProduct)
+router.post('/', upload.single('image'), productsController.createProduct)
 
 // GET /products/:id/edit
 router.get('/:id/edit', productsController.showProductEditForm)
