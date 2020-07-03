@@ -6,25 +6,24 @@ module.exports = (sequelize, dataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    nombre: dataTypes.STRING(100),
-    apellido: dataTypes.STRING(100),
+    firstName: dataTypes.STRING(100),
+    lastName: dataTypes.STRING(100),
     email: dataTypes.STRING(100),
     password: dataTypes.STRING(200),
-    categoriaUsuario_id: dataTypes.INTEGER(11)
+    userCategoryId: dataTypes.INTEGER(11)
   }, {
-    timestamps: false,
-    tableName: 'usuarios'
+    timestamps: false
   })
 
   User.associate = models => {
     User.hasMany(models.Sale, {
       as: 'sales',
-      foreignKey: 'usuario_id'
+      foreignKey: 'userId'
     })
 
     User.belongsTo(models.UserCategory, {
       as: 'user',
-      foreignKey: 'categoriaUsuario_id'
+      foreignKey: 'userCategoryId'
     })
   }
 

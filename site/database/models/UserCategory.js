@@ -6,16 +6,15 @@ module.exports = (sequelize, dataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    nombre: dataTypes.STRING(100)
+    name: dataTypes.STRING(100)
   }, {
-    timestamps: false,
-    tableName: 'categoriausuarios'
+    timestamps: false
   })
 
   UserCategory.associate = models => {
     UserCategory.hasMany(models.User, {
       as: 'users',
-      foreignKey: 'usuarioCategoria_id'
+      foreignKey: 'userCategoryId'
     })
   }
 
