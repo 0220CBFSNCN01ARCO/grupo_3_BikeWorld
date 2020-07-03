@@ -12,7 +12,7 @@ module.exports = (sequelize, dataTypes) => {
     price: dataTypes.DOUBLE,
     discount: dataTypes.DOUBLE
   }, {
-    timestamps: false,
+    timestamps: false
   })
 
   SaleDetail.associate = models => {
