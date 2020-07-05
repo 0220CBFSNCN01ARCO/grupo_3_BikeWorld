@@ -1,64 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<!-- Incluir el head -->
+<!-- Head -->
 <%- include('partials/head', { title: 'Añadir producto' }) %>
 
-<body class="home-body">
+<!-- Header -->
+<%- include('partials/headerNavbar') %>
 
-  <!-- Incluir el header -->
-  <%- include('partials/headerNavbar') %>
+<div class="container mt-5 mb-5">
 
-  <div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-12 mb-3">
+      <h2>Cargar producto</h2>
+    </div>
+  </div>
+
+  <form action="/products" method="post" enctype="multipart/form-data">
 
     <div class="row">
-      <div class="col-12 mb-3">
-        <h2>Cargar producto</h2>
+      <div class="col-12 col-md-6 pt-3 pt-md-0">
+
+        <% function makeEntries(label, name, type = 'text') { %>
+          <div class="form-group">
+            <label for="entrada<%- name %>"><%- label %></label>
+            <input type="<%- type %>"
+                   class="form-control"
+                   id="entrada<%- name%>"
+                   name="<%- name.toLowerCase() %>"
+                   required>
+          </div>
+        <% } %>
+
+        <% makeEntries('Nombre', 'name') %>
+        <% makeEntries('Precio', 'price', 'number') %>
+        <% makeEntries('Descuento', 'discount', 'number') %>
+        <% makeEntries('Categoría', 'category') %>
+        <% makeEntries('Descripción', 'description') %>
+        <% makeEntries('Estado', 'status') %>
+
+      </div>
+      <div class="col-12 col-md-6 order-first order-md-last">
+        <label for="inputImage">Imagen</label><br>
+        <input type="file" id="inputImage" name="image" required>
       </div>
     </div>
 
-    <form action="/products" method="post" enctype="multipart/form-data">
-
-      <div class="row">
-        <div class="col-12 col-md-6 pt-3 pt-md-0">
-
-          <% function makeEntries(label, name, type = 'text') { %>
-            <div class="form-group">
-              <label for="entrada<%- name %>"><%- label %></label>
-              <input type="<%- type %>"
-                     class="form-control"
-                     id="entrada<%- name%>"
-                     name="<%- name.toLowerCase() %>"
-                     required>
-            </div>
-          <% } %>
-
-          <% makeEntries('Nombre', 'name') %>
-          <% makeEntries('Precio', 'price', 'number') %>
-          <% makeEntries('Descuento', 'discount', 'number') %>
-          <% makeEntries('Categoría', 'category') %>
-          <% makeEntries('Descripción', 'description') %>
-          <% makeEntries('Estado', 'status') %>
-
-        </div>
-        <div class="col-12 col-md-6 order-first order-md-last">
-          <label for="inputImage">Imagen</label><br>
-          <input type="file" id="inputImage" name="image" required>
-        </div>
+    <div class="row">
+      <div class="col-12 col-md-6 mb-3">
+        <button class="btn btn-primary form-control" type="submit">Cargar producto</button>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-12 col-md-6 mb-3">
-          <button class="btn btn-primary form-control" type="submit">Cargar producto</button>
-        </div>
-      </div>
+  </form>
+</div>
 
-    </form>
-  </div>
-
-  <!-- Incluir el footer -->
-  <%- include('partials/footer') %>
-
-</body>
-
-</html>
+<!-- Footer -->
+<%- include('partials/footer') %>

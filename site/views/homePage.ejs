@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-
 <!-- Head -->
 <%- include('partials/head', { title: 'Inicio' }) %>
 
-<body class="home-body">
+<!-- Header -->
+<%- include('partials/headerNavbar') %>
 
-  <!-- Header -->
-  <%- include('partials/headerNavbar') %>
+<!-- Carousel-->
+<%- include('partials/home/carousel') %>
 
-  <!-- Carousel-->
-  <%- include('partials/home/carousel') %>
+<!-- Productos de oferta-->
+<%- include('partials/home/section', { sectionTitle: 'Ofertas', products: sales }) %>
 
-  <!-- Productos de oferta-->
-  <%- include('partials/home/section', { sectionTitle: 'Ofertas', products: sales }) %>
+<!-- Productos de Destacados-->
+<%- include('partials/home/section', { sectionTitle: 'Destacados', products: featured }) %>
 
-  <!-- Productos de Destacados-->
-  <%- include('partials/home/section', { sectionTitle: 'Destacados', products: featured }) %>
-
-  <!-- footer-->
-  <%- include('partials/footer') %>
-
-</body>
-
-</html>
+<!-- footer-->
+<%- include('partials/footer') %>
