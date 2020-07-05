@@ -6,25 +6,24 @@ module.exports = (sequelize, dataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    venta_id: dataTypes.INTEGER(11),
-    producto_id: dataTypes.INTEGER(11),
-    cantidad: dataTypes.DOUBLE,
-    precio: dataTypes.DOUBLE,
-    descuento: dataTypes.DOUBLE
+    saleId: dataTypes.INTEGER(11),
+    productId: dataTypes.INTEGER(11),
+    amount: dataTypes.DOUBLE,
+    price: dataTypes.DOUBLE,
+    discount: dataTypes.DOUBLE
   }, {
-    timestamps: false,
-    tableName: 'ventadetalles'
+    timestamps: false
   })
 
   SaleDetail.associate = models => {
     SaleDetail.belongsTo(models.Sale, {
       as: 'sale',
-      foreignKey: 'venta_id'
+      foreignKey: 'saleId'
     })
 
     SaleDetail.belongsTo(models.Product, {
       as: 'product',
-      foreignKey: 'producto_id'
+      foreignKey: 'productId'
     })
   }
 

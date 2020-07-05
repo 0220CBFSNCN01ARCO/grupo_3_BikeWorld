@@ -118,5 +118,15 @@
     "description": "Bicicleta de 24 velocidades con frenos a discos mecánicos.",
     "image": "image-1592795991608.jpg",
     "status": "offer"
+  },
+  {
+    "id": 13,
+    "name": "Super bici",
+    "price": 123,
+    "discount": 0,
+    "category": "Bicicletas",
+    "description": "Una super bicicleta ultra genial",
+    "image": "image-1593814332196.png",
+    "status": "offer"
   }
 ]

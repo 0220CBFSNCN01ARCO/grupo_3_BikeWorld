@@ -1,0 +1,45 @@
+<div class="row container products-wrapper">
+
+  <!-- Section title -->
+  <div class="col-12">
+    <h2 class="products-title"><%= sectionTitle %></h2>
+  </div>
+  <!-- Section title -->
+
+  <!-- Products Row -->
+  <% products.forEach(product => { %>
+    <div class="col-12 col-sm-6 col-lg-3">
+      <section class="product-box">
+        <a href="/products/<%= product.id %>">
+
+          <!-- Product Image -->
+          <figure class="product-box_image">
+            <img src="<%= getProductImagePath(product.image) %>" alt="Imagen de producto">
+          </figure>
+          <!-- Product Image -->
+
+          <!-- Product Details -->
+          <article class="product-box_data">
+
+            <h2>
+              <%= toThousand(product.price - (product.price * product.discount / 100)) %>
+            </h2>
+
+            <% if (product.discount) { %>
+              <span><% product.discount %>% OFF</span>
+            <% } %>
+
+            <p><%= product.name %></p>
+
+            <i class="fas fa-truck"></i>
+
+          </article>
+          <!-- Product Details -->
+
+        </a>
+      </section>
+    </div>
+  <% }) %>
+  <!-- Products Row -->
+
+</div>

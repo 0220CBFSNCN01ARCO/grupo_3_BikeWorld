@@ -6,22 +6,21 @@ module.exports = (sequelize, dataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    fecha: dataTypes.DATE,
-    usuario_id: dataTypes.INTEGER(11)
+    date: dataTypes.DATE,
+    userId: dataTypes.INTEGER(11)
   }, {
-    timestamps: false,
-    tableName: 'ventas'
+    timestamps: false
   })
 
   Sale.associate = models => {
     Sale.hasMany(models.SaleDetail, {
       as: 'saleDetails',
-      foreignKey: 'venta_id'
+      foreignKey: 'saleId'
     })
 
     Sale.belonsTo(models.User, {
       as: 'user',
-      foreignKey: 'usuario_id'
+      foreignKey: 'userId'
     })
   }
 
