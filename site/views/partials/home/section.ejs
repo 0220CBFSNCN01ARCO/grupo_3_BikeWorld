@@ -22,11 +22,11 @@
           <article class="product-box_data">
 
             <h2>
-              <%= toThousand(product.price - (product.price * product.discount / 100)) %>
+              $ <%= toThousand(product.price - (product.price * product.discount / 100)) %>
             </h2>
 
             <% if (product.discount) { %>
-              <span><% product.discount %>% OFF</span>
+              <span><%= product.discount %>% OFF</span>
             <% } %>
 
             <p><%= product.name %></p>
