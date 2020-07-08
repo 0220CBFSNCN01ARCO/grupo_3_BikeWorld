@@ -40,20 +40,20 @@
           <p class="card-text"><%= product.description %></p>
 
           <!-- Add to cart button -->
-          <form action="" method="post" class="d-inline">
-            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+          <form action="" method="post">
+            <button type="submit" class="btn btn-primary w-100">Agregar al carrito</button>
           </form>
           <!-- Add to cart button -->
 
           <!-- Edit product button -->
-          <span>
-            <a href="/products/<%= product.id %>/edit" class="btn btn-secondary">Editar producto</a>
-          </span>
+          <a href="/products/<%= product.id %>/edit" class="btn btn-outline-secondary w-100 mt-2">
+            Editar producto
+          </a>
           <!-- Edit product button -->
 
           <!-- Delete product button -->
-          <form action="/products/<%= product.id %>?_method=DELETE" method="post" class="d-inline">
-            <button type="submit" class="btn btn-danger">Borrar producto</button>
+          <form action="/products/<%= product.id %>?_method=DELETE" method="post" class="mt-2">
+            <button type="submit" class="btn btn-outline-danger w-100">Borrar producto</button>
           </form>
           <!-- Delete product button -->
 
