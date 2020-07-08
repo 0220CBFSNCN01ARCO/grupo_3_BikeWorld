@@ -24,11 +24,13 @@
           <!-- Product Price -->
           <div class="card-title">
 
-            <span><strong>$ <%= product.price %></strong></span>
+            <h2>
+              <strong>$ <%= product.price %></strong>
 
-            <% if (product.discount > 0) { %>
-              <span class="ml-3"><%= product.discount %>% OFF</span>
-            <% } %>
+              <% if (product.discount > 0) { %>
+                <span class="badge badge-primary ml-2"><%= product.discount %>% OFF</span>
+              <% } %>
+            </h2>
 
           </div>
           <!-- Product Price -->
