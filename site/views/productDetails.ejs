@@ -11,12 +11,14 @@
     <div class="row">
 
       <!-- Product Image -->
-      <div class="col-12 col-md-4">
-        <img src="<%= getProductImagePath(product.image) %>" alt="Imagen del producto" class="card-img">
+      <div class="col-12 col-md-8">
+        <img src="<%= getProductImagePath(product.image) %>"
+             alt="Imagen del producto"
+             class="card-img img-fluid">
       </div>
       <!-- Product Image -->
 
-      <div class="col-12 col-md-8">
+      <div class="col-12 col-md-4">
         <div class="card-body">
 
           <h2 class="card-title"><%= product.name %></h2>
