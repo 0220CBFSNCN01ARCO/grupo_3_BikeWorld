@@ -38,7 +38,7 @@
           <p class="card-text"><%= product.description %></p>
 
           <!-- Add to cart button -->
-          <form action="" method="post" style="display: inline;">
+          <form action="" method="post" class="d-inline">
             <button type="submit" class="btn btn-primary">Agregar al carrito</button>
           </form>
           <!-- Add to cart button -->
@@ -50,7 +50,7 @@
           <!-- Edit product button -->
 
           <!-- Delete product button -->
-          <form action="/products/<%= product.id %>?_method=DELETE" method="post" style="display: inline;">
+          <form action="/products/<%= product.id %>?_method=DELETE" method="post" class="d-inline">
             <button type="submit" class="btn btn-danger">Borrar producto</button>
           </form>
           <!-- Delete product button -->
