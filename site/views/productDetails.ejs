@@ -4,41 +4,50 @@
 <!-- Header -->
 <%- include('partials/headerNavbar') %>
 
-<div class="container">
-  <div class="row">
-  </div>
-  <br>
-  <div class="detalleContainer">
-    <div class="col-12 d-flex ">
-      <h2><%= product.name %></h2>
-    </div>
-    <div class="row col-12 m-0 p-0">
-      <div class="detalleProducto d-flex flex-wrap p-1 m-1">
-        <div class="col-12 col-md-4">
-          <div class="col-12 col-md-12 p-0 detalleImagenPrincipal">
-            <a href="">
-              <figure>
-                <img src="<%= getProductImagePath(product.image) %>" alt="imagen de producto">
-              </figure>
-            </a>
-          </div>
-        </div>
-        <div class="col-12 col-md-8">
-          <article class="infoProducto">
-            <h2><strong>$<%= product.price %></strong></h2>
-            <div class="col-12 p-2 m-0 justify-content-center detalleDescripcion">
-              <p><%- product.description %>
-              </p>
-            </div>
+<div class="container mt-5 mb-5">
 
-            <div class="col-12 d-flex">
-              <button type="submit" class="btn btn-primary">Agregar al carrito</button>
-            </button>
-          </div>
-        </article>
+  <!-- Product Details -->
+  <div class="card">
+    <div class="row">
+
+      <!-- Product Image -->
+      <div class="col-12 col-md-4">
+        <img src="<%= getProductImagePath(product.image) %>" alt="Imagen del producto" class="card-img">
       </div>
+      <!-- Product Image -->
+
+      <div class="col-12 col-md-8">
+        <div class="card-body">
+
+          <h2 class="card-title"><%= product.name %></h2>
+
+          <!-- Product Price -->
+          <div class="card-title">
+
+            <span><strong>$ <%= product.price %></strong></span>
+
+            <% if (product.discount > 0) { %>
+              <span class="ml-3"><%= product.discount %>% OFF</span>
+            <% } %>
+
+          </div>
+          <!-- Product Price -->
+
+          <p class="card-text"><%= product.description %></p>
+
+          <!-- Add to cart button -->
+          <form action="">
+            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+          </form>
+          <!-- Add to cart button -->
+
+        </div>
+      </div>
+
     </div>
   </div>
+  <!-- Product Details -->
+
 </div>
 
 <!-- Footer -->
