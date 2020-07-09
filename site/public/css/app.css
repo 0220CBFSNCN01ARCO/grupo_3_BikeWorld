@@ -411,14 +411,29 @@ hr {
   padding: 0px;
 }
   /*====== Footer ======*/
+
   .page-footer{
         background-color:#13334c;opacity:0.9;
         color: #f6f6e9;
 
   }
 
-  ul#listaInline li {
-    display:inline;
+  #listaInline li {
+    color: white;
+    text-transform: capitalize;
+    font-weight: bold;
+    display: inline-block;
+    background-color: unset;
+    text-align: unset;
+    height: unset;
+    line-height: unset;
+    margin: unset;
+}
+
+  #listaInline li + li:before {
+      content: ' | ';
+      padding: 0 5px;
+      font-weight: bold;
   }
 
 
