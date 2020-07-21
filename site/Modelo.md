@@ -3,6 +3,7 @@ Modelo de Negocio:
 
 Actores:
 ----------
+
 - Usuario puede:
   - Navegar el Home.
   - Desde este consultar un artículo / Detalle artículo.
@@ -10,8 +11,7 @@ Actores:
   - Realizar una búsqueda por nombre de producto.
   - Darse de alta como usuario registrado.
 
-Usuario registrado puede:
-------------------------
+-Usuario registrado puede:
   - Hacer todo lo que usuario (sin registro).
   - Loguearse.
   - Crear un carrito.
@@ -21,22 +21,20 @@ Usuario registrado puede:
   - Eliminar artículos.
 
 Formularios y responsabilidades:
-================================
-Header:
--------
+--------------------------------
+
+- Header:
   - Acceder a usuarios.
   - Buscar por nombre de artículo.
   - Listar artículos por sección.
   - Crear un carrito.
 
-Footer:
--------
+- Footer:
   - Acceso a redes sociales.
   - Publicar dirección.
   - [Permitir enviar un correo.] / solo si terminamos lo básico extendemos
 
-Home:
------
+- Home:
   - Lista artículos en ofertas.
   - Lista artículos destacados.
   - Permite acceder al detalle de los artículos listados.
@@ -44,22 +42,19 @@ Home:
   - Listar el resultado de una búsqueda / por sección / por nombre.
   - Acceder al detalle del artículo.
 
-Usuario:
---------
+- Usuario:
   - Loguearse.
   - Registrarse.
   - Detalle artículo:
 
-Usuario administrador:
-----------------------
+- Usuario administrador:
   - Desactivarlo / Eliminarlo.
   - Actualizar sus campos.
   - Crear un artículo.
   - Resto de usuarios:
   - Ver detalle.
 
-Usuario logueado (no administrador):
-------------------------------------
+- Usuario logueado (no administrador):
   - Agregar a carrito.
   - Carrito:
   - Quitar un artículo.
