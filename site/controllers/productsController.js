@@ -14,7 +14,7 @@ const updateProducts = callback => {
 }
 
 const getProductImagePath = imageFilename => {
-  return path.resolve('/images/products', imageFilename)
+  return path.join('/images/products', imageFilename)
 }
 
 module.exports = {
