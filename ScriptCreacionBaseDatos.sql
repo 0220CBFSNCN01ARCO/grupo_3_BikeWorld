@@ -136,7 +136,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 -- -----------------------------------------------------
--- Table `ecommercedb`.`Car`
+-- Table `ecommercedb`.`Car` /issues #28
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ecommercedb`.`Carts` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -153,7 +153,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 -- -----------------------------------------------------
--- Table `ecommercedb`.`CarDetails`
+-- Table `ecommercedb`.`CarDetails` /issues #28
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ecommercedb`.`CartDetails` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
