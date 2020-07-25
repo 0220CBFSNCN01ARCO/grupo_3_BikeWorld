@@ -17,28 +17,78 @@
     <div class="row">
       <div class="col-12 col-md-6 pt-3 pt-md-0">
 
-        <% function makeEntries(label, name, type = 'text') { %>
-          <div class="form-group">
-            <label for="entrada<%- name %>"><%- label %></label>
-            <input type="<%- type %>"
-                   class="form-control"
-                   id="entrada<%- name%>"
-                   name="<%- name.toLowerCase() %>"
-                   required>
-          </div>
-        <% } %>
+        <div class="form-group">
+          <label for="inputName">Nombre</label>
+          <input type="text"
+                 class="form-control"
+                 id="inputName"
+                 name="name"
+                 required="required">
+        </div>
 
-        <% makeEntries('Nombre', 'name') %>
-        <% makeEntries('Precio', 'price', 'number') %>
-        <% makeEntries('Descuento', 'discount', 'number') %>
-        <% makeEntries('Categoría', 'category') %>
-        <% makeEntries('Descripción', 'description') %>
-        <% makeEntries('Estado', 'status') %>
+        <div class="form-group">
+          <label for="inputPrice">Precio</label>
+          <input type="number"
+                 class="form-control"
+                 id="inputPrice"
+                 name="price"
+                 required="required">
+        </div>
+
+        <div class="form-group">
+          <label for="inputDiscount">Descuento</label>
+          <input type="number"
+                 class="form-control"
+                 id="inputDiscount"
+                 name="discount"
+                 required="required">
+        </div>
+
+        <div class="form-group">
+          <label for="inputCategory">Categoría</label>
+          <input type="text"
+                 class="form-control"
+                 id="inputCategory"
+                 list="categories"
+                 name="category"
+                 required="required"
+                 autocomplete="off">
+          <datalist id="categories">
+            <% categories.forEach(category => { %>
+              <option value="<%= category.name %>"></option>
+            <% }) %>
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="inputDescription">Descripción</label>
+          <textarea name="description"
+                    id="inputDescription"
+                    cols="30"
+                    rows="10"
+                    class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="inputStatus">Estado</label>
+          <input type="text"
+                 class="form-control"
+                 id="inputStatus"
+                 list="states"
+                 name="status"
+                 required="required"
+                 autocomplete="off">
+          <datalist id="states">
+            <% states.forEach(status => { %>
+              <option value="<%=status.name %>"></option>
+            <% }) %>
+          </datalist>
+        </div>
 
       </div>
       <div class="col-12 col-md-6 order-first order-md-last">
         <label for="inputImage">Imagen</label><br>
-        <input type="file" id="inputImage" name="image" required>
+        <input type="file" id="inputImage" name="image">
       </div>
     </div>
 
