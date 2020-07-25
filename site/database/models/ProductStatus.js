@@ -8,7 +8,8 @@ module.exports = (sequelize, dataTypes) => {
     },
     name: dataTypes.STRING(100)
   }, {
-    timestamps: false
+    timestamps: false,
+    tableName: 'ProductStates'
   })
 
   ProductStatus.associate = models => {

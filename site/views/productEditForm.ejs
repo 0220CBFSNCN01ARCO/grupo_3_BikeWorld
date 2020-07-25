@@ -12,28 +12,80 @@
     </div>
   </div>
 
-  <form action="/products/:id?_method=PUT" method="POST" enctype="multipart/form-data">
+  <form action="/products/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
     <div class="row">
       <div class="col-12 col-md-6 pt-3 pt-md-0">
 
-        <% function makeEntries(label, name, value, type = 'text') { %>
-          <div class="form-group">
-            <label for="entrada<%- name %>"><%- label %></label>
-            <input type="<%- type %>"
-                   class="form-control"
-                   id="entrada<%- name%>"
-                   name="<%- name.toLowerCase() %>"
-                   value="<%= value %>">
-          </div>
-        <% } %>
+        <div class="form-group">
+          <label for="inputName">Nombre</label>
+          <input type="text"
+                 class="form-control"
+                 id="inputName"
+                 name="name"
+                 value="<%= product.name %>">
+        </div>
 
-        <% makeEntries('Nombre', 'name', product.name) %>
-        <% makeEntries('Precio', 'price', product.price, 'number') %>
-        <% makeEntries('Descuento', 'discount', product.discount, 'number') %>
-        <% makeEntries('Categoría', 'category', product.category) %>
-        <% makeEntries('Descripción', 'description', product.description) %>
-        <% makeEntries('Estado', 'status', product.status) %>
+        <div class="form-group">
+          <label for="inputPrice">Precio</label>
+          <input type="number"
+                 class="form-control"
+                 id="inputPrice"
+                 name="price"
+                 value="<%= product.price %>">
+        </div>
+
+        <div class="form-group">
+          <label for="inputDiscount">Descuento</label>
+          <input type="number"
+                 class="form-control"
+                 id="inputDiscount"
+                 name="discount"
+                 value="<%= product.discount %>">
+        </div>
+
+        <div class="form-group">
+          <label for="inputCategory">Categoría</label>
+          <input type="text"
+                 class="form-control"
+                 id="inputCategory"
+                 list="categories"
+                 name="category"
+                 value="<%= product.category.name %>"
+                 autocomplete="off">
+          <datalist id="categories">
+            <% categories.forEach(category => { %>
+              <option value="<%= category.name %>"></option>
+            <% }) %>
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="inputDescription">Descripción</label>
+          <textarea name="description"
+                    id="inputDescription"
+                    cols="30"
+                    rows="10"
+                    class="form-control"><%= product.description %></textarea>
+          <!-- IMPORTANT: Do not add newlines to the content of this text area PLEASE.
+               All the newlines and spaces will be shown as content for the text area. -->
+        </div>
+
+        <div class="form-group">
+          <label for="inputStatus">Estado</label>
+          <input type="text"
+                 class="form-control"
+                 id="inputStatus"
+                 list="states"
+                 name="status"
+                 value="<%= product.status.name %>"
+                 autocomplete="off">
+          <datalist id="states">
+            <% states.forEach(status => { %>
+              <option value="<%= status.name %>"></option>
+            <% }) %>
+          </datalist>
+        </div>
 
       </div>
       <div class="col-12 col-md-6 order-first order-md-last">
