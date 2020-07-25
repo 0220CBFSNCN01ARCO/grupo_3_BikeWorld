@@ -18,7 +18,7 @@ module.exports = (sequelize, dataTypes) => {
       foreignKey: 'saleId'
     })
 
-    Sale.belonsTo(models.User, {
+    Sale.belongsTo(models.User, {
       as: 'user',
       foreignKey: 'userId'
     })
