@@ -2,29 +2,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "command": "npm start",
+      "name": "Run npm start",
       "request": "launch",
-      "name": "Launch Server",
-      "env": {
-        "DEBUG": "grupo-3-bikeworld:*"
-      },
-      "program": "${workspaceFolder}/site/bin/www"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Server with Nodemon",
-      "env": {
-        "DEBUG": "grupo-3-bikeworld:*"
-      },
-      "runtimeExecutable": "nodemon",
-      "program": "${workspaceFolder}/site/bin/www",
-      "restart": true,
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "type": "node-terminal"
     }
   ]
 }
