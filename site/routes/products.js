@@ -31,7 +31,7 @@ router.post('/', upload.single('image'), productsController.createProduct)
 router.get('/:id/edit', productsController.showProductEditForm)
 
 // PUT /products/:id
-router.put('/:id', productsController.editProduct)
+router.put('/:id', upload.single('image'), productsController.editProduct)
 
 // DELETE /products/:id
 router.delete('/:id', productsController.deleteProduct)
