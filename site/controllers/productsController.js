@@ -16,7 +16,7 @@ module.exports = {
         products: await db.Product.findAll(),
         getProductImagePath: getProductImagePath,
         toThousand: toThousand,
-        categories: await b.ProductCategory.findAll(),
+        categories: await db.ProductCategory.findAll(),
         states: await db.ProductStatus.findAll()
       })
     } catch (err) {
