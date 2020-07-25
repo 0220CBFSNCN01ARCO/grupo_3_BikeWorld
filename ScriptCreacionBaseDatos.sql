@@ -135,6 +135,49 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`SalesDetails` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
+-- -----------------------------------------------------
+-- Table `ecommercedb`.`Car`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ecommercedb`.`Carts` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `date` DATETIME NULL DEFAULT NULL,
+  `userId` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `userFk` (`userId` ASC),
+  CONSTRAINT `userFk`
+    FOREIGN KEY (`userIdCarts`)
+    REFERENCES `ecommercedb`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
+-- Table `ecommercedb`.`CarDetails`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ecommercedb`.`CartDetails` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `cartId` INT(11) NULL DEFAULT NULL,
+  `productId` INT(11) NULL DEFAULT NULL,
+  `amount` DOUBLE NULL DEFAULT NULL,
+  `price` DOUBLE NULL DEFAULT NULL,
+  `discount` DOUBLE NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `cartFk` (`cartId` ASC),
+  INDEX `productFk` (`productId` ASC),
+  CONSTRAINT `productFk`
+    FOREIGN KEY (`productCarId`)
+    REFERENCES `ecommercedb`.`Products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `cartFk`
+    FOREIGN KEY (`cartId`)
+    REFERENCES `ecommercedb`.`Cart` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

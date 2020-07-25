@@ -1,0 +1,41 @@
+<!-- Head -->
+<%- include('partials/head', { title: 'Listado de productos' }) %>
+
+<!-- Header -->
+<%- include('partials/headerNavbar') %>
+
+<div class="container">
+  <br>
+  <h2 class="Titulo-pagina">Listado de productos</h2>
+
+  <div class="row">
+
+    <!-- Products selector filter-->
+    <div class="col-sm-12 col-md-7 col-lg4">
+
+        <select name="productoSeleccionado" id="productList">
+          <option disabled="disabled" selected="selected">Elija un producto</option>
+          <option value="todos">Todos</option>
+          <option value="bicicletas">Bicicletas</option>
+          <option value="ruedas">Ruedas</option>
+          <option value="accesorios">Accesorios</option>
+          <option value="componentes">Componentes</option>
+          <option value="indumentaria">Indumentaria</option>
+        </select>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card-body">
+
+
+        <!-- Product name -->
+        <h2 class="card-title"><%= product.name %></h2>
+
+        <!-- Product description -->
+        <p class="card-text"><%= product.description %></p>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<%- include('partials/footer') %>

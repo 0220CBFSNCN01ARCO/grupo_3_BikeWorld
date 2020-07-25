@@ -25,7 +25,7 @@ module.exports = {
           .replace('.', ',')
           .replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
         getProductImagePath: imageFilename => {
-          return path.resolve('/images/products', imageFilename)
+          return path.join('/images/products', imageFilename)
         }
       })
     } catch (err) {
