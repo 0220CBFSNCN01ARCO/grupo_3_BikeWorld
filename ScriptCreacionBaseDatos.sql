@@ -143,8 +143,8 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`Carts` (
   `date` DATETIME NULL DEFAULT NULL,
   `userId` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `userFk` (`userId` ASC),
-  CONSTRAINT `userFk`
+  INDEX `userFkcart` (`userId` ASC),
+  CONSTRAINT `userFkcart`
     FOREIGN KEY (`userIdCarts`)
     REFERENCES `ecommercedb`.`users` (`id`)
     ON DELETE NO ACTION
