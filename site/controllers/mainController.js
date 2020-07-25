@@ -1,21 +1,35 @@
-const fs = require('fs')
+const db = require('../database/models')
 const path = require('path')
 
-const products = JSON.parse(fs.readFileSync('site/src/data/products.json', 'utf-8'))
-
 module.exports = {
-  showHomePage: (req, res) => res.render('homePage', {
-    sales: products.filter(product => {
-      return product.status === 'offer'
-    }),
-    featured: products.filter(product => {
-      return product.status === 'featured'
-    }),
-    toThousand: number => number.toString()
-      .replace('.', ',')
-      .replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
-    getProductImagePath: imageFilename => {
-      return path.resolve('/images/products', imageFilename)
+  showHomePage: async (req, res) => {
+    try {
+      res.render('homePage', {
+        sales: await db.Product.findAll({
+          include: [
+            {
+              association: 'status',
+              where: { id: 1 }
+            }
+          ]
+        }),
+        featured: await db.Product.findAll({
+          include: [
+            {
+              association: 'status',
+              where: { id: 2 }
+            }
+          ]
+        }),
+        toThousand: number => number.toString()
+          .replace('.', ',')
+          .replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
+        getProductImagePath: imageFilename => {
+          return path.resolve('/images/products', imageFilename)
+        }
+      })
+    } catch (err) {
+      console.error(err)
     }
-  })
+  }
 }
