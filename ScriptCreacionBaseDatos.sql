@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`Users` (
   `email` VARCHAR(100) NULL DEFAULT NULL,
   `password` VARCHAR(200) NULL DEFAULT NULL,
   `userCategoryId` INT(11) NULL DEFAULT NULL,
+  `image` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `userCategoryFk` (`userCategoryId` ASC),
   CONSTRAINT `userCategoryFk`
@@ -99,10 +100,10 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`Sales` (
   `date` DATETIME NULL DEFAULT NULL,
   `userId` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `userFk` (`userId` ASC),
-  CONSTRAINT `userFk`
+  INDEX `saleOwnerFk` (`userId` ASC),
+  CONSTRAINT `saleOwnerFk`
     FOREIGN KEY (`userId`)
-    REFERENCES `ecommercedb`.`users` (`id`)
+    REFERENCES `ecommercedb`.`Users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -110,9 +111,9 @@ DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
--- Table `ecommercedb`.`SalesDetails`
+-- Table `ecommercedb`.`SaleDetails`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ecommercedb`.`SalesDetails` (
+CREATE TABLE IF NOT EXISTS `ecommercedb`.`SaleDetails` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `saleId` INT(11) NULL DEFAULT NULL,
   `productId` INT(11) NULL DEFAULT NULL,
@@ -121,8 +122,8 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`SalesDetails` (
   `discount` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `saleFk` (`saleId` ASC),
-  INDEX `productFk` (`productId` ASC),
-  CONSTRAINT `productFk`
+  INDEX `productPurchasedFk` (`productId` ASC),
+  CONSTRAINT `productPurchasedFk`
     FOREIGN KEY (`productId`)
     REFERENCES `ecommercedb`.`Products` (`id`)
     ON DELETE NO ACTION
@@ -136,24 +137,24 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 -- -----------------------------------------------------
--- Table `ecommercedb`.`Car` /issues #28
+-- Table `ecommercedb`.`Carts` /issues #28
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ecommercedb`.`Carts` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `date` DATETIME NULL DEFAULT NULL,
   `userId` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `userFkcart` (`userId` ASC),
-  CONSTRAINT `userFkcart`
-    FOREIGN KEY (`userIdCarts`)
-    REFERENCES `ecommercedb`.`users` (`id`)
+  INDEX `cartOwnerFk` (`userId` ASC),
+  CONSTRAINT `cartOwnerFk`
+    FOREIGN KEY (`userId`)
+    REFERENCES `ecommercedb`.`Users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 -- -----------------------------------------------------
--- Table `ecommercedb`.`CarDetails` /issues #28
+-- Table `ecommercedb`.`CartDetails` /issues #28
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ecommercedb`.`CartDetails` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -164,15 +165,15 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`CartDetails` (
   `discount` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `cartFk` (`cartId` ASC),
-  INDEX `productFk` (`productId` ASC),
-  CONSTRAINT `productFk`
-    FOREIGN KEY (`productCarId`)
+  INDEX `productInCartFk` (`productId` ASC),
+  CONSTRAINT `productInCartFk`
+    FOREIGN KEY (`productId`)
     REFERENCES `ecommercedb`.`Products` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `cartFk`
     FOREIGN KEY (`cartId`)
-    REFERENCES `ecommercedb`.`Cart` (`id`)
+    REFERENCES `ecommercedb`.`Carts` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
