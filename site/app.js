@@ -30,8 +30,7 @@ app.use('/cart', cartRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createError(res.render(404)
-  ))
+  next(createError(404))
 })
 
 // error handler
@@ -42,6 +41,11 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500)
+
+  if (err.status === 404) {
+    return res.render('404')
+  }
+
   res.render('error')
 })
 module.exports = app
