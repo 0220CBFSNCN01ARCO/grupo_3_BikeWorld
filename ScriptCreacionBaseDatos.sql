@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `ecommercedb`.`Users` (
   `email` VARCHAR(100) NULL DEFAULT NULL,
   `password` VARCHAR(200) NULL DEFAULT NULL,
   `userCategoryId` INT(11) NULL DEFAULT NULL,
+  `image` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `userCategoryFk` (`userCategoryId` ASC),
   CONSTRAINT `userCategoryFk`
