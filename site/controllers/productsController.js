@@ -1,5 +1,6 @@
 const db = require('../database/models')
 const path = require('path')
+const createHttpError = require('http-errors')
 
 const getProductImagePath = imageFilename => {
   return path.join('/images/products', imageFilename)
@@ -20,6 +21,7 @@ module.exports = {
         states: await db.ProductStatus.findAll()
       })
     } catch (err) {
+      createHttpError(500)
       console.error(err)
     }
   },
@@ -30,6 +32,7 @@ module.exports = {
         states: await db.ProductStatus.findAll()
       })
     } catch (err) {
+      createHttpError(500)
       console.error(err)
     }
   },
@@ -57,6 +60,7 @@ module.exports = {
 
       res.redirect('/products')
     } catch (err) {
+      createHttpError(500)
       console.error(err)
     }
   },
@@ -68,6 +72,7 @@ module.exports = {
         newlineToBr: text => text.replace(/\r\n/g, '<br>')
       })
     } catch (err) {
+      createHttpError(500)
       console.error(err)
     }
   },
@@ -85,6 +90,7 @@ module.exports = {
         states: await db.ProductStatus.findAll()
       })
     } catch (err) {
+      createHttpError(500)
       console.error(err)
     }
   },
@@ -116,6 +122,7 @@ module.exports = {
 
       res.redirect('/products')
     } catch (err) {
+      createHttpError(500)
       console.error(err)
     }
   },
@@ -129,6 +136,7 @@ module.exports = {
 
       res.redirect('/products')
     } catch (err) {
+      createHttpError(500)
       console.error(err)
     }
   }

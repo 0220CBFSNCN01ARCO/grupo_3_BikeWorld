@@ -1,5 +1,6 @@
 const db = require('../database/models')
 const path = require('path')
+const createHttpError = require('http-errors')
 
 module.exports = {
   showHomePage: async (req, res) => {
@@ -29,6 +30,7 @@ module.exports = {
         }
       })
     } catch (err) {
+      createHttpError(500)
       console.error(err)
     }
   }
