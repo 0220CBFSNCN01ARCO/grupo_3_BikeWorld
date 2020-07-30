@@ -3,7 +3,7 @@ const db = require('../database/models')
 
 module.exports = {
   showRegistrationForm: (req, res) => {
-    res.render('registrationFrom')
+    res.render('registrationForm')
   },
   createUser: async (req, res) => {
     try {
