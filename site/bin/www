@@ -30,14 +30,16 @@ server.on('error', err => {
   // handle specific listen errors with friendly messages
   const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`
   switch (err.code) {
-    case 'EACCESS':
-      console.error(`${bind} requires elevated privileges`)
-      process.exit(1)
-    case 'EADDRINUSE':
-      console.error(`${bind} is already in use`)
-      process.exit(1)
-    default:
-      throw err
+  case 'EACCESS':
+    console.error(`${bind} requires elevated privileges`)
+    process.exit(1)
+    break
+  case 'EADDRINUSE':
+    console.error(`${bind} is already in use`)
+    process.exit(1)
+    break
+  default:
+    throw err
   }
 })
 
