@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon -r esm site/bin/www",
-    "prestart": "standard --fix"
+    "prestart": "eslint --fix site/bin/www site",
+    "start": "nodemon -r esm site/bin/www"
   },
   "dependencies": {
     "cookie-parser": "^1.4.5",
@@ -21,8 +21,8 @@
     "sequelize": "^6.3.3"
   },
   "devDependencies": {
+    "eslint": "^7.5.0",
     "nodemon": "^2.0.4",
-    "sequelize-cli": "^6.2.0",
-    "standard": "^14.3.4"
+    "sequelize-cli": "^6.2.0"
   }
 }

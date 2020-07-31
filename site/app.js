@@ -33,7 +33,7 @@ app.use('/cart', cartRouter)
 app.use((req, res, next) => next(createHttpError(404)))
 
 // Manejador de errores
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // Establecemos las variables locales, y solo enviamos el error
   // si estamos en dev
   res.locals.message = err.message
