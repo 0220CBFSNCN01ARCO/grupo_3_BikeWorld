@@ -3,9 +3,12 @@
   "configurations": [
     {
       "command": "npm start",
-      "name": "Run npm start",
+      "name": "Ejecutar Servidor",
       "request": "launch",
-      "type": "node-terminal"
+      "type": "node-terminal",
+      "env": {
+        "DEBUG": "grupo-3-bikeworld:*"
+      }
     }
   ]
 }
