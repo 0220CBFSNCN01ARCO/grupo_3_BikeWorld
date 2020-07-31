@@ -1,39 +1,44 @@
-const express = require('express')
-const productsController = require('../controllers/productsController')
-const multer = require('multer')
-const path = require('path')
+import multer, { diskStorage } from 'multer'
+import { extname } from 'path'
+import { Router } from 'express'
+import {
+  showProductList,
+  showProductCreationForm,
+  showProductDetails,
+  createProduct,
+  showProductEditForm,
+  editProduct,
+  deleteProduct
+} from '../controllers/productsController'
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'site/public/images/products/')
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
-  }
+const storage = diskStorage({
+  destination: (req, file, cb) => cb(null, 'site/public/images/products/'),
+  filename: (req, file, cb) =>
+    cb(null, `${file.fieldname}-${Date.now()}${extname(file.originalname)}`)
 })
 
 const upload = multer({ storage: storage })
-const router = express.Router()
+const router = Router()
 
 // GET /products
-router.get('/', productsController.showProductList)
+router.get('/', showProductList)
 
 // GET /products/create
-router.get('/create', productsController.showProductCreationForm)
+router.get('/create', showProductCreationForm)
 
 // GET /products/:id
-router.get('/:id', productsController.showProductDetails)
+router.get('/:id', showProductDetails)
 
 // POST /products
-router.post('/', upload.single('image'), productsController.createProduct)
+router.post('/', upload.single('image'), createProduct)
 
 // GET /products/:id/edit
-router.get('/:id/edit', productsController.showProductEditForm)
+router.get('/:id/edit', showProductEditForm)
 
 // PUT /products/:id
-router.put('/:id', upload.single('image'), productsController.editProduct)
+router.put('/:id', upload.single('image'), editProduct)
 
 // DELETE /products/:id
-router.delete('/:id', productsController.deleteProduct)
+router.delete('/:id', deleteProduct)
 
-module.exports = router
+export default router

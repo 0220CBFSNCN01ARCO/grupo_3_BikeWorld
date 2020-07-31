@@ -1,3 +1,1 @@
-module.exports = {
-  showCart: (req, res) => res.render('cart')
-}
+export const showCart = (req, res) => res.render('cart')

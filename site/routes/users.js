@@ -1,9 +1,9 @@
-const express = require('express')
-const usersController = require('../controllers/usersController')
+import { Router } from 'express'
+import { showRegistrationForm } from '../controllers/usersController'
 
-const router = express.Router()
+const router = Router()
 
 // GET /users/register
-router.get('/register', usersController.showRegistrationForm)
+router.get('/register', showRegistrationForm)
 
-module.exports = router
+export default router

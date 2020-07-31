@@ -1,9 +1,9 @@
-const express = require('express')
-const mainController = require('../controllers/mainController')
+import { Router } from 'express'
+import { showHomePage } from '../controllers/mainController'
 
-const router = express.Router()
+const router = Router()
 
 // GET /
-router.get('/', mainController.showHomePage)
+router.get('/', showHomePage)
 
-module.exports = router
+export default router

@@ -1,11 +1,14 @@
 'use strict'
 
-const fs = require('fs')
-const path = require('path')
-const Sequelize = require('sequelize')
-const basename = path.basename(__filename)
+import { basename as _basename, join } from 'path'
+import _config from '../config/config'
+import { Sequelize, DataTypes } from 'sequelize'
+import { readdirSync } from 'fs'
+import { runLoopOnce } from 'deasync'
+
+const basename = _basename(__filename)
 const env = process.env.NODE_ENV || 'development'
-const config = require('../config/config')[env]
+const config = _config[env]
 const db = {}
 
 let sequelize
@@ -15,15 +18,25 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config)
 }
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js')
+readdirSync(__dirname).filter(file => {
+  return (file.indexOf('.' !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
+}).forEach(file => {
+  let modelModule
+
+  import(join(__dirname, file)).then(_module => {
+    modelModule = _module
+  }).catch(reason => {
+    console.error(`Error: ${reason}`)
+    process.exit(1)
   })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes)
-    db[model.name] = model
-  })
+
+  while (modelModule === undefined) {
+    runLoopOnce()
+  }
+
+  const model = modelModule.default(sequelize, DataTypes)
+  db[model.name] = model
+})
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
@@ -34,4 +47,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-module.exports = db
+export default db

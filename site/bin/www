@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-// Module dependencies.
-const app = require('../app')
-const debug = require('debug')('grupo-3-bikeworld:server')
-const http = require('http')
+import _debug from 'debug'
+import app from '../app'
+import { createServer } from 'http'
+
+const debug = _debug('grupo-3-bikeworld:server')
 
 // Normalize a port into a number, string, or false
 const normalizePort = val => {
@@ -11,12 +12,12 @@ const normalizePort = val => {
   return isNaN(port) ? val : port >= 0 ? port : false
 }
 
-// Get port from environment and store in Express.
+// Get port from environment and store in Express
 const port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
 
 // Create HTTP server
-const server = http.createServer(app)
+const server = createServer(app)
 
 // Listen on provided port, on all network interfaces
 server.listen(port)
@@ -30,7 +31,7 @@ server.on('error', err => {
   const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`
   switch (err.code) {
     case 'EACCESS':
-      console.error(`${bind} requires elevated priviliges`)
+      console.error(`${bind} requires elevated privileges`)
       process.exit(1)
     case 'EADDRINUSE':
       console.error(`${bind} is already in use`)
