@@ -2,10 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "npm start",
-      "name": "Ejecutar Servidor",
+      "type": "node",
       "request": "launch",
-      "type": "node-terminal",
+      "name": "Iniciar servidor",
+      "runtimeExecutable": "nodemon",
+      "runtimeArgs": [
+        "-r", "esm"
+      ],
+      "program": "${workspaceFolder}/site/bin/www",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "env": {
         "DEBUG": "grupo-3-bikeworld:*"
       }
