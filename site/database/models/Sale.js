@@ -7,7 +7,8 @@ export default (sequelize, dataTypes) => {
       autoIncrement: true
     },
     date: dataTypes.DATE,
-    userId: dataTypes.INTEGER(11)
+    userId: dataTypes.INTEGER(11),
+    sale: dataTypes.BOOLEAN
   }, {
     timestamps: false
   })
