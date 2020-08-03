@@ -421,6 +421,13 @@ hr {
 #yaTenesCuenta{
   padding: 0px;
 }
+
+  /*====== productList ======*/
+
+#selectorFilter{
+  padding-top: 43px;
+}
+
   /*====== Footer ======*/
 
   .page-footer{
