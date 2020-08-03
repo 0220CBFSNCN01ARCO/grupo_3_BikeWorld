@@ -29,24 +29,22 @@ app.use('/products', productsRouter)
 app.use('/users', usersRouter)
 app.use('/cart', cartRouter)
 
-// Atrapamos el 404 y lo mandamos al manejador de errores
+// Cualquier solicitud no existente la atrapamos y la mandamos
+// al manejador de errores como un 404
 app.use((req, res, next) => next(createHttpError(404)))
 
-// Manejador de errores
-app.use((err, req, res) => {
-  // Establecemos las variables locales, y solo enviamos el error
+// Configuramos el manejador de errores
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  // Establecemos las variables locales y solo enviamos el error
   // si estamos en dev
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 
-  // Renderizar la página de error
+  // Renderizamos la página de error
   res.status(err.status || 500)
 
-  if (err.status === 404) {
-    res.render('404')
-  }
-
-  res.render('error')
+  err.status === 404 ? res.render('404') : res.render('error')
 })
 
 export default app
