@@ -10,7 +10,7 @@ export default (sequelize, dataTypes) => {
     lastName: dataTypes.STRING(100),
     email: dataTypes.STRING(100),
     password: dataTypes.STRING(200),
-    userCategoryId: dataTypes.INTEGER(11)
+    userAdmin: dataTypes.BOOLEAN
   }, {
     timestamps: false
   })
@@ -19,11 +19,6 @@ export default (sequelize, dataTypes) => {
     User.hasMany(models.Sale, {
       as: 'sales',
       foreignKey: 'userId'
-    })
-
-    User.belongsTo(models.UserCategory, {
-      as: 'user',
-      foreignKey: 'userCategoryId'
     })
   }
 
