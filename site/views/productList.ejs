@@ -5,37 +5,32 @@
 <%- include('partials/headerNavbar') %>
 
 <div class="container">
-  <br>
-  <h2 class="Titulo-pagina">Listado de productos</h2>
+<br>
+  <h2 class="titlePage">Filtrar por categoria</h2>
 
   <div class="row">
 
     <!-- Products selector filter-->
-    <div class="col-sm-12 col-md-7 col-lg4">
-
-        <select name="productoSeleccionado" id="productList">
-          <option disabled="disabled" selected="selected">Elija un producto</option>
-          <option value="todos">Todos</option>
-          <option value="bicicletas">Bicicletas</option>
-          <option value="ruedas">Ruedas</option>
-          <option value="accesorios">Accesorios</option>
-          <option value="componentes">Componentes</option>
-          <option value="indumentaria">Indumentaria</option>
+    <div class="col-sm-3 col-md-2 col-lg" id="selectorFilter">
+      <form action="post" method="POST">
+      <select name="selectedCategory" id="productList">
+        <option disabled="disabled" selected="selected">Elija un producto</option>
+        <% categories.forEach(category => { %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+          <% }) %>
         </select>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+      </form>
+      </div>
+
+      <!-- Products (Section) -->
+      <div class="card-body col-sm-9 col-md-10 col-lg11">
+        <%- include('partials/home/section', { sectionTitle: 'Listado Productos', products: products }) %>
+      </div>
     </div>
-
-    <div class="col-12 col-md-4">
-      <div class="card-body">
-
-
-        <!-- Product name -->
-        <h2 class="card-title"><%= product.name %></h2>
-
-        <!-- Product description -->
-        <p class="card-text"><%= product.description %></p>
-
   </div>
 </div>
-
 <!-- Footer -->
 <%- include('partials/footer') %>
