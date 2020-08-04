@@ -5,29 +5,22 @@
 <%- include('partials/headerNavbar') %>
 
 <div class="container mt-5 mb-5">
-  <div class="row" class="col-6">
-    <div class="col-12 mb-3">
-      <a href= "aaa.jpg"></a>
+  <div class="row">
+    <div id="text404" class="col-12 mb-3 align-self-center">
+      <br>
+      <h1>404</h1>
+      <h2>Lo sentimos! No se pudo encontrar lo que buscas</h2>
+      <h3>Volver a la
+        <a href="/">home page</a>
+      </h3>
     </div>
   </div>
   <div class="row" class='col-6'>
     <div class="col-12 mb-3">
-      <a href= "../public/images/brokenBike.jpg"> </a>  </div>
-    </div>
-    <div class="row">
-      <div class="col-12 mb-3">
-        <h4>Lo sentimos, no se pudo encontrar lo que buscas</h4>
-        <h5>Volver a la
-          <a href="#">home page</a>
-        </h5>
-      </div>
+      <img id="errorImage" src="/images/brokenBike.jpg">
     </div>
   </div>
+</div>
 
-  <!-- Footer -->
-  <%- include('partials/footer') %>
-
-
-
-
-
+<!-- Footer -->
+<%- include('partials/footer') %>
