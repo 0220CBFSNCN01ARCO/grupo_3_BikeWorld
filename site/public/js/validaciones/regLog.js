@@ -7,7 +7,7 @@ const validaLogin = () => {
 
     //Validación Email
     const msjEmail = document.getElementById('msjEmail-login')
-    if(email.value == ''){
+    if(email.value === ''){
       e.preventDefault()
       email.classList.add('is-invalid')
       msjEmail.classList.remove('d-none')
@@ -19,7 +19,7 @@ const validaLogin = () => {
 
     //Validación Password
     const msjPasw = document.getElementById('msjpassword-login')
-    if(password.value == '' || password.value.length < 6){
+    if(password.value === '' || password.value.length < 6){
       e.preventDefault()
       password.classList.add('is-invalid')
       msjPasw.classList.remove('d-none')
@@ -57,7 +57,7 @@ const validaRegister = () => {
 
     //Validación Apellido
     const msjApe = document.getElementById('msjApellido')
-    if(apellido.value == ''){
+    if(apellido.value === ''){
       e.preventDefault()
       apellido.classList.add('is-invalid')
       msjApe.classList.remove('d-none')
@@ -69,7 +69,7 @@ const validaRegister = () => {
 
     //Validación Email
     const msjEmail = document.getElementById('msjEmail')
-    if(email.value == ''){
+    if(email.value === ''){
       e.preventDefault()
       email.classList.add('is-invalid')
       msjEmail.classList.remove('d-none')
@@ -86,7 +86,7 @@ const validaRegister = () => {
 
     //Validación Password
     const msjPasw = document.getElementById('msjPassword')
-    if(password.value == '' || password.value.length < 6){
+    if(password.value === '' || password.value.length < 6){
       e.preventDefault()
       password.classList.add('is-invalid')
       msjPasw.classList.remove('d-none')
@@ -111,6 +111,6 @@ const validaRegister = () => {
 }
 
 window.onload = () => {
- validaLogin();
- validaRegister();
+  validaLogin()
+  validaRegister()
 }
