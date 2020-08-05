@@ -19,10 +19,7 @@
 
         <div class="form-group">
           <label for="inputName">Nombre</label>
-          <input type="text"
-                 class="form-control"
-                 id="inputName"
-                 name="name">
+          <input type="text" class="form-control" id="inputName" name="name">
           <div id="msjInputName" class="invalid-feedback d-none">
             El nombre es requerido.
           </div>
@@ -30,10 +27,7 @@
 
         <div class="form-group">
           <label for="inputPrice">Precio</label>
-          <input type="number"
-                 class="form-control"
-                 id="inputPrice"
-                 name="price">
+          <input type="number" class="form-control" id="inputPrice" name="price">
           <div id="msjInputPrice" class="invalid-feedback d-none">
             El precio es requerido.
           </div>
@@ -41,37 +35,26 @@
 
         <div class="form-group">
           <label for="inputDiscount">Descuento</label>
-          <input type="number"
-                 class="form-control"
-                 id="inputDiscount"
-                 name="discount">
+          <input type="number" class="form-control" id="inputDiscount" name="discount">
         </div>
 
         <div class="form-group">
           <label for="inputCategory">Categoría</label>
-          <input type="text"
-                 class="form-control"
-                 id="inputCategory"
-                 list="categories"
-                 name="category"
-                 autocomplete="off">
+          <input type="text" class="form-control" id="inputCategory" list="categories" name="category"
+            autocomplete="off">
           <datalist id="categories">
             <% categories.forEach(category => { %>
-              <option value="<%= category.name %>"></option>
+            <option value="<%= category.name %>"></option>
             <% }) %>
           </datalist>
           <div id="msjInputCategory" class="invalid-feedback d-none">
             La categoría es requerida.
-            </div>
+          </div>
         </div>
 
         <div class="form-group">
           <label for="inputDescription">Descripción</label>
-          <textarea name="description"
-                    id="inputDescription"
-                    cols="30"
-                    rows="10"
-                    class="form-control"></textarea>
+          <textarea name="description" id="inputDescription" cols="30" rows="10" class="form-control"></textarea>
           <div id="msjInputDescription" class="invalid-feedback d-none">
             La descripción es requerida.
           </div>
@@ -79,15 +62,10 @@
 
         <div class="form-group">
           <label for="inputStatus">Estado</label>
-          <input type="text"
-                 class="form-control"
-                 id="inputStatus"
-                 list="states"
-                 name="status"
-                 autocomplete="off">
+          <input type="text" class="form-control" id="inputStatus" list="states" name="status" autocomplete="off">
           <datalist id="states">
             <% states.forEach(status => { %>
-              <option value="<%=status.name %>"></option>
+            <option value="<%=status.name %>"></option>
             <% }) %>
           </datalist>
           <div id="msjInputStatus" class="invalid-feedback d-none">
@@ -112,8 +90,7 @@
 </div>
 
 <!-- Script de validación en front end -->
-<script src="/js/validaciones/product.js" language="javascript"
-type="text/javascript"></script>
+<script src="/js/productsValidations.js" type="module"></script>
 
 <!-- Footer -->
 <%- include('partials/footer') %>
