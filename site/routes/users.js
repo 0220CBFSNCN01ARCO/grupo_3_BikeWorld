@@ -1,16 +1,15 @@
 import { Router } from 'express'
 import { showRegistrationForm } from '../controllers/usersController'
 
-const router = Router()
+export const usersRouter = Router()
 
 // GET /users/register
-router.get('/register', showRegistrationForm)
+usersRouter.get('/register', showRegistrationForm)
 
-router.post('/register',(req, res)=>{
+usersRouter.post('/register',(req, res)=>{
   res.send('hola')
 })
 
-router.post('/login',(req, res)=>{
+usersRouter.post('/login',(req, res)=>{
   res.send('hola')
 })
-export default router

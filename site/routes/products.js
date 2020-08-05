@@ -18,27 +18,25 @@ const storage = diskStorage({
 })
 
 const upload = multer({ storage: storage })
-const router = Router()
+export const productsRouter = Router()
 
 // GET /products
-router.get('/', showProductList)
+productsRouter.get('/', showProductList)
 
 // GET /products/create
-router.get('/create', showProductCreationForm)
+productsRouter.get('/create', showProductCreationForm)
 
 // GET /products/:id
-router.get('/:id', showProductDetails)
+productsRouter.get('/:id', showProductDetails)
 
 // POST /products
-router.post('/', upload.single('image'), createProduct)
+productsRouter.post('/', upload.single('image'), createProduct)
 
 // GET /products/:id/edit
-router.get('/:id/edit', showProductEditForm)
+productsRouter.get('/:id/edit', showProductEditForm)
 
 // PUT /products/:id
-router.put('/:id', upload.single('image'), editProduct)
+productsRouter.put('/:id', upload.single('image'), editProduct)
 
 // DELETE /products/:id
-router.delete('/:id', deleteProduct)
-
-export default router
+productsRouter.delete('/:id', deleteProduct)

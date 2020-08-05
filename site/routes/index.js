@@ -1,9 +1,7 @@
 import { Router } from 'express'
 import { showHomePage } from '../controllers/mainController'
 
-const router = Router()
+export const indexRouter = Router()
 
 // GET /
-router.get('/', showHomePage)
-
-export default router
+indexRouter.get('/', showHomePage)
