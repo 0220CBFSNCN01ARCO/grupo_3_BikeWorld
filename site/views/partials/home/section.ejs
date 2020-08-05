@@ -24,11 +24,11 @@
           <article class="product-box_data">
 
             <h2>
-              $ <%= toThousand(product.price - (product.price * product.discount / 100)) %>
+              $ <%= toThousand(Math.round(product.price - (product.price * product.discount / 100))) %>
             </h2>
 
             <% if (product.discount) { %>
-            <span><%= product.discount %>% OFF</span>
+            <span class="badge badge-primary ml-2"><%= product.discount %>% OFF</span>
             <% } %>
 
             <p><%= product.name %></p>
