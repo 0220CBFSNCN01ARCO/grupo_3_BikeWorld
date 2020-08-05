@@ -1,6 +1,5 @@
 import { join } from 'path'
 import db from '../database/models'
-import createHttpError from 'http-errors'
 import { validationResult } from 'express-validator'
 
 const getProductImagePath = imageFilename => join('/images/products', imageFilename)
@@ -9,7 +8,7 @@ const toThousand = number => number.toString()
   .replace('.', ',')
   .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 
-export const showProductList = async (req, res) => {
+export const showProductList = async (req, res, next) => {
   try {
     res.render('productList', {
       products: await db.Product.findAll(),
@@ -19,24 +18,22 @@ export const showProductList = async (req, res) => {
       states: await db.ProductStatus.findAll()
     })
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const showProductCreationForm = async (req, res) => {
+export const showProductCreationForm = async (req, res, next) => {
   try {
     res.render('productCreationForm', {
       categories: await db.ProductCategory.findAll(),
       states: await db.ProductStatus.findAll()
     })
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const createProduct = async (req, res) => {
+export const createProduct = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -77,12 +74,11 @@ export const createProduct = async (req, res) => {
 
     res.redirect('/products')
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const showProductDetails = async (req, res) => {
+export const showProductDetails = async (req, res, next) => {
   try {
     res.render('productDetails', {
       product: await db.Product.findByPk(req.params.id),
@@ -90,12 +86,11 @@ export const showProductDetails = async (req, res) => {
       newlineToBr: text => text.replace(/\r\n/g, '<br>')
     })
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const showProductEditForm = async (req, res) => {
+export const showProductEditForm = async (req, res, next) => {
   try {
     res.render('productEditForm', {
       product: await db.Product.findByPk(req.params.id, {
@@ -109,12 +104,11 @@ export const showProductEditForm = async (req, res) => {
       states: await db.ProductStatus.findAll()
     })
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const editProduct = async (req, res) => {
+export const editProduct = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -179,12 +173,11 @@ export const editProduct = async (req, res) => {
     await product.save()
     res.redirect('/products')
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const deleteProduct = async (req, res) => {
+export const deleteProduct = async (req, res, next) => {
   try {
     await db.Product.destroy({
       where: {
@@ -194,7 +187,6 @@ export const deleteProduct = async (req, res) => {
 
     res.redirect('/products')
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }

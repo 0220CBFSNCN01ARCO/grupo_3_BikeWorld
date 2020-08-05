@@ -1,8 +1,7 @@
 import db from '../database/models'
 import { join } from 'path'
-import createHttpError from 'http-errors'
 
-export const showHomePage = async (req, res) => {
+export const showHomePage = async (req, res, next) => {
   try {
     res.render('homePage', {
       sales: await db.Product.findAll({
@@ -27,7 +26,6 @@ export const showHomePage = async (req, res) => {
       getProductImagePath: imageFilename => join('/images/products', imageFilename)
     })
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
