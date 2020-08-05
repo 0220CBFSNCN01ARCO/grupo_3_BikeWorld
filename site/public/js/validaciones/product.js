@@ -1,11 +1,11 @@
 const valida = () => {
-  const formulario = document.getElementById('registration')
+  const formulario = document.getElementById('product')
 
   formulario.onsubmit = e => {
 
     //Atrapa controles a validar
     const nombre = document.getElementById('inputName')
-    const precio = document.getElementById('inputPrecio')
+    const precio = document.getElementById('inputPrice')
     const categoria = document.getElementById('inputCategory')
     const descripcion  = document.getElementById('inputDescription')
     const status  = document.getElementById('inputStatus')

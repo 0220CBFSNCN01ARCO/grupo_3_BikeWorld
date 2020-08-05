@@ -25,7 +25,10 @@ router.get('/', showProductList)
 
 // GET /products/create
 router.get('/create', showProductCreationForm)
-
+// POST /products/create
+router.post('/create',(req, res)=>{
+  res.send('hola')
+})
 // GET /products/:id
 router.get('/:id', showProductDetails)
 
