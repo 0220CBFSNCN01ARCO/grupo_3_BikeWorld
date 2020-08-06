@@ -1,9 +1,7 @@
 import { Router } from 'express'
 import { showCart } from '../controllers/cartController'
 
-const router = Router()
+export const cartRouter = Router()
 
 // GET /cart
-router.get('/', showCart)
-
-export default router
+cartRouter.get('/', showCart)

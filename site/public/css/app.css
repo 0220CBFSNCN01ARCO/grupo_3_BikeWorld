@@ -148,9 +148,9 @@ hr {
 
 .product-box_data span {
   font-size: 1.5em;
-  font-weight: 300;
+  /*font-weight: 300;
   color: var(--green);
-  margin: 0 0 0 10px;
+  margin: 0 0 0 10px;*/
 }
 
 .product-box_data p {

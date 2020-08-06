@@ -1,6 +1,6 @@
 import { join } from 'path'
 import db from '../database/models'
-import createHttpError from 'http-errors'
+import { validationResult } from 'express-validator'
 
 const getProductImagePath = imageFilename => join('/images/products', imageFilename)
 
@@ -8,7 +8,7 @@ const toThousand = number => number.toString()
   .replace('.', ',')
   .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 
-export const showProductList = async (req, res) => {
+export const showProductList = async (req, res, next) => {
   try {
     res.render('productList', {
       products: await db.Product.findAll(),
@@ -18,25 +18,40 @@ export const showProductList = async (req, res) => {
       states: await db.ProductStatus.findAll()
     })
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const showProductCreationForm = async (req, res) => {
+export const showProductCreationForm = async (req, res, next) => {
   try {
     res.render('productCreationForm', {
       categories: await db.ProductCategory.findAll(),
       states: await db.ProductStatus.findAll()
     })
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const createProduct = async (req, res) => {
+export const createProduct = async (req, res, next) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      res.render('productCreationForm', {
+        errors: errors.array()
+      })
+    } else if (req.body.multerError) {
+      res.render('productCreationForm', {
+        errors: [
+          {
+            location: 'body',
+            msg: req.body.multerError.message,
+            param: 'image'
+          }
+        ]
+      })
+    }
+
     let category = await db.ProductCategory.findOne({ where: { name: req.body.category } })
     if (category === null) {
       category = await db.ProductCategory.create({ name: req.body.category })
@@ -59,12 +74,11 @@ export const createProduct = async (req, res) => {
 
     res.redirect('/products')
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const showProductDetails = async (req, res) => {
+export const showProductDetails = async (req, res, next) => {
   try {
     res.render('productDetails', {
       product: await db.Product.findByPk(req.params.id),
@@ -72,12 +86,11 @@ export const showProductDetails = async (req, res) => {
       newlineToBr: text => text.replace(/\r\n/g, '<br>')
     })
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const showProductEditForm = async (req, res) => {
+export const showProductEditForm = async (req, res, next) => {
   try {
     res.render('productEditForm', {
       product: await db.Product.findByPk(req.params.id, {
@@ -91,45 +104,80 @@ export const showProductEditForm = async (req, res) => {
       states: await db.ProductStatus.findAll()
     })
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const editProduct = async (req, res) => {
+export const editProduct = async (req, res, next) => {
   try {
-    let category = await db.ProductCategory.findOne({ where: { name: req.body.category } })
-    if (category === null) {
-      category = await db.ProductCategory.create({ name: req.body.category })
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      res.render('productEditForm', {
+        errors: errors.array()
+      })
+    } else if (req.body.multerError) {
+      res.render('productEditForm', {
+        errors: [
+          {
+            location: 'body',
+            msg: req.body.multerError.message,
+            param: 'image'
+          }
+        ]
+      })
     }
 
-    let status = await db.ProductStatus.findOne({ where: { name: req.body.status } })
-    if (status === null) {
-      status = await db.ProductStatus.create({ name: req.body.status })
+    const product = db.Product.findByPk(req.params.id)
+    if (!product) {
+      throw new Error('The product specified does not exists!')
     }
 
-    await db.Product.update({
-      name: req.body.name,
-      price: req.body.price,
-      discount: req.body.discount,
-      productCategoryId: category.id,
-      description: req.body.description,
-      productStatusId: status.id
-    }, { where: { id: req.params.id } })
+    if (req.body.name) {
+      product.name = req.body.name
+    }
 
-    // No `image: req.file?.filename`? Why JS :(
+    if (req.body.price) {
+      product.price = req.body.price
+    }
+
+    if (req.body.discount) {
+      product.discount = req.body.discount
+    }
+
+    if (req.body.category) {
+      let category = await db.ProductCategory.findOne({ where: { name: req.body.category } })
+      if (!category) {
+        category = await db.ProductCategory.create({ name: req.body.category })
+      }
+
+      product.productCategoryId = category.id
+    }
+
+    if (req.body.description) {
+      product.description = req.body.description
+    }
+
     if (req.file) {
-      await db.Product.update({ image: req.file.filename }, { where: { id: req.params.id } })
+      product.image = req.file.filename
     }
 
+    if (req.body.status) {
+      let status = await db.ProductStatus.findOne({ where: { name: req.body.category } })
+      if (!status) {
+        status = await db.ProductStatus.create({ name: req.body.category })
+      }
+
+      product.productStatusId = status.id
+    }
+
+    await product.save()
     res.redirect('/products')
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
 
-export const deleteProduct = async (req, res) => {
+export const deleteProduct = async (req, res, next) => {
   try {
     await db.Product.destroy({
       where: {
@@ -139,7 +187,6 @@ export const deleteProduct = async (req, res) => {
 
     res.redirect('/products')
   } catch (err) {
-    createHttpError(500)
-    console.error(err)
+    next(err)
   }
 }
