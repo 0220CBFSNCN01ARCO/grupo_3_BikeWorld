@@ -43,11 +43,14 @@ usersRouter.post('/register', [
     .matches(/[a-z]/).withMessage('La contraseña debe tener al menos 1 letra minúscula')
     .matches(/\d/).withMessage('La contraseña debe tener al menos 1 número')
     .matches(/\W/).withMessage('La contraseña debe tener al menos 1 caracter especial'),
-  body('passwordRepeat').trim().custom((value, { req }) => {
-    if (value !== req.body.password) {
-      return Promise.reject('Las contraseñas no coinciden')
-    }
-  }),
+  body('passwordRepeat').exists({ checkFalsy: true }).withMessage('Repita la contraseña').trim()
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error('Las contraseñas no coinciden')
+      }
+
+      return true
+    }),
 ], (req, res, next) => {
   upload.single('avatar')(req, res, err => {
     if (err instanceof MulterError) {

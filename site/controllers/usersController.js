@@ -26,7 +26,7 @@ export const registerUser = async (req, res, next) => {
       })
     }
 
-    let user = db.User.findOne({ where: { email: req.body.email }})
+    let user = await db.User.findOne({ where: { email: req.body.email }})
     if (user) {
       return res.render('registrationForm', {
         registrationErrors: [
