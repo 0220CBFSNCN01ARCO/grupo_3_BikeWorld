@@ -53,19 +53,28 @@ export const registerUser = async (req, res, next) => {
     }
 
     const token = await sign({ user: { email: user.email } }, 'our secret')
-    res.cookie('token', token)
+    if (req.body.remindMe !== undefined) {
+      res.cookie('token', token, {maxAge: 60000})
+    } else {
+      req.session.token = token
+    }
     res.redirect('/')
   } catch (err) {
     next(err)
   }
 }
 
+
+
+
 export const loginUser = async (req, res, next) => {
   try {
+
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       return res.render('registrationForm', { loginErrors: errors.array() })
     }
+
 
     const user = await db.User.findOne({ where: { email: req.body.email } })
     if (!user) {
@@ -93,7 +102,11 @@ export const loginUser = async (req, res, next) => {
     }
 
     const token = await sign({ user: { email: user.email } }, 'our secret')
-    res.cookie('token', token)
+    if (req.body.remindMe !== undefined) {
+      res.cookie('token', token, {maxAge: 60000})
+    } else {
+      req.session.token = token
+    }
     res.redirect('/')
   } catch (err) {
     next(err)
@@ -102,7 +115,7 @@ export const loginUser = async (req, res, next) => {
 
 export const updateUserInfo = async (req, res, next) => {
   try {
-    const payload = await verify(req.cookies.token, 'our secret')
+    const payload = await verify(req.session.token, 'our secret')
     const user = await db.User.findOne({ where: { email: payload.user.email } })
 
     if (!user) {
@@ -138,7 +151,7 @@ export const updateUserInfo = async (req, res, next) => {
 
 export const showUserProfile = async (req, res, next) => {
   try {
-    const payload = await verify(req.cookies.token, 'our secret')
+    const payload = await verify(req.session.token, 'our secret')
     const user = await db.User.findOne({ where: { email: payload.user.email } })
 
     if (!user) {
@@ -153,7 +166,7 @@ export const showUserProfile = async (req, res, next) => {
 
 export const deleteUser = async (req, res, next) => {
   try {
-    const payload = await verify(req.cookies.token, 'our secret')
+    const payload = await verify(req.session.token, 'our secret')
     const user = await db.User.findOne({ where: { email: payload.user.email } })
 
     if (!user) {
