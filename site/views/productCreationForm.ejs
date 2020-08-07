@@ -19,64 +19,93 @@
 
         <div class="form-group">
           <label for="inputName">Nombre</label>
-          <input type="text" class="form-control" id="inputName" name="name">
-          <div id="msjInputName" class="invalid-feedback d-none">
-            El nombre es requerido.
-          </div>
+          <% let error %>
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'name'))) { %>
+            <input type="text" class="form-control is-invalid" id="inputName" name="name">
+            <div id="msjInputName" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <input type="text" class="form-control" id="inputName" name="name">
+            <div id="msjInputName" class="invalid-feedback"></div>
+          <% } %>
         </div>
 
         <div class="form-group">
           <label for="inputPrice">Precio</label>
-          <input type="number" class="form-control" id="inputPrice" name="price">
-          <div id="msjInputPrice" class="invalid-feedback d-none">
-            El precio es requerido.
-          </div>
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'price'))) { %>
+            <input type="number" class="form-control is-invalid" id="inputPrice" name="price">
+            <div id="msjInputPrice" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <input type="number" class="form-control" id="inputPrice" name="price">
+            <div id="msjInputPrice" class="invalid-feedback"></div>
+          <% } %>
         </div>
 
         <div class="form-group">
           <label for="inputDiscount">Descuento</label>
-          <input type="number" class="form-control" id="inputDiscount" name="discount">
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'discount'))) { %>
+            <input type="number" class="form-control is-invalid" id="inputDiscount" name="discount">
+            <div id="msjInputDiscount" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <input type="number" class="form-control" id="inputDiscount" name="discount">
+            <div id="msjInputDiscount" class="invalid-feedback"></div>
+          <% } %>
         </div>
 
         <div class="form-group">
           <label for="inputCategory">Categoría</label>
-          <input type="text" class="form-control" id="inputCategory" list="categories" name="category"
-            autocomplete="off">
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'category'))) { %>
+            <input type="text" class="form-control is-invalid" id="inputCategory" list="categories" name="category"
+              autocomplete="off">
+            <div id="msjInputCategory" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <input type="text" class="form-control" id="inputCategory" list="categories" name="category"
+              autocomplete="off">
+            <div id="msjInputCategory" class="invalid-feedback"></div>
+          <% } %>
           <datalist id="categories">
             <% categories.forEach(category => { %>
-            <option value="<%= category.name %>"></option>
+              <option value="<%= category.name %>"></option>
             <% }) %>
           </datalist>
-          <div id="msjInputCategory" class="invalid-feedback d-none">
-            La categoría es requerida.
-          </div>
         </div>
 
         <div class="form-group">
           <label for="inputDescription">Descripción</label>
-          <textarea name="description" id="inputDescription" cols="30" rows="10" class="form-control"></textarea>
-          <div id="msjInputDescription" class="invalid-feedback d-none">
-            La descripción es requerida.
-          </div>
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'description'))) { %>
+            <textarea name="description" id="inputDescription" cols="30" rows="10" class="form-control"></textarea>
+            <div id="msjInputDescription" class="invalid-feedback"><%= errors.msg %></div>
+          <% } else { %>
+            <textarea name="description" id="inputDescription" cols="30" rows="10" class="form-control"></textarea>
+            <div id="msjInputDescription" class="invalid-feedback"></div>
+          <% } %>
         </div>
 
         <div class="form-group">
           <label for="inputStatus">Estado</label>
-          <input type="text" class="form-control" id="inputStatus" list="states" name="status" autocomplete="off">
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'status'))) { %>
+            <input type="text" class="form-control is-invalid" id="inputStatus" list="states" name="status"
+              autocomplete="off">
+            <div id="msjInputStatus" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <input type="text" class="form-control" id="inputStatus" list="states" name="status" autocomplete="off">
+            <div id="msjInputStatus" class="invalid-feedback"></div>
+          <% } %>
           <datalist id="states">
             <% states.forEach(status => { %>
-            <option value="<%=status.name %>"></option>
+              <option value="<%=status.name %>"></option>
             <% }) %>
           </datalist>
-          <div id="msjInputStatus" class="invalid-feedback d-none">
-            El status es requerido.
-          </div>
         </div>
 
       </div>
       <div class="col-12 col-md-6 order-first order-md-last">
         <label for="inputImage">Imagen</label><br>
         <input type="file" id="inputImage" name="image">
+        <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'image'))) { %>
+          <div id="msjInputImage" class="invalid-feedback d-block"><%= error.msg %></div>
+        <% } else { %>
+          <div id="msjInputImage" class="invalid-feedback d-none"></div>
+        <% } %>
       </div>
     </div>
 
@@ -90,7 +119,8 @@
 </div>
 
 <!-- Script de validación en front end -->
-<script src="/js/productsValidations.js" type="module"></script>
+<!-- <script src="/js/modules/validator.min.js" type="text/javascript"></script>
+<script src="/js/productsValidations.js" type="module"></script> -->
 
 <!-- Footer -->
 <%- include('partials/footer') %>

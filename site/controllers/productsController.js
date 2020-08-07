@@ -24,7 +24,9 @@ export const showProductList = async (req, res, next) => {
 
 export const showProductCreationForm = async (req, res, next) => {
   try {
+    res.clearCookie('errors')
     res.render('productCreationForm', {
+      errors: req.cookies ? req.cookies.errors : undefined,
       categories: await db.ProductCategory.findAll(),
       states: await db.ProductStatus.findAll()
     })
@@ -37,19 +39,17 @@ export const createProduct = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      res.render('productCreationForm', {
-        errors: errors.array()
-      })
+      res.cookie('errors', errors.array({ onlyFirstError: true }))
+      return res.redirect('/products/create')
     } else if (req.body.multerError) {
-      res.render('productCreationForm', {
-        errors: [
-          {
-            location: 'body',
-            msg: req.body.multerError.message,
-            param: 'image'
-          }
-        ]
-      })
+      res.cookie('errors', [
+        {
+          location: 'body',
+          msg: req.body.multerError.message,
+          param: 'image'
+        }
+      ])
+      return res.redirect('/products/create')
     }
 
     let category = await db.ProductCategory.findOne({ where: { name: req.body.category } })
@@ -92,7 +92,9 @@ export const showProductDetails = async (req, res, next) => {
 
 export const showProductEditForm = async (req, res, next) => {
   try {
+    res.clearCookie('errors')
     res.render('productEditForm', {
+      errors: req.cookies ? req.cookies.errors : undefined,
       product: await db.Product.findByPk(req.params.id, {
         include: [
           { association: 'status' },
@@ -112,19 +114,17 @@ export const editProduct = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      res.render('productEditForm', {
-        errors: errors.array()
-      })
+      res.cookie('errors', errors.array({ onlyFirstError: true }))
+      return res.redirect(`/products/${req.params.id}/edit`)
     } else if (req.body.multerError) {
-      res.render('productEditForm', {
-        errors: [
-          {
-            location: 'body',
-            msg: req.body.multerError.message,
-            param: 'image'
-          }
-        ]
-      })
+      res.cookie('errors', [
+        {
+          location: 'body',
+          msg: req.body.multerError.message,
+          param: 'image'
+        }
+      ])
+      return res.redirect(`/products/${req.params.id}/edit`)
     }
 
     const product = db.Product.findByPk(req.params.id)
