@@ -59,7 +59,7 @@ html,
 body {
   min-height: 100vh;
   margin: 0;
-  font-size: 10px;
+  font-size: 14px;
   width: 100%;
 }
 
@@ -135,7 +135,6 @@ hr {
 .product-box_data {
   padding: 15px;
   position: relative;
-  display: flex;
   align-items: center;
   flex-wrap: wrap;
 }

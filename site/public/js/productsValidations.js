@@ -1,68 +1,95 @@
+/* eslint-disable no-undef */
 window.onload = () => {
-  const form = document.getElementById('product')
+  const form = document.getElementById('productForm')
 
   form.onsubmit = event => {
-
-    // Atrapa controles a validar
     const name = document.getElementById('inputName')
-    const price = document.getElementById('inputPrice')
-    const category = document.getElementById('inputCategory')
-    const description = document.getElementById('inputDescription')
-    const status = document.getElementById('inputStatus')
-
-    // Validación Nombre
     const nameMsg = document.getElementById('msjInputName')
+    const price = document.getElementById('inputPrice')
+    const priceMsg = document.getElementById('msjInputPrice')
+    const discount = document.getElementById('inputDiscount')
+    const discountMsg = document.getElementById('msjInputDiscount')
+    const category = document.getElementById('inputCategory')
+    const categoryMsg = document.getElementById('msjInputCategory')
+    const description = document.getElementById('inputDescription')
+    const descriptionMsg = document.getElementById('msjInputDescription')
+    const status = document.getElementById('inputStatus')
+    const statusMsg = document.getElementById('msjInputStatus')
+    const image = document.getElementById('inputImage')
+    const imageMsg = document.getElementById('msjInputImage')
+
     if (name.value === '') {
       event.preventDefault()
       name.classList.add('is-invalid')
-      nameMsg.classList.remove('d-none')
+      nameMsg.innerText = 'Ingrese un nombre'
+    } else if (!validator.isLength(validator.trim(name.value), { min: 5 })) {
+      event.preventDefault()
+      name.classList.add('is-invalid')
+      nameMsg.innerText = 'El nombre debe tener al menos 5 caracteres de largo'
     } else {
-      nameMsg.classList.add('d-none')
       name.classList.remove('is-invalid')
     }
 
-    // Validación Precio
-    const priceMsg = document.getElementById('msjInputPrice')
-    if (price.value === '') {
+    if (price.value === '' || price.value === '0') {
       event.preventDefault()
       price.classList.add('is-invalid')
-      priceMsg.classList.remove('d-none')
+      priceMsg.innerText = 'Ingrese un precio'
+    } else if (!validator.isNumeric(price.value)) {
+      event.preventDefault()
+      price.classList.add('is-invalid')
+      priceMsg.innerText = 'El precio debe ser un número'
     } else {
-      priceMsg.classList.add('d-none')
       price.classList.remove('is-invalid')
     }
 
-    // Validación Categoria
-    const categoryMsg = document.getElementById('msjInputCategory')
+    if (!validator.isNumeric(discount.value)) {
+      event.preventDefault()
+      discount.classList.add('is-invalid')
+      discountMsg.innerText = 'El descuento debe ser un número'
+    } else if (validator.toFloat(discount.value) > 100) {
+      event.preventDefault()
+      discount.classList.add('is-invalid')
+      discountMsg.innerText = 'El descuento no puede ser más del 100%'
+    } else {
+      discount.classList.remove('is-invalid')
+    }
+
     if (category.value === '') {
       event.preventDefault()
       category.classList.add('is-invalid')
-      categoryMsg.classList.remove('d-none')
+      categoryMsg.innerText = 'Ingrese una categoría'
     } else {
-      categoryMsg.classList.add('d-none')
       category.classList.remove('is-invalid')
     }
 
-    // Validación Descripcion
-    const descriptionMsg = document.getElementById('msjInputDescription')
-    if (description.value === '') {
+    if (description.value !== '' && !validator.isLength(description.value, { min: 20 })) {
       event.preventDefault()
       description.classList.add('is-invalid')
-      descriptionMsg.classList.remove('d-none')
+      descriptionMsg.innerText = 'La descripción debe tener al menos 20 caracteres'
     } else {
-      descriptionMsg.classList.add('d-none')
       description.classList.remove('is-invalid')
     }
 
-    // Validación Status
-    const statusMsg = document.getElementById('msjInputStatus')
     if (status.value === '') {
       event.preventDefault()
       status.classList.add('is-invalid')
-      statusMsg.classList.remove('d-none')
+      statusMsg.innerText = 'Ingrese un estado'
     } else {
-      statusMsg.classList.add('d-none')
       status.classList.remove('is-invalid')
+    }
+
+    if (image.files.length > 0) {
+      if (image.files.length !== 1) {
+        event.preventDefault()
+        imageMsg.classList.add('d-block')
+        imageMsg.innerText = 'Ingrese solo una imagen'
+      } else if (!validator.isIn(image.files[0].type, ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'])) {
+        event.preventDefault()
+        imageMsg.classList.add('d-block')
+        imageMsg.innerText = 'La imagen seleccionada no es válida'
+      } else {
+        imageMsg.classList.remove('d-block')
+      }
     }
   }
 }
