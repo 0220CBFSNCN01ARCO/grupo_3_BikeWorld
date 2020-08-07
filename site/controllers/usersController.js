@@ -13,18 +13,8 @@ export const registerUser = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res.render('registrationForm', { registrationErrors: errors.array() })
-    } else if (req.body.multerError) {
-      return res.render('registrationForm', {
-        registrationErrors: [
-          {
-            location: 'body',
-            msg: req.body.multerError.message,
-            param: 'avatar'
+      return res.redirect('/users/register')
           }
-        ]
-      })
-    }
 
     let user = await db.User.findOne({ where: { email: req.body.email }})
     if (user) {
