@@ -8,6 +8,7 @@ import { productsRouter } from './routes/products'
 import { usersRouter } from './routes/users'
 import { cartRouter } from './routes/cart'
 import createHttpError from 'http-errors'
+import session from 'express-session'
 
 const app = express()
 
@@ -22,6 +23,7 @@ app.use(urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(_static(join(__dirname, 'public')))
 app.use(methodOverride('_method'))
+app.use(session({ secret: 'secretTwo' }))
 
 // Configuramos los enrutadores
 app.use('/', indexRouter)
