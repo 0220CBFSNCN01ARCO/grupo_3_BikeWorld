@@ -7,26 +7,33 @@ import { validationResult } from 'express-validator'
 const sign = promisify(_sign)
 const verify = promisify(_verify)
 
-export const showRegistrationForm = (req, res) => res.render('registrationForm')
+export const showRegistrationForm = (req, res) => {
+  res.clearCookie('loginErrors')
+  res.clearCookie('registrationErrors')
+  res.render('registrationForm', {
+    loginErrors: req.cookies ? req.cookies.loginErrors : undefined,
+    registrationErrors: req.cookies ? req.cookies.errors : undefined
+  })
+}
 
 export const registerUser = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
+      res.cookie('registrationErrors', errors.array({ onlyFirstError: true }))
       return res.redirect('/users/register')
-          }
+    }
 
     let user = await db.User.findOne({ where: { email: req.body.email }})
     if (user) {
-      return res.render('registrationForm', {
-        registrationErrors: [
-          {
-            location: 'body',
-            msg: 'El email ingresado ya está registrado',
-            param: 'email'
-          }
-        ]
-      })
+      res.cookie('registrationErrors', [
+        {
+          location: 'body',
+          msg: 'El email ingresado ya está registrado',
+          param: 'email'
+        }
+      ])
+      return res.redirect('/users/register')
     }
 
     user = await db.User.create({
@@ -54,32 +61,31 @@ export const loginUser = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res.render('registrationForm', { loginErrors: errors.array() })
+      res.cookie('loginErrors', errors.array({ onlyFirstError: true}))
+      return res.redirect('/users/register')
     }
 
     const user = await db.User.findOne({ where: { email: req.body.email } })
     if (!user) {
-      return res.render('registrationForm', {
-        loginErrors: [
-          {
-            location: 'body',
-            msg: 'El email ingresado no existe',
-            param: 'email'
-          }
-        ]
-      })
+      res.cookie('loginErrors', [
+        {
+          location: 'body',
+          msg: 'El email ingresado no existe',
+          param: 'email'
+        }
+      ])
+      return res.redirect('/users/register')
     }
 
     if (!await compare(req.body.password, user.password)) {
-      return res.render('registrationForm', {
-        loginErrors: [
-          {
-            location: 'body',
-            msg: 'La contraseña ingresada es incorrecta',
-            param: 'password'
-          }
-        ]
-      })
+      res.cookie('loginErrors', [
+        {
+          location: 'body',
+          msg: 'La contraseña ingresada es incorrecta',
+          param: 'password'
+        }
+      ])
+      return res.redirect('/users/register')
     }
 
     const token = await sign({ user: { email: user.email } }, 'our secret')
