@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <form id="product" action="/products" method="post" enctype="multipart/form-data">
+  <form id="productForm" action="/products" method="post" enctype="multipart/form-data">
 
     <div class="row">
       <div class="col-12 col-md-6 pt-3 pt-md-0">
@@ -100,7 +100,7 @@
       </div>
       <div class="col-12 col-md-6 order-first order-md-last">
         <label for="inputImage">Imagen</label><br>
-        <input type="file" id="inputImage" name="image">
+        <input type="file" id="inputImage" name="image" accept="image/png, image/jpg, image/jpeg, image/gif">
         <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'image'))) { %>
           <div id="msjInputImage" class="invalid-feedback d-block"><%= error.msg %></div>
         <% } else { %>
@@ -119,8 +119,8 @@
 </div>
 
 <!-- Script de validación en front end -->
-<!-- <script src="/js/modules/validator.min.js" type="text/javascript"></script>
-<script src="/js/productsValidations.js" type="module"></script> -->
+<script src="/js/modules/validator.min.js" type="text/javascript"></script>
+<script src="/js/productsValidations.js" type="module"></script>
 
 <!-- Footer -->
 <%- include('partials/footer') %>
