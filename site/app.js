@@ -20,10 +20,10 @@ app.set('view engine', 'ejs')
 app.use(morgan('dev'))
 app.use(json())
 app.use(urlencoded({ extended: false }))
-app.use(cookieParser())
+app.use(cookieParser('secretTwo'))
 app.use(_static(join(__dirname, 'public')))
 app.use(methodOverride('_method'))
-app.use(session({ secret: 'secretTwo' }))
+app.use(session({ secret: 'secretTwo', resave: true, saveUninitialized: false }))
 
 // Configuramos los enrutadores
 app.use('/', indexRouter)
