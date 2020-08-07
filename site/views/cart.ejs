@@ -36,56 +36,59 @@
               <div class="card-body">
                 <h5>Precio unitario</h5>
                 <h3>$<%= product.price %></h3>
+                  <% if (product.discount > 0) { %>
+                  <span class="badge badge-primary ml-2"><%= product.discount %>% OFF</span>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quantity -->
+          <div class="row col-sm-3 col-md-1 col-lg2">
+            <div class="col-sm-12 col-md-5 col-lg4">
+              <div class="text-center" id="productsQuantity" style="width: 18rem;">
+                <div class="cart-quantity">
+                  <br>
+                  <label for="quantity">Cantidad</label><br>
+                  <input type="number" id="quantity" name="quantity" min="1" max="999">>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Remove button -->
+          <div class="row col-sm-3 col-md-1 col-lg2">
+            <div class="col-sm-3 col-md-5 col-lg4">
+              <div class="text-center" id="removeFromCart" style="width: 18rem;">
+                <div class="cart-button">
+                  <br>
+                  <br>
+                  <a href="#"></a> <button type="button" class="btn btn-secondary">Eliminar</button></a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <hr>
+        <% }) %>
 
-        <!-- Quantity -->
-        <div class="row col-sm-3 col-md-1 col-lg2">
-          <div class="col-sm-12 col-md-5 col-lg4">
-            <div class="text-center" id="productsQuantity" style="width: 18rem;">
-              <div class="cart-quantity">
-                <br>
-                <label for="quantity">Cantidad</label><br>
-                <input type="number" id="quantity" name="quantity" min="1" max="999">>
-              </div>
+        <!-- Total amount to pay -->
+        <div class="row col-sm-12 col-md-12 col-lg12">
+          <div class="text-right col-sm-12 col-md-12 col-lg12" id="totalCarrito" style="width: 18rem;">
+            <div class="card-body">
+              <h6 class="card-text">Productos(3)</h6>
+              <h3>$ 25.000</h3>
+              <h5 class="card-text">Costo del envío  $ 130</h5>
+              <br>
+              <h2 class="card-title">Total</h2>
+              <h2>$ 25.130</h2>
+
+              <a href="#" class="btn btn-primary">Comprar</a>
             </div>
-          </div>
-        </div>
-
-        <!-- Remove button -->
-        <div class="row col-sm-3 col-md-1 col-lg2">
-          <div class="col-sm-3 col-md-5 col-lg4">
-            <div class="text-center" id="removeFromCart" style="width: 18rem;">
-              <div class="cart-button">
-                <br>
-                <br>
-                <a href="#"></a> <button type="button" class="btn btn-secondary">Eliminar</button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <% }) %>
-
-      <!-- Total amount to pay -->
-      <div class="row col-sm-12 col-md-12 col-lg12">
-        <div class="text-right col-sm-12 col-md-12 col-lg12" id="totalCarrito" style="width: 18rem;">
-          <div class="card-body">
-            <h6 class="card-text">Productos(3)</h6>
-            <h3>$ 25.000</h3>
-            <h5 class="card-text">Costo del envío  $ 130</h5>
-            <br>
-            <h2 class="card-title">Total</h2>
-            <h2>$ 25.130</h2>
-
-            <a href="#" class="btn btn-primary">Comprar</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Footer -->
-  <%- include('partials/footer') %>
+    <!-- Footer -->
+    <%- include('partials/footer') %>
