@@ -23,7 +23,7 @@ app.use(urlencoded({ extended: false }))
 app.use(cookieParser('secretTwo'))
 app.use(_static(join(__dirname, 'public')))
 app.use(methodOverride('_method'))
-app.use(session({ secret: 'secretTwo', resave: true, saveUninitialized: false }))
+app.use(session({ secret: 'secretTwo', resave: true, saveUninitialized: true }))
 
 // Configuramos los enrutadores
 app.use('/', indexRouter)

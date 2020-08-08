@@ -8,9 +8,11 @@ export const remindMeMiddleware = async (req, res, next) => {
   if (req.cookies.token !== undefined && req.session.token === undefined) {
     const payload = await verify(req.cookies.token, 'our secret')
     const user = await db.User.findOne({ where: { email: payload.user.email } })
+
     if (!user) {
       next()
     }
+
     req.session.token = req.cookies.session
   }
 }
