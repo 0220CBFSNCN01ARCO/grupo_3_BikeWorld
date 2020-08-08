@@ -24,9 +24,10 @@ export const showProductList = async (req, res, next) => {
 
 export const showProductCreationForm = async (req, res, next) => {
   try {
-    res.clearCookie('errors')
+    const errors = req.session.errors
+    req.session.errors = undefined
     res.render('productCreationForm', {
-      errors: req.cookies ? req.cookies.errors : undefined,
+      errors,
       categories: await db.ProductCategory.findAll(),
       states: await db.ProductStatus.findAll()
     })
@@ -39,16 +40,16 @@ export const createProduct = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      res.cookie('errors', errors.array({ onlyFirstError: true }))
+      req.session.errors = errors.array({ onlyFirstError: true })
       return res.redirect('/products/create')
     } else if (req.body.multerError) {
-      res.cookie('errors', [
+      req.session.errors = [
         {
           location: 'body',
           msg: req.body.multerError.message,
           param: 'image'
         }
-      ])
+      ]
       return res.redirect('/products/create')
     }
 
@@ -92,9 +93,10 @@ export const showProductDetails = async (req, res, next) => {
 
 export const showProductEditForm = async (req, res, next) => {
   try {
-    res.clearCookie('errors')
+    const errors = req.session.errors
+    req.session.errors = undefined
     res.render('productEditForm', {
-      errors: req.cookies ? req.cookies.errors : undefined,
+      errors,
       product: await db.Product.findByPk(req.params.id, {
         include: [
           { association: 'status' },
@@ -114,16 +116,16 @@ export const editProduct = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      res.cookie('errors', errors.array({ onlyFirstError: true }))
+      req.session.errors = errors.array({ onlyFirstError: true })
       return res.redirect(`/products/${req.params.id}/edit`)
     } else if (req.body.multerError) {
-      res.cookie('errors', [
+      req.session.errors = [
         {
           location: 'body',
           msg: req.body.multerError.message,
           param: 'image'
         }
-      ])
+      ]
       return res.redirect(`/products/${req.params.id}/edit`)
     }
 

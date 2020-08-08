@@ -8,31 +8,35 @@ const sign = promisify(_sign)
 const verify = promisify(_verify)
 
 export const showRegistrationForm = (req, res) => {
-  res.clearCookie('loginErrors')
-  res.clearCookie('registrationErrors')
+  const loginErrors = req.session.loginErrors
+  const registrationErrors = req.session.registrationErrors
+  req.session.loginErrors = undefined
+  req.session.registrationErrors = undefined
   res.render('registrationForm', {
-    loginErrors: req.cookies ? req.cookies.loginErrors : undefined,
-    registrationErrors: req.cookies ? req.cookies.errors : undefined
+    loginErrors,
+    registrationErrors
   })
+  req.session.loginErrors = undefined
+  res.session.registrationErrors = undefined
 }
 
 export const registerUser = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      res.cookie('registrationErrors', errors.array({ onlyFirstError: true }))
+      req.session.registrationErrors = errors.array({ onlyFirstError: true })
       return res.redirect('/users/register')
     }
 
     let user = await db.User.findOne({ where: { email: req.body.email }})
     if (user) {
-      res.cookie('registrationErrors', [
+      req.session.registrationErrors = [
         {
           location: 'body',
           msg: 'El email ingresado ya está registrado',
           param: 'email'
         }
-      ])
+      ]
       return res.redirect('/users/register')
     }
 
@@ -50,59 +54,58 @@ export const registerUser = async (req, res, next) => {
     }
 
     const token = await sign({ user: { email: user.email } }, 'our secret')
+
     if (req.body.remindMe !== undefined) {
       res.cookie('token', token, {maxAge: 60000})
     } else {
       req.session.token = token
     }
+
     res.redirect('/')
   } catch (err) {
     next(err)
   }
 }
 
-
-
-
 export const loginUser = async (req, res, next) => {
   try {
-
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      res.cookie('loginErrors', errors.array({ onlyFirstError: true}))
+      req.session.loginErrors = errors.array({ onlyFirstError: true})
       return res.redirect('/users/register')
     }
 
-
     const user = await db.User.findOne({ where: { email: req.body.email } })
     if (!user) {
-      res.cookie('loginErrors', [
+      req.session.loginErrors = [
         {
           location: 'body',
           msg: 'El email ingresado no existe',
           param: 'email'
         }
-      ])
+      ]
       return res.redirect('/users/register')
     }
 
     if (!await compare(req.body.password, user.password)) {
-      res.cookie('loginErrors', [
+      req.session.loginErrors = [
         {
           location: 'body',
           msg: 'La contraseña ingresada es incorrecta',
           param: 'password'
         }
-      ])
+      ]
       return res.redirect('/users/register')
     }
 
     const token = await sign({ user: { email: user.email } }, 'our secret')
+
     if (req.body.remindMe !== undefined) {
       res.cookie('token', token, {maxAge: 60000})
     } else {
       req.session.token = token
     }
+
     res.redirect('/')
   } catch (err) {
     next(err)
