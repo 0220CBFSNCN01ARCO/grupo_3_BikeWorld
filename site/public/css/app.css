@@ -424,9 +424,14 @@ textarea.form-input {
 /*====== productList ======*/
 
 #selectorFilter{
-  padding-top: 43px;
+  padding-left: 0em;
+  padding-right: 0em;
+  padding-top: 15px;
 }
 
+.card-body{
+  padding: 0em;
+}
 
 hr {
   margin-top: 1rem;
@@ -451,11 +456,6 @@ hr {
     font-weight: 900;
   }
 
-  /*====== ProductList ======*/
-
-.card-body{
-  padding: 0em;
-}
 
   /*====== Footer ======*/
 
