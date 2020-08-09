@@ -1,6 +1,7 @@
 import { join } from 'path'
 import db from '../database/models'
 import { validationResult } from 'express-validator'
+import { Op } from 'sequelize'
 
 const getProductImagePath = imageFilename => join('/images/products', imageFilename)
 
@@ -10,12 +11,32 @@ const toThousand = number => number.toString()
 
 export const showProductList = async (req, res, next) => {
   try {
+    const filters = {
+      where: {}
+    }
+
+    if (req.query.selectedCategory) {
+      filters.where['productCategoryId'] = req.query.selectedCategory
+    }
+
+    if (req.query.q) {
+      filters.where['name'] = {
+        [Op.like]: `%${req.query.q}%`
+      }
+
+      filters.where['description'] = {
+        [Op.like]: `%${req.query.q}%`
+      }
+    }
+
     res.render('productList', {
-      products: await db.Product.findAll(),
+      products: await db.Product.findAll(filters),
       getProductImagePath: getProductImagePath,
       toThousand: toThousand,
       categories: await db.ProductCategory.findAll(),
-      states: await db.ProductStatus.findAll()
+      states: await db.ProductStatus.findAll(),
+      selectedCategory: req.query.selectedCategory ?
+        await db.ProductCategory.findByPk(req.query.selectedCategory) : undefined
     })
   } catch (err) {
     next(err)

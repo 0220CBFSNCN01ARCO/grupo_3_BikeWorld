@@ -1,5 +1,5 @@
 <div id="row1" class="row d-flex flex-row justify-content-end align-items-baseline row1">
-  <div class="col-6 col-md-3"><a href="/users/register">Ingresar | Registrarme</a></div>
+  <div class="col-6 col-md-3"><a href="/users/login">Ingresar | Registrarme</a></div>
 
 </div>
 <div id="row2" class="row row2 d-flex align-items-center justify-content-around">
@@ -12,8 +12,8 @@
     </div>
   </div>
   <div id="buscar" class="col-3 d-flex flex-end">
-    <form action="/search" method="GET" class="search-form">
-      <input type="text" name="keywords" placeholder="Buscar productos, marcas y más" class="search-form_input">
+    <form action="/products" method="GET" class="search-form">
+      <input type="text" name="q" placeholder="Buscar productos, marcas y más" class="search-form_input">
       <button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
     </form>
     <div style="margin-left: 10px;"><a href="/cart"><i class="fa fa-shopping-cart carrito"></i></a></div>

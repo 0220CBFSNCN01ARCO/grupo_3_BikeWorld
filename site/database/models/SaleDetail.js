@@ -6,11 +6,26 @@ export default (sequelize, dataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    saleId: dataTypes.INTEGER(11),
-    productId: dataTypes.INTEGER(11),
-    amount: dataTypes.DOUBLE,
-    price: dataTypes.DOUBLE,
-    discount: dataTypes.DOUBLE
+    saleId: {
+      type: dataTypes.INTEGER(11),
+      allowNull: false
+    },
+    productId: {
+      type: dataTypes.INTEGER(11),
+      allowNull: false
+    },
+    amount: {
+      type: dataTypes.DOUBLE,
+      allowNull: false
+    },
+    price: {
+      type: dataTypes.DOUBLE,
+      allowNull: false
+    },
+    discount: {
+      type: dataTypes.DOUBLE,
+      allowNull: false
+    }
   }, {
     timestamps: false
   })
