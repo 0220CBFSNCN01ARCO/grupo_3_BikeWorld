@@ -23,7 +23,8 @@ export const showHomePage = async (req, res, next) => {
       toThousand: number => number.toString()
         .replace('.', ',')
         .replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
-      getProductImagePath: imageFilename => join('/images/products', imageFilename)
+      getProductImagePath: imageFilename => join('/images/products', imageFilename),
+      logged: req.logged
     })
   } catch (err) {
     next(err)

@@ -36,7 +36,8 @@ export const showProductList = async (req, res, next) => {
       categories: await db.ProductCategory.findAll(),
       states: await db.ProductStatus.findAll(),
       selectedCategory: req.query.selectedCategory ?
-        await db.ProductCategory.findByPk(req.query.selectedCategory) : undefined
+        await db.ProductCategory.findByPk(req.query.selectedCategory) : undefined,
+      logged: req.logged
     })
   } catch (err) {
     next(err)
@@ -50,7 +51,8 @@ export const showProductCreationForm = async (req, res, next) => {
     res.render('productCreationForm', {
       errors,
       categories: await db.ProductCategory.findAll(),
-      states: await db.ProductStatus.findAll()
+      states: await db.ProductStatus.findAll(),
+      logged: req.logged
     })
   } catch (err) {
     next(err)
@@ -105,7 +107,8 @@ export const showProductDetails = async (req, res, next) => {
     res.render('productDetails', {
       product: await db.Product.findByPk(req.params.id),
       getProductImagePath: getProductImagePath,
-      newlineToBr: text => text.replace(/\r\n/g, '<br>')
+      newlineToBr: text => text.replace(/\r\n/g, '<br>'),
+      logged: req.logged
     })
   } catch (err) {
     next(err)
@@ -126,7 +129,8 @@ export const showProductEditForm = async (req, res, next) => {
       }),
       getProductImagePath: getProductImagePath,
       categories: await db.ProductCategory.findAll(),
-      states: await db.ProductStatus.findAll()
+      states: await db.ProductStatus.findAll(),
+      logged: req.logged
     })
   } catch (err) {
     next(err)

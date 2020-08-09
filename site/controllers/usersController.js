@@ -15,7 +15,8 @@ export const showRegistrationForm = (req, res) => {
   req.session.registrationErrors = undefined
   res.render('loginForm', {
     loginErrors,
-    registrationErrors
+    registrationErrors,
+    logged: req.logged
   })
 }
 
@@ -183,7 +184,7 @@ export const showUserProfile = async (req, res, next) => {
       })
     })
 
-    res.render('userProfile', { user, registrationErrors: undefined })
+    res.render('userProfile', { user, registrationErrors: undefined, logged: req.logged })
   } catch (err) {
     next(err)
   }
