@@ -11,6 +11,7 @@ import {
   deleteProduct
 } from '../controllers/productsController'
 import { body } from 'express-validator'
+import { doNotAccessIfNotAdmin } from '../middlewares/userRestrictionsMiddleware'
 
 const storage = diskStorage({
   destination: (req, file, cb) => cb(null, 'site/public/images/products/'),
@@ -38,13 +39,13 @@ export const productsRouter = Router()
 productsRouter.get('/', showProductList)
 
 // GET /products/create
-productsRouter.get('/create', showProductCreationForm)
+productsRouter.get('/create', doNotAccessIfNotAdmin, showProductCreationForm)
 
 // GET /products/:id
 productsRouter.get('/:id', showProductDetails)
 
 // POST /products
-productsRouter.post('/', (req, res, next) => {
+productsRouter.post('/', doNotAccessIfNotAdmin, (req, res, next) => {
   upload.single('image')(req, res, err => {
     if (err instanceof MulterError) {
       req.body.multerError = err
@@ -75,10 +76,10 @@ productsRouter.post('/', (req, res, next) => {
 ], createProduct)
 
 // GET /products/:id/edit
-productsRouter.get('/:id/edit', showProductEditForm)
+productsRouter.get('/:id/edit', doNotAccessIfNotAdmin, showProductEditForm)
 
 // PUT /products/:id
-productsRouter.put('/:id', [
+productsRouter.put('/:id', doNotAccessIfNotAdmin, [
   body('name').exists({ checkFalsy: true }).withMessage('Ingrese un nombre').trim()
     .isLength({ min: 5 }).withMessage('El nombre debe tener al menos 5 caracteres de largo'),
   body('price').exists({ checkFalsy: true }).withMessage('Ingrese un precio')
@@ -107,4 +108,4 @@ productsRouter.put('/:id', [
 }, editProduct)
 
 // DELETE /products/:id
-productsRouter.delete('/:id', deleteProduct)
+productsRouter.delete('/:id', doNotAccessIfNotAdmin, deleteProduct)

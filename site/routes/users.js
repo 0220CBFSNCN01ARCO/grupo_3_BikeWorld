@@ -1,17 +1,18 @@
 import { Router } from 'express'
 import { showRegistrationForm, registerUser, loginUser, showUserProfile } from '../controllers/usersController'
 import { body } from 'express-validator'
+import { doNotAccessIfLoggedIn, doNotAccessIfNotLoggedIn } from '../middlewares/userRestrictionsMiddleware'
 
 export const usersRouter = Router()
 
 // GET /users/login
-usersRouter.get('/login', showRegistrationForm)
+usersRouter.get('/login', doNotAccessIfLoggedIn, showRegistrationForm)
 
 // GET /users/profile
-usersRouter.get('/profile', showUserProfile)
+usersRouter.get('/profile', doNotAccessIfNotLoggedIn, showUserProfile)
 
 // POST /users
-usersRouter.post('/', [
+usersRouter.post('/', doNotAccessIfLoggedIn, [
   body('firstName').exists({ checkFalsy: true }).withMessage('Ingrese un nombre').trim()
     .isLength({ min: 2 }).withMessage('El nombre debe tener al menos 2 caracteres'),
   body('lastName').exists({ checkFalsy: true }).withMessage('Ingrese un apellido').trim()
@@ -35,7 +36,7 @@ usersRouter.post('/', [
 ], registerUser)
 
 // POST /users/login
-usersRouter.post('/login', [
+usersRouter.post('/login', doNotAccessIfLoggedIn, [
   body('email').exists({ checkFalsy: true }).withMessage('Ingrese un email').trim()
     .isEmail().withMessage('El email ingresado no es válido'),
   body('password').exists({ checkFalsy: true }).withMessage('Ingrese una contraseña').trim()
