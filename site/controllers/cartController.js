@@ -1,14 +1,188 @@
-import { join } from 'path'
+import db from '../database/models'
+import { verify as _verify } from 'jsonwebtoken'
+import { promisify } from 'util'
+import { runLoopOnce } from 'deasync'
 
+const verify = promisify(_verify)
 
-export const showCart = (req, res) => res.render('cart', {items: [
-  {name:"Venzo Skyline 27 v", price:38791, image:"image-1592795665963.jpg",
-  description:"Venzo Skyline de 27 velocidades, frenos hidráulicos y suspensión a elastómeros."},
-  {name:"Casco", price:1576, image:"image-1592795275916.jpg",
-  description:"Casco para uso recreativo ajustable."},
-  {name:"Medidor de cadena", price:356, image:"image-1592795357323.jpg",
-  description:"Medidor de desgaste de cadena en 1 y 0.75."},
-  {name:"Piñón 12 velocidades", price:3245, image:"image-1592795451650.jpg",
-  description:"Piñón de 12 velocidades 11 / 46, cuerpo de aluminio, ligero en peso."}],
-  getProductImagePath: imageFileName => join("/images/products", imageFileName)
-})
+export const showCart = async (req, res, next) => {
+  try {
+    const payload = await verify(req.session.token, 'our secret')
+    const user = await db.User.findOne({ where: { email: payload.user.email } })
+
+    if (!user) {
+      throw new Error('El usuario especificado no existe')
+    }
+
+    let sale = await db.Sale.findOne({
+      where: {
+        userId: user.id,
+        sale: false
+      }
+    }, {
+      include: [
+        { association: 'saleDetails' }
+      ]
+    })
+
+    if (!sale) {
+      sale = db.Sale.create({
+        date: Date.now(),
+        userId: user.id,
+        sale: false
+      })
+    } else if (!sale.saleDetails) {
+      sale.saleDetails = []
+    }
+
+    let amountProducts = 0
+    let totalPrice = 0
+    sale.saleDetails.forEach(saleDetail => {
+      amountProducts += saleDetail.amount
+      totalPrice += saleDetail.amount * (saleDetail.price * (1 - (saleDetail.discount / 100)))
+
+      saleDetail.getProduct().then(product => {
+        saleDetail.product = product
+      }).catch(err => {
+        throw err
+      })
+
+      while (saleDetail.product === undefined) {
+        runLoopOnce()
+      }
+    })
+
+    res.render('cart', {
+      items: sale.saleDetails,
+      amountProducts,
+      totalPrice
+    })
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const makePurchase = async (req, res, next) => {
+  try {
+    const payload = await verify(req.session.token, 'our secret')
+    const user = await db.User.findOne({ where: { email: payload.user.email } })
+
+    if (!user) {
+      throw new Error('El usuario especificado no existe')
+    }
+
+    let sale = await db.Sale.findOne({
+      where: {
+        userId: user.id,
+        sale: false
+      }
+    }, {
+      include: [
+        { association: 'saleDetails' }
+      ]
+    })
+
+    if (!sale) {
+      throw new Error('No hay carrito')
+    } else if (!sale.saleDetails) {
+      throw new Error('El carrito está vacío')
+    }
+
+    sale.sale = true
+    await sale.save()
+    res.redirect('/')
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const deleteItem = async (req, res, next) => {
+  try {
+    const payload = await verify(req.session.token, 'our secret')
+    const user = await db.User.findOne({ where: { email: payload.user.email } })
+
+    if (!user) {
+      throw new Error('El usuario especificado no existe')
+    }
+
+    const sale = db.Sale.findOne({
+      where: {
+        userId: user.id,
+        sale: false
+      }
+    }, {
+      include: [
+        { association: 'saleDetails' }
+      ]
+    })
+
+    if (!sale) {
+      throw new Error('No hay carrito para eliminar el producto')
+    } else if (!sale.saleDetails) {
+      throw new Error('El carrito no tiene productos')
+    }
+
+    let itemToDelete = sale.saleDetails.find(item => item.id === req.body.itemId)
+    await itemToDelete.destroy()
+
+    res.redirect('/cart')
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const addProductToCart = async (req, res, next) => {
+  try {
+    const payload = await verify(req.session.token, 'our secret')
+    const user = await db.User.findOne({ where: { email: payload.user.email } })
+
+    if (!user) {
+      throw new Error('El usuario especificado no existe')
+    }
+
+    let sale = db.Sale.findOne({
+      where: {
+        userId: user.id,
+        sale: false
+      }
+    })
+
+    if (!sale) {
+      sale = db.Sale.create({
+        userId: user.id,
+        date: Date.now(),
+        sale: false
+      })
+    }
+
+    const product = db.Product.findByPk(req.body.productId)
+
+    if (!product) {
+      throw new Error('El producto no existe')
+    }
+
+    let saleDetail = db.SaleDetail.findOne({
+      where: {
+        saleId: sale.id,
+        productId: product.id
+      }
+    })
+
+    if (!saleDetail) {
+      saleDetail = db.SaleDetail.create({
+        saleId: sale.id,
+        productId: product.id,
+        amount: 1,
+        price: product.price,
+        discount: product.discount
+      })
+    } else {
+      saleDetail.amount++
+      await saleDetail.save()
+    }
+
+    res.redirect('/cart')
+  } catch (err) {
+    next(err)
+  }
+}
