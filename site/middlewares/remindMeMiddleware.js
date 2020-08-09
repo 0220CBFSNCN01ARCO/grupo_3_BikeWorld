@@ -4,7 +4,7 @@ import db from '../database/models'
 
 const verify = promisify(_verify)
 
-export const remindMeMiddleware = async (req, res, next) => {
+export const remindMe = async (req, res, next) => {
   if (req.cookies.token && !req.session.token) {
     try {
       const payload = await verify(req.cookies.token, 'our secret')

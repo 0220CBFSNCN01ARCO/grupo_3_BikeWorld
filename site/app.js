@@ -9,7 +9,8 @@ import { usersRouter } from './routes/users'
 import { cartRouter } from './routes/cart'
 import createHttpError from 'http-errors'
 import session from 'express-session'
-import { remindMeMiddleware } from './middlewares/remindMeMiddleware'
+import { remindMe } from './middlewares/remindMeMiddleware'
+import { isLogged } from './middlewares/isLoggedMiddleware'
 
 const app = express()
 
@@ -25,7 +26,8 @@ app.use(cookieParser('secretTwo'))
 app.use(_static(join(__dirname, 'public')))
 app.use(methodOverride('_method'))
 app.use(session({ secret: 'secretTwo', resave: true, saveUninitialized: true }))
-app.use(remindMeMiddleware)
+app.use(remindMe)
+app.use(isLogged)
 
 // Configuramos los enrutadores
 app.use('/', indexRouter)

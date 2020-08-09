@@ -55,7 +55,8 @@ export const showCart = async (req, res, next) => {
     res.render('cart', {
       items: sale.saleDetails,
       amountProducts,
-      totalPrice
+      totalPrice,
+      logged: req.logged
     })
   } catch (err) {
     next(err)

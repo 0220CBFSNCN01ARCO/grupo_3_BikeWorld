@@ -5,43 +5,81 @@
 <%- include('partials/headerNavbar') %>
 
 <div class="container mt-5 mb-5">
-
-
-
-  <form action="/users/<%= user.id %>?_method=PUT" method="POST">
+  <form id="userProfileFrom" action="/users/<%= user.id %>?_method=PUT" method="POST">
     <div class="row">
       <div class="col-12 mb-3">
         <h2>Perfil de Usuario</h2>
-        <button type="submit" class="btn btn-primary" id="btnEditar">Editar</button>
+        <button type="submit" class="btn btn-primary" id="editButton">Editar</button>
       </div>
     </div>
     <div class="container">
       <!-- Name -->
       <div class="row mb-3">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="firstName" class="form-control" id="nombre"
-        value="<%= user.firstName %>" disabled>
+        <label for="firstName-register">Nombre</label>
+        <% let error %>
+        <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'firstName'))) { %>
+        <input type="text" class="form-control is-invalid" id="firstName-register" name="firstName"
+          placeholder="Ingrese su nombre" value="<%= user.firstName %>">
+        <div class="invalid-feedback" id="msjFirstName-register"><%= error.msg %></div>
+        <% } else { %>
+        <input type="text" class="form-control" id="firstName-register" name="firstName" placeholder="Ingrese su nombre"
+          value="<%= user.firstName %>" disabled>
+        <div class="invalid-feedback" id="msjFirstName-register"></div>
+        <% } %>
       </div>
+
       <!-- Last name -->
       <div class="row mb-3">
-        <label for="apellido">Apellido</label>
-        <input type="text" id="apellido" name="lastName" class="form-control"
-          id="apellido" value="<%= user.lastName %>" disabled>
+        <label for="lastName-register">Apellido</label>
+        <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'lastName'))) { %>
+        <input type="text" class="form-control is-invalid" id="lastName-register" name="lastName"
+          placeholder="Ingrese su apellido" value="<%= user.lastName %>">
+        <div class="invalid-feedback" id="msjLastName-register"><%= error.msg %></div>
+        <% } else { %>
+        <input type="text" class="form-control" id="lastName-register" name="lastName" placeholder="Ingrese su apellido"
+          value="<%= user.lastName %>" disabled>
+        <div class="invalid-feedback" id="msjLastName-register"></div>
+        <% } %>
       </div>
 
       <!-- Email -->
       <div class="row mb-3">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" class="form-control" id="email"
-        value="<%= user.email %>" disabled>
+        <label for="email-register">Email</label>
+        <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'email'))) { %>
+        <input type="email" class="form-control is-invalid" id="email-register" name="email"
+          placeholder="Ingrese su email" value="<%= user.email %>">
+        <div class="invalid-feedback" id="msjEmail-register"><%= error.msg %></div>
+        <% } else { %>
+        <input type="email" class="form-control" id="email-register" name="email" placeholder="Ingrese su email" value="<%= user.email %>" disabled>
+        <div class="invalid-feedback" id="msjEmail-register"></div>
+        <% } %>
       </div>
 
-      <!-- Administrador -->
+      <!-- Password -->
       <div class="row mb-3">
-        <div class="radio">
-          <label><input type="radio" name="optradio" value="<%= user.useradmin %>"> Usuario administrador</label>
-        </div>
+        <label for="password-register">
+          Contraseña (si no desea actualizar su contraseña deje vacíos el campo)</label>
+        <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'password'))) { %>
+        <input type="password" class="form-control is-invalid" id="password-register" name="password">
+        <div class="invalid-feedback" id="msjPassword-register"><%= error.msg %></div>
+        <% } else { %>
+        <input type="password" class="form-control" id="password-register" name="password"
+           disabled>
+        <div class="invalid-feedback" id="msjPassword-register"></div>
+        <% } %>
+      </div>
 
+      <!-- RepeatPassword -->
+      <div class="row mb-3">
+        <label for="passwordRepeat-register">Repita la contraseña</label>
+      <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'passwordRepeat'))) { %>
+        <input type="password" class="form-control is-invalid" id="passwordRepeat-register" name="passwordRepeat">
+        <div class="invalid-feedback" id="msjPasswordRepeat-register"><%= error.msg %></div>
+      <% } else { %>
+        <input type="password" class="form-control" id="passwordRepeat-register"
+        name="passwordRepeat" disabled>
+        <div class="invalid-feedback" id="msjPasswordRepeat-register"></div>
+      <% } %>
       </div>
       <hr>
       <!-- Lista de compras -->
@@ -50,10 +88,10 @@
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Producto</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Precio</th>
+              <th scope="col1">#</th>
+              <th scope="col2">Producto</th>
+              <th scope="col3">Cantidad</th>
+              <th scope="col4">Precio</th>
             </tr>
           </thead>
           <tbody>
@@ -63,16 +101,16 @@
               <td>saledetail.amount</td>
               <td>saledetail.price</td>
             </tr>
-            </tbody>
-            </table>
+          </tbody>
+        </table>
       </div>
-
     </div>
-
-
-
   </form>
 </div>
 
+<!-- Script de validación en front end y lista de errores -->
+<script src="/js/modules/validator.min.js" type="text/javascript"></script>
+<script src="/js/profileValidations.js" type="module"></script>
+<script src="/js/profile.js" type="module"></script>
 <!-- Incluir el footer -->
 <%- include('partials/footer') %>
