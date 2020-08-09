@@ -151,7 +151,18 @@ export const updateUserInfo = async (req, res, next) => {
 export const showUserProfile = async (req, res, next) => {
   try {
     const payload = await verify(req.session.token, 'our secret')
-    const user = await db.User.findOne({ where: { email: payload.user.email } }, { include: 'sales' })
+    const user = await db.User.findOne({
+      where: {
+        email: payload.user.email
+      }
+    }, {
+      include: [
+        {
+          association: 'sales',
+          where: { sale: true }
+        }
+      ]
+    })
 
     if (!user) {
       throw 'User specified does not exists!'
