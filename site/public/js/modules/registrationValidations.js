@@ -1,72 +1,88 @@
+/* eslint-disable no-undef */
 export const validateRegistration = () => {
-  const form = document.getElementById('registration')
+  const registrationForm = document.getElementById('registrationForm')
 
-  form.onsubmit = event => {
+  registrationForm.onsubmit = event => {
+    const firstName = document.getElementById('firstName-register')
+    const firstNameMsg = document.getElementById('msjFirstName-register')
+    const lastName = document.getElementById('lastName-register')
+    const lastNameMsg = document.getElementById('msjLastName-register')
+    const email = document.getElementById('email-register')
+    const emailMsg = document.getElementById('msjEmail-register')
+    const password = document.getElementById('password-register')
+    const passwordMsg = document.getElementById('msjPassword-register')
+    const passwordRepeat = document.getElementById('passwordRepeat-register')
+    const passwordRepeatMsg = document.getElementById('msjPasswordRepeat-register')
 
-    // Atrapa controles a validar
-    const firstName = document.getElementById('nombre')
-    const lastName = document.getElementById('apellido')
-    const email = document.getElementById('email')
-    const password = document.getElementById('password')
-    const passwordRepeat = document.getElementById('repetirPassword')
-
-    // Validación Nombre
-    const firstNameMsg = document.getElementById('msjNombre')
     if (firstName.value === '') {
       event.preventDefault()
       firstName.classList.add('is-invalid')
-      firstNameMsg.classList.remove('d-none')
+      firstNameMsg.innerText = 'Ingrese un nombre'
+    } else if (!validator.isLength(validator.trim(firstName.value), { min: 2 })) {
+      event.preventDefault()
+      firstName.classList.add('is-invalid')
+      firstNameMsg.innerText = 'El nombre debe tener al menos 2 caracteres'
     } else {
-      firstNameMsg.classList.add('d-none')
       firstName.classList.remove('is-invalid')
     }
 
-    // Validación Apellido
-    const lastNameMsg = document.getElementById('msjApellido')
     if (lastName.value === '') {
       event.preventDefault()
       lastName.classList.add('is-invalid')
-      lastNameMsg.classList.remove('d-none')
+      lastNameMsg.innerText = 'Ingrese un apellido'
+    } else if (!validator.isLength(validator.trim(lastNameMsg.value), { min: 2 })) {
+      event.preventDefault()
+      lastName.classList.add('is-invalid')
+      lastNameMsg.innerText = 'El apellido debe tener al menos 2 caracteres'
     } else {
-      lastNameMsg.classList.add('d-none')
       lastName.classList.remove('is-invalid')
     }
 
-    // Validación Email
-    const emailMsg = document.getElementById('msjEmail')
     if (email.value === '') {
       event.preventDefault()
       email.classList.add('is-invalid')
-      emailMsg.classList.remove('d-none')
+      emailMsg.innerText = 'Ingrese un email'
+    } else if (!validator.isEmail(email.value)) {
+      event.preventDefault()
+      email.classList.add('is-invalid')
+      emailMsg.innerText = 'El email ingresado no es válido'
     } else {
-      emailMsg.classList.add('d-none')
       email.classList.remove('is-invalid')
     }
 
-    /*Esta evaluación no esta funcionando correctamente
-    if (! /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3,4})+$/g.test(email.value)){
-      errores.push('La dirección de email es incorrecta.')
-    }*/
-
-    // Validación Password
-    const passwordMsg = document.getElementById('msjPassword')
-    if (password.value === '' || password.value.length < 6) {
+    if (password.value === '') {
       event.preventDefault()
       password.classList.add('is-invalid')
-      passwordMsg.classList.remove('d-none')
+      passwordMsg.innerText = 'Ingrese una contraseña'
+    } else if (!validator.isLength(password.value, { min: 8 })) {
+      event.preventDefault()
+      password.classList.add('is-invalid')
+      passwordMsg.innerText = 'La contraseña debe tener al menos 8 caracteres'
+    } else if (!validator.matches(password.value, /[A-Z]/)) {
+      event.preventDefault()
+      password.classList.add('is-invalid')
+      passwordMsg.innerText = 'La contraseña debe tener al menos 1 letra mayúscula'
+    } else if (!validator.matches(password.value, /[a-z]/)) {
+      event.preventDefault()
+      password.classList.add('is-invalid')
+      passwordMsg.innerText = 'La contraseña debe tener al menos 1 letra minúscula'
+    } else if (!validator.matches(password.value, /\d/)) {
+      event.preventDefault()
+      password.classList.add('is-invalid')
+      passwordMsg.innerText = 'La contraseña debe tener al menos 1 número'
     } else {
-      passwordMsg.classList.add('d-none')
       password.classList.remove('is-invalid')
     }
 
-    // Validación repetir password
-    const passwordRepeatMsg = document.getElementById('msjRepetirPassword')
-    if (password.value != passwordRepeat.value) {
+    if (passwordRepeat.value === '') {
       event.preventDefault()
       passwordRepeat.classList.add('is-invalid')
-      passwordRepeatMsg.classList.remove('d-none')
+      passwordRepeatMsg.innerText = 'Repita la contraseña'
+    } else if (passwordRepeat.value !== password.value) {
+      event.preventDefault()
+      passwordRepeat.classList.add('is-invalid')
+      passwordRepeatMsg.innerText = 'Las contraseñas no coinciden'
     } else {
-      passwordRepeatMsg.classList.add('d-none')
       passwordRepeat.classList.remove('is-invalid')
     }
   }
