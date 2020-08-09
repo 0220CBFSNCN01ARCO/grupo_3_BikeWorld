@@ -1,0 +1,67 @@
+<div class="col-sm-12 col-md-6">
+
+  <h2 class="mb-3">¿Aún no tienes cuenta?</h2>
+
+  <form id="registrationForm" method="post" action="/users">
+
+    <div class="form-group">
+      <label for="firstName-register">Nombre</label>
+      <% let error %>
+      <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'firstName'))) { %>
+        <input type="text" class="form-control is-invalid" id="firstName-register" name="firstName" placeholder="Ingrese su nombre">
+        <div class="invalid-feedback" id="msjFirstName-register"><%= error.msg %></div>
+      <% } else { %>
+        <input type="text" class="form-control" id="firstName-register" name="firstName" placeholder="Ingrese su nombre">
+        <div class="invalid-feedback" id="msjFirstName-register"></div>
+      <% } %>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName-register">Apellido</label>
+      <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'lastName'))) { %>
+        <input type="text" class="form-control is-invalid" id="lastName-register" name="lastName" placeholder="Ingrese su apellido">
+        <div class="invalid-feedback" id="msjLastName-register"><%= error.msg %></div>
+      <% } else { %>
+        <input type="text" class="form-control" id="lastName-register" name="lastName" placeholder="Ingrese su apellido">
+        <div class="invalid-feedback" id="msjLastName-register"></div>
+      <% } %>
+    </div>
+
+    <div class="form-group">
+      <label for="email-register">Email</label>
+      <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'email'))) { %>
+        <input type="email" class="form-control is-invalid" id="email-register" name="email" placeholder="Ingrese su email">
+        <div class="invalid-feedback" id="msjEmail-register"><%= error.msg %></div>
+      <% } else { %>
+        <input type="email" class="form-control" id="email-register" name="email" placeholder="Ingrese su email">
+        <div class="invalid-feedback" id="msjEmail-register"></div>
+      <% } %>
+    </div>
+
+    <div class="form-group">
+      <label for="password-register">Contraseña</label>
+      <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'password'))) { %>
+        <input type="password" class="form-control is-invalid" id="password-register" name="password" placeholder="Ingrese su contraseña">
+        <div class="invalid-feedback" id="msjPassword-register"><%= error.msg %></div>
+      <% } else { %>
+        <input type="password" class="form-control" id="password-register" name="password" placeholder="Ingrese su contraseña">
+        <div class="invalid-feedback" id="msjPassword-register"></div>
+      <% } %>
+    </div>
+
+    <div class="form-group">
+      <label for="passwordRepeat-register">Repita la contraseña</label>
+      <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'passwordRepeat'))) { %>
+        <input type="password" class="form-control is-invalid" id="passwordRepeat-register" name="passwordRepeat" placeholder="Ingrese nuevamente su contraseña">
+        <div class="invalid-feedback" id="msjPasswordRepeat-register"><%= error.msg %></div>
+      <% } else { %>
+        <input type="password" class="form-control" id="passwordRepeat-register" name="passwordRepeat" placeholder="Ingrese nuevamente su contraseña">
+        <div class="invalid-feedback" id="msjPasswordRepeat-register"></div>
+      <% } %>
+    </div>
+
+    <button class="btn btn-primary form-control" type="submit">Crear cuenta</button>
+
+  </form>
+
+</div>

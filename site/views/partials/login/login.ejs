@@ -1,0 +1,39 @@
+<div class="col-sm-12 col-md-6">
+
+  <h2 class="mb-3">¿Ya tienes cuenta?</h2>
+
+  <form id="loginForm" method="post" action="/users/login">
+
+    <div class="form-group">
+      <label for="email-login">Email</label>
+      <% let error %>
+      <% if ((loginErrors !== undefined) && (error = loginErrors.find(error => error.param === 'email'))) { %>
+        <input type="email" class="form-control is-invalid" id="email-login" name="email" placeholder="Ingrese su email">
+        <div class="invalid-feedback" id="msjEmail-login"><%= error.msg %></div>
+      <% } else { %>
+        <input type="email" class="form-control" id="email-login" name="email" placeholder="Ingrese su email">
+        <div class="invalid-feedback" id="msjEmail-login"></div>
+      <% } %>
+    </div>
+
+    <div class="form-group">
+      <label for="password-login">Contraseña</label>
+      <% if ((loginErrors !== undefined) && (error = loginErrors.find(error => error.param === 'password'))) { %>
+        <input type="password" class="form-control is-invalid" id="password-login" name="password" placeholder="Ingrese su contraseña">
+        <div class="invalid-feedback" id="msjPassword-login"><%= error.msg %></div>
+      <% } else { %>
+        <input type="password" class="form-control" id="password-login" name="password" placeholder="Ingrese su contraseña">
+        <div class="invalid-feedback" id="msjPassword-login"></div>
+      <% } %>
+    </div>
+
+    <div class="form-group">
+      <input type="checkbox" id="remindMe-login" name="remindMe">
+      <label for="remindMe-login">Recordarme</label>
+    </div>
+
+    <button class="btn btn-primary form-control" type="submit">Iniciar sesión</button>
+
+  </form>
+
+</div>
