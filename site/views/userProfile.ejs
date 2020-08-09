@@ -1,0 +1,78 @@
+<!-- Head -->
+<%- include('partials/head', { title: 'Ver perfil de usuario' }) %>
+
+<!-- Header -->
+<%- include('partials/headerNavbar') %>
+
+<div class="container mt-5 mb-5">
+
+
+
+  <form action="/users/<%= user.id %>?_method=PUT" method="POST">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>Perfil de Usuario</h2>
+        <button type="submit" class="btn btn-primary" id="btnEditar">Editar</button>
+      </div>
+    </div>
+    <div class="container">
+      <!-- Name -->
+      <div class="row mb-3">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="firstName" class="form-control" id="nombre"
+        value="<%= user.firstName %>" disabled>
+      </div>
+      <!-- Last name -->
+      <div class="row mb-3">
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" name="lastName" class="form-control"
+          id="apellido" value="<%= user.lastName %>" disabled>
+      </div>
+
+      <!-- Email -->
+      <div class="row mb-3">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" class="form-control" id="email"
+        value="<%= user.email %>" disabled>
+      </div>
+
+      <!-- Administrador -->
+      <div class="row mb-3">
+        <div class="radio">
+          <label><input type="radio" name="optradio" value="<%= user.useradmin %>"> Usuario administrador</label>
+        </div>
+
+      </div>
+      <hr>
+      <!-- Lista de compras -->
+      <h2>Lista de artículos comprados</h2>
+      <div class="row mb-3">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">saledetail.id</th>
+              <td>saledetail.product.name</td>
+              <td>saledetail.amount</td>
+              <td>saledetail.price</td>
+            </tr>
+            </tbody>
+            </table>
+      </div>
+
+    </div>
+
+
+
+  </form>
+</div>
+
+<!-- Incluir el footer -->
+<%- include('partials/footer') %>
