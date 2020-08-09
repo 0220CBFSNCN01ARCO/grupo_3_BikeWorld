@@ -1,7 +1,7 @@
-<div class="container-fluid products-wrapper pr-0 pl-0">
+<div class="container-fluid products-wrapper">
 
   <!-- Section title -->
-  <div class="col-12 pr-0 pl-0" >
+  <div class="col-12" >
     <h2 class="products-title"><%= sectionTitle %></h2>
     <hr class="line-title">
   </div>
@@ -9,41 +9,45 @@
 
   <!-- Products Row -->
   <div class="row">
-    <% products.forEach(product => { %>
+    <% if (products.length > 0) { %>
+      <% products.forEach(product => { %>
     <div class="col-12 col-sm-6 col-lg-2">
       <section class="product-box">
         <a href="/products/<%= product.id %>">
 
-          <!-- Product Image -->
-          <figure class="product-box_image">
-            <img src="<%= getProductImagePath(product.image) %>" alt="Imagen de producto">
-          </figure>
-          <!-- Product Image -->
+              <!-- Product Image -->
+              <figure class="product-box_image">
+                <img src="<%= getProductImagePath(product.image) %>" alt="Imagen de producto">
+              </figure>
+              <!-- Product Image -->
 
-          <!-- Product Details -->
-          <article class="product-box_data">
+              <!-- Product Details -->
+              <article class="product-box_data">
 
 
-            <h2>
-              $ <%= toThousand(Math.round(product.price - (product.price * product.discount / 100))) %>
-            </h2>
+                <h2>
+                  $ <%= toThousand(Math.round(product.price - (product.price * product.discount / 100))) %>
+                </h2>
 
-            <% if (product.discount) { %>
-            <span class="badge badge-primary ml-2"><%= product.discount %>% OFF</span>
-            <% } %>
+                <% if (product.discount) { %>
+                  <span class="badge badge-primary ml-2"><%= product.discount %>% OFF</span>
+                  <% } %>
 
-            <p><%= product.name %></p>
+                  <p><%= product.name %></p>
 
-            <i class="fas fa-truck"></i>
+                  <i class="fas fa-truck"></i>
 
-          </article>
-          <!-- Product Details -->
+                </article>
+                <!-- Product Details -->
 
-        </a>
-      </section>
-    </div>
-    <% }) %>
-  </div>
-  <!-- Products Row -->
+              </a>
+            </section>
+          </div>
+          <% }) %>
+          <% } else { %>
+            <div><h5>No se encontraron artículos con los criterios seleccionados</h5></div>
+          <% } %>
+          </div>
+        <!-- Products Row -->
 
-</div>
+      </div>
