@@ -1,11 +1,14 @@
 import { Router } from 'express'
-import { showRegistrationForm, registerUser, loginUser } from '../controllers/usersController'
+import { showRegistrationForm, registerUser, loginUser, showUserProfile } from '../controllers/usersController'
 import { body } from 'express-validator'
 
 export const usersRouter = Router()
 
 // GET /users/register
 usersRouter.get('/register', showRegistrationForm)
+
+// GET /users/profile
+usersRouter.get('/profile', showUserProfile)
 
 // POST /users/register
 usersRouter.post('/register', [
@@ -38,3 +41,5 @@ usersRouter.post('/login', [
     .isEmail().withMessage('El email ingresado no es válido'),
   body('password').exists({ checkFalsy: true }).withMessage('Ingrese una contraseña').trim()
 ], loginUser)
+
+
