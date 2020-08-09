@@ -5,28 +5,29 @@
 <%- include('partials/headerNavbar') %>
 
 <div class="container">
-<br>
+  <br>
   <h2 class="titlePage">Filtrar por categoria</h2>
-<!-- Products selector filter-->
-<div class="col-sm-3 col-md-2 col-lg" id="selectorFilter">
-  <form action="/products" method="GET">
-  <select name="selectedCategory" id="productList">
-    <option disabled="disabled" selected="selected">Elija una categoría</option>
-    <% categories.forEach(category => { %>
-      <option value="<%= category.id %>"><%= category.name %></option>
-      <% }) %>
-    </select>
-    <button type="submit" class="btn btn-primary">Filtrar</button>
-    <button type="submit" class="btn btn-primary" id=''>Quitar filtros</button>
-    <button type="submit" class="btn btn-secondary" id=''>Agregar producto</button>
-  </form>
-  </div>
+  <!-- Products selector filter-->
+  <div class="col-sm-3 col-md-2 col-lg" id="selectorFilter">
+    <form action="/products" method="GET">
+      <select name="selectedCategory" id="productList">
+        <option disabled="disabled" selected="selected">Elija una categoría</option>
+        <% categories.forEach(category => { %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+          <% }) %>
+        </select>
+          <button type="submit" class="btn btn-primary">Filtrar</button>
+          <button type="submit" class="btn btn-primary" id=''>Quitar filtros</button>
+      </form>
+        <a href="/products/create" class="btn btn-secondary">Agregar producto</a>
+    </div>
 
-  <div class="row">
-
-      <!-- Products (Section) -->
-      <div class="card-body">
-        <%- include('partials/home/section', { sectionTitle: 'Listado Productos', products: products }) %>
+    <div class="row">
+      <div class="sectionContainer">
+        <!-- Products (Section) -->
+        <div class="card-body">
+          <%- include('partials/home/section', { sectionTitle: 'Listado Productos', products: products }) %>
+        </div>
       </div>
     </div>
   </div>
