@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-12 mb-3">
         <h2>Perfil de Usuario</h2>
-        <button type="submit" class="btn btn-primary" id="btnEditar">Editar</button>
+        <button type="submit" class="btn btn-primary" id="editButton">Editar</button>
       </div>
     </div>
     <div class="container">
@@ -19,7 +19,7 @@
         <% let error %>
         <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'firstName'))) { %>
         <input type="text" class="form-control is-invalid" id="firstName-register" name="firstName"
-          placeholder="Ingrese su nombre">
+          placeholder="Ingrese su nombre" value="<%= user.firstName %>">
         <div class="invalid-feedback" id="msjFirstName-register"><%= error.msg %></div>
         <% } else { %>
         <input type="text" class="form-control" id="firstName-register" name="firstName" placeholder="Ingrese su nombre"
@@ -33,7 +33,7 @@
         <label for="lastName-register">Apellido</label>
         <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'lastName'))) { %>
         <input type="text" class="form-control is-invalid" id="lastName-register" name="lastName"
-          placeholder="Ingrese su apellido">
+          placeholder="Ingrese su apellido" value="<%= user.lastName %>">
         <div class="invalid-feedback" id="msjLastName-register"><%= error.msg %></div>
         <% } else { %>
         <input type="text" class="form-control" id="lastName-register" name="lastName" placeholder="Ingrese su apellido"
@@ -47,10 +47,10 @@
         <label for="email-register">Email</label>
         <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'email'))) { %>
         <input type="email" class="form-control is-invalid" id="email-register" name="email"
-          placeholder="Ingrese su email" value="<%= user.email %>" disabled>
+          placeholder="Ingrese su email" value="<%= user.email %>">
         <div class="invalid-feedback" id="msjEmail-register"><%= error.msg %></div>
         <% } else { %>
-        <input type="email" class="form-control" id="email-register" name="email" placeholder="Ingrese su email" disabled>
+        <input type="email" class="form-control" id="email-register" name="email" placeholder="Ingrese su email" value="<%= user.email %>" disabled>
         <div class="invalid-feedback" id="msjEmail-register"></div>
         <% } %>
       </div>
@@ -60,8 +60,7 @@
         <label for="password-register">
           Contraseña (si no desea actualizar su contraseña deje vacíos el campo)</label>
         <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'password'))) { %>
-        <input type="password" class="form-control is-invalid" id="password-register" name="password"
-           disabled>
+        <input type="password" class="form-control is-invalid" id="password-register" name="password">
         <div class="invalid-feedback" id="msjPassword-register"><%= error.msg %></div>
         <% } else { %>
         <input type="password" class="form-control" id="password-register" name="password"
