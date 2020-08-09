@@ -7,7 +7,7 @@ const verify = promisify(_verify)
 export const doNotAccessIfLoggedIn = async (req, res, next) => {
   try {
     if (req.session.token) {
-      const payload = await verify(req.session.token, 'our token')
+      const payload = await verify(req.session.token, 'our secret')
       const user = await db.User.findOne({ where: { email: payload.user.email } })
 
       if (user) {
@@ -26,7 +26,7 @@ export const doNotAccessIfLoggedIn = async (req, res, next) => {
 export const doNotAccessIfNotLoggedIn = async (req, res, next) => {
   try {
     if (req.session.token) {
-      const payload = await verify(req.session.token, 'our token')
+      const payload = await verify(req.session.token, 'our secret')
       const user = await db.User.findOne({ where: { email: payload.user.email } })
 
       if (user) {
