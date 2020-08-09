@@ -183,7 +183,7 @@ export const showUserProfile = async (req, res, next) => {
       })
     })
 
-    res.render('userProfile', { user })
+    res.render('userProfile', { user, registrationErrors: undefined })
   } catch (err) {
     next(err)
   }
