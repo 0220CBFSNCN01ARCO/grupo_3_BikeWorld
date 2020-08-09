@@ -5,14 +5,22 @@ import db from '../database/models'
 const verify = promisify(_verify)
 
 export const remindMeMiddleware = async (req, res, next) => {
-  if (req.cookies.token !== undefined && req.session.token === undefined) {
-    const payload = await verify(req.cookies.token, 'our secret')
-    const user = await db.User.findOne({ where: { email: payload.user.email } })
+  if (req.cookies.token && !req.session.token) {
+    try {
+      const payload = await verify(req.cookies.token, 'our secret')
+      const user = await db.User.findOne({ where: { email: payload.user.email } })
 
-    if (!user) {
+      if (!user) {
+        next()
+      }
+
+      req.session.token = req.cookies.token
+
       next()
+    } catch (err) {
+      next(err)
     }
-
-    req.session.token = req.cookies.session
+  } else {
+    next()
   }
 }

@@ -4,17 +4,18 @@
 <!-- Header -->
 <%- include('partials/headerNavbar') %>
 
-<div class="row mt-5 mb-5">
-  <!-- Registración -->
-  <%- include('partials/regLog/register') %>
-  <!-- /Registracion -->
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <!-- Inicio de sesión -->
+    <%- include('partials/login/login') %>
 
-  <!-- Login -->
-  <%- include('partials/regLog/login') %>
-  <!-- /Login -->
+    <!-- Registrar usuario -->
+    <%- include('partials/login/register') %>
+  </div>
 </div>
 
 <!-- Script de validación en front end y lista de errores -->
+<script src="/js/modules/validator.min.js" type="text/javascript"></script>
 <script src="/js/regLogValidations.js" type="module"></script>
 
 <!-- Footer -->
