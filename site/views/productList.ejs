@@ -7,26 +7,25 @@
 <div class="container">
 <br>
   <h2 class="titlePage">Filtrar por categoria</h2>
+<!-- Products selector filter-->
+<div class="col-sm-3 col-md-2 col-lg" id="selectorFilter">
+  <form action="/products" method="GET">
+  <select name="selectedCategory" id="productList">
+    <option disabled="disabled" selected="selected">Elija una categoría</option>
+    <% categories.forEach(category => { %>
+      <option value="<%= category.id %>"><%= category.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+    <button type="submit" class="btn btn-primary" id=''>Quitar filtros</button>
+
+  </form>
+  </div>
 
   <div class="row">
 
-    <!-- Products selector filter-->
-    <div class="col-sm-3 col-md-2 col-lg" id="selectorFilter">
-      <form action="post" method="POST">
-      <select name="selectedCategory" id="productList">
-        <option disabled="disabled" selected="selected">Elija un producto</option>
-        <% categories.forEach(category => { %>
-          <option value="<%= category.id %>"><%= category.name %></option>
-          <% }) %>
-        </select>
-        <br>
-        <br>
-        <button type="submit" class="btn btn-primary">Filtrar</button>
-      </form>
-      </div>
-
       <!-- Products (Section) -->
-      <div class="card-body col-sm-9 col-md-10 col-lg11">
+      <div class="card-body">
         <%- include('partials/home/section', { sectionTitle: 'Listado Productos', products: products }) %>
       </div>
     </div>
