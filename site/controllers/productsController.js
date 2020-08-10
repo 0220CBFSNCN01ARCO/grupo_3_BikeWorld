@@ -37,7 +37,8 @@ export const showProductList = async (req, res, next) => {
       states: await db.ProductStatus.findAll(),
       selectedCategory: req.query.selectedCategory ?
         await db.ProductCategory.findByPk(req.query.selectedCategory) : undefined,
-      logged: req.logged
+      logged: req.logged,
+      admin: req.admin
     })
   } catch (err) {
     next(err)
@@ -108,7 +109,8 @@ export const showProductDetails = async (req, res, next) => {
       product: await db.Product.findByPk(req.params.id),
       getProductImagePath: getProductImagePath,
       newlineToBr: text => text.replace(/\r\n/g, '<br>'),
-      logged: req.logged
+      logged: req.logged,
+      admin: req.admin
     })
   } catch (err) {
     next(err)

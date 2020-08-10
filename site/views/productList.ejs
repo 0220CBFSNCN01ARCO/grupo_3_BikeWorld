@@ -19,7 +19,9 @@
           <button type="submit" class="btn btn-primary">Filtrar</button>
           <button type="submit" class="btn btn-primary" id=''>Quitar filtros</button>
       </form>
-        <a href="/products/create" class="btn btn-secondary">Agregar producto</a>
+        <% if (admin) { %>
+          <a href="/products/create" class="btn btn-secondary">Agregar producto</a>
+        <% } %>
     </div>
 
     <div class="row">
