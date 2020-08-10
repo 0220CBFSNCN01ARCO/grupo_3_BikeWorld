@@ -52,7 +52,7 @@ app.use((err, req, res, next) => {
   // Renderizamos la página de error
   res.status(err.status || 500)
 
-  err.status === 404 ? res.render('404') : res.render('error')
+  err.status === 404 ? res.render('404', { logged: req.logged }) : res.render('error')
 })
 
 export default app
