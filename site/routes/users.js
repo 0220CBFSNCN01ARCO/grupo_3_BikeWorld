@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { showRegistrationForm, registerUser, loginUser, showUserProfile, updateUserInfo, logoutUser } from '../controllers/usersController'
 import { body } from 'express-validator'
 import { doNotAccessIfLoggedIn, doNotAccessIfNotLoggedIn } from '../middlewares/userRestrictionsMiddleware'
-import validator from 'validatorjs'
+import validator from 'validator'
 
 export const usersRouter = Router()
 
