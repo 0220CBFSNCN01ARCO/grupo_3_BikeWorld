@@ -133,7 +133,7 @@ export const updateUserInfo = async (req, res, next) => {
     }
 
     if (req.body.password) {
-      user.password = hash(req.body.password, 10)
+      user.password = await hash(req.body.password, 10)
     }
 
     if (req.file) {
