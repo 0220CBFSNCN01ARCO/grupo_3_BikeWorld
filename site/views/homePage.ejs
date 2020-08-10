@@ -4,14 +4,16 @@
 <!-- Header -->
 <%- include('partials/headerNavbar') %>
 
-<!-- Carousel-->
-<%- include('partials/home/carousel') %>
+<div class="container-fluid">
+  <!-- Carousel-->
+  <%- include('partials/home/carousel') %>
 
-<!-- Productos de oferta-->
-<%- include('partials/home/section', { sectionTitle: 'Ofertas', products: sales }) %>
+  <!-- Productos de oferta-->
+  <%- include('partials/home/section', { sectionTitle: 'Ofertas', products: sales }) %>
 
-<!-- Productos de Destacados-->
-<%- include('partials/home/section', { sectionTitle: 'Destacados', products: featured }) %>
+  <!-- Productos de Destacados-->
+  <%- include('partials/home/section', { sectionTitle: 'Destacados', products: featured }) %>
+</div>
 
 <!-- footer-->
 <%- include('partials/footer') %>

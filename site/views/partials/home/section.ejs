@@ -1,41 +1,33 @@
-<div class="container-fluid mt-3 mb-3">
+<section class="row mt-3">
 
   <div class="col-12">
-    <h2 class="products-title"><%= sectionTitle %></h2>
-    <hr class="line-title">
+    <h2 class="text-primary font-weight-bold border-bottom border-primary"><%= sectionTitle %></h2>
   </div>
 
-  <div class="row">
-    <% if (products.length > 0) { %>
-      <% products.forEach(product => { %>
-        <div class="col-6 col-lg-2">
-          <section class="product-box">
-            <a href="/products/<%= product.id %>">
+  <% if (products.length > 0) { %>
+    <% products.forEach(product => { %>
+      <div class="col-6 col-md-3 col-lg-2">
+        <article class="article-item">
+          <a href="/products/<%= product.id %>">
+            <img class="article-item__image" src="<%= getProductImagePath(product.image) %>" alt="Imagen del producto">
+            <div class="article-item__details article-details">
+              <p class="article-details__price">
+                $ <%= toThousand((product.price - (product.price * product.discount / 100)).toFixed(2)) %>
+              </p>
+              <% if (product.discount > 0) { %>
+                <span class="badge badge-secondary"><%= product.discount %>% OFF</span>
+              <% } %>
+              <p class="article-details__name"><%= product.name %></p>
+              <i class="fas fa-truck article-details__icon"></i>
+            </div>
+          </a>
+        </article>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <div class="col-12">
+      <p>No se encontraron los artículos con los criterios seleccionados</p>
+    </div>
+  <% } %>
 
-              <figure class="product-box_image">
-                <img src="<%= getProductImagePath(product.image) %>" alt="Imagen de producto">
-              </figure>
-
-              <article class="product-box_data">
-                <h2>
-                  $ <%= toThousand(Math.round(product.price - (product.price * product.discount / 100))) %>
-                </h2>
-                <% if (product.discount) { %>
-                  <span class="badge badge-primary ml-2"><%= product.discount %>% OFF</span>
-                <% } %>
-
-                <p><%= product.name %></p>
-
-                <i class="fas fa-truck"></i>
-              </article>
-
-            </a>
-          </section>
-        </div>
-      <% }) %>
-    <% } else { %>
-      <h5>No se encontraron artículos con los criterios seleccionados</h5>
-    <% } %>
-  </div>
-
-</div>
+</section>
