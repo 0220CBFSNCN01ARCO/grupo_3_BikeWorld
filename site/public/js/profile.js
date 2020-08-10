@@ -7,6 +7,7 @@ window.onload = () => {
     const email = document.getElementById('email-register')
     const password = document.getElementById('password-register')
     const passwordRepeat = document.getElementById('passwordRepeat-register')
+
     const cambiarEstadoControl = () => {
       editButton.innerText = 'Guardar'
       firstName.removeAttribute('disabled')
@@ -15,11 +16,9 @@ window.onload = () => {
       password.removeAttribute('disabled')
       passwordRepeat.removeAttribute('disabled')
     }
+
     if (editButton.innerText === 'Editar') {
       event.preventDefault()
-      cambiarEstadoControl();
-    } else {
-      editButton.innerText = 'Editar'
       cambiarEstadoControl();
     }
   }
