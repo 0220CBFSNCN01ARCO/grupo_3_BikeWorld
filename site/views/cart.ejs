@@ -4,98 +4,73 @@
 <!-- Header -->
 <%- include('partials/headerNavbar') %>
 
-<div class="container">
-  <br>
-  <h2 class="Titulo-pagina">Tu compra</h2>  <hr>
+<div class="container mb-5">
+  <h2 class="mt-3">Tu compra</h2>
 
-  <div class="row">
+  <hr>
 
-    <!-- Cart articles -->
-    <% items.forEach(saleDetail => {%>
-      <div class="row">
-        <div class="col-sm-12 col-md-7 col-lg3">
-          <div>
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="<%= getProductImagePath(saleDetail.product.image) %>" class="card-img">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h3 class="card-title"><%= saleDetail.product.name %></h3>
-                  <h5 class="card-text"><%= saleDetail.product.description %></h5>
-                </div>
-              </div>
+  <!-- Cart articles -->
+  <% items.forEach(saleDetail => {%>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <img src="<%= getProductImagePath(saleDetail.product.image) %>">
+      </div>
+
+      <div class="col-12 col-md-4">
+        <h3><%= saleDetail.product.name %></h3>
+        <h5><%= saleDetail.product.description %></h5>
+      </div>
+
+      <div class="col-12 col-md-2 d-flex flex-row flex-md-column justify-content-between justify-content-md-start mt-4 mt-md-0">
+        <h5>Precio unitario</h5>
+        <div>
+          <h3>$ <%= saleDetail.product.price %></h3>
+          <% if (saleDetail.product.discount > 0) { %>
+            <div class="h3">
+              <span class="badge badge-primary"><%= saleDetail.product.discount %>% OFF</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Price -->
-        <div class="row col-sm-6 col-md-2 col-lg1">
-          <div class="col-sm-6 col-md-5 col-lg4 pl-0 pt-4">
-            <div id="unitPrice" style="width: 18rem;">
-              <div class="card-body">
-                <h5>Precio unitario</h5>
-                <h3>$<%= saleDetail.product.price %></h3>
-                <% if (saleDetail.product.discount > 0) { %>
-                  <span class="badge badge-primary"><%= saleDetail.product.discount %>% OFF</span>
-                  <% } %>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quantity -->
-          <div class="row col-sm-3 col-md-1 col-lg2">
-            <div class="col-sm-12 col-md-5 col-lg4 pl-0">
-              <div id="productsQuantity" style="width: 18rem;">
-                <div class="cart-quantity">
-                  <br>
-                  <label for="quantity"><h5>Cantidad</h5></label><br>
-                  <h4><%= saleDetail.amount %></h4>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Remove button -->
-          <div class="row col-sm-3 col-md-1 col-lg2 pt-0">
-            <form method="POST" action="/cart?_method=delete">
-              <input class="d-none">
-              <div class="col-sm-3 col-md-5 col-lg4 pl-0">
-                <div id="removeFromCart" style="width: 18rem;">
-                  <div class="cart-button text-center">
-                    <br>
-                    <br>
-                    <a href="#"></a>
-                    <button
-                    name="itemId"
-                    value="<%= saleDetail.id %>"
-                    type="button"
-                    class="btn btn-secondary">Eliminar
-                  </button></a>
-                </div>
-              </div>
-            </form>
-          </div>
+          <% } %>
         </div>
       </div>
-      <hr id="hrCart">
-      <% }) %>
 
-      <!-- Total amount to pay -->
-      <div class="row col-sm-12 col-md-12 col-lg12">
-        <div class="text-right col-sm-12 col-md-12 col-lg12" id="totalCarrito" style="width: 18rem;">
-          <div class="card-body">
-            <h6 class="card-text">Productos(<%= amountProducts %>)</h6>
-            <br>
-            <h2 class="card-title">Total</h2>
-            <h2>$ <%= totalPrice %></h2>
+      <div class="col-12 col-md-1 d-flex flex-row flex-md-column justify-content-between justify-content-md-start mt-4 mt-md-0">
+        <h5>Cantidad</h5>
+        <h3><%= saleDetail.amount %></h3>
+      </div>
 
-            <a href="#" class="btn btn-primary mb-5">Comprar</a>
-          </div>
-        </div>
+      <div class="col-12 col-md-2 d-flex justify-content-end mt-4 mt-md-0">
+        <form action="/cart?_method=DELETE" method="post">
+          <button class="btn btn-danger" name="itemId" type="submit" value="<%= saleDetail.id %>">Eliminar</button>
+        </form>
       </div>
     </div>
+
+    <hr>
+
+  <% }) %>
+
+  <div class="row justify-content-md-end">
+    <div class="col-12 col-md-4 d-flex justify-content-between">
+      <h5>Productos</h5>
+      <h5><%= amountProducts %></h3>
+    </div>
   </div>
-  <!-- Footer -->
-  <%- include('partials/footer') %>
+
+  <div class="row justify-content-md-end">
+    <div class="col-12 col-md-4 d-flex justify-content-between">
+      <h3>Total</h3>
+      <h3>$ <%= totalPrice %></h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 d-flex justify-content-end">
+      <form action="/cart/buy" method="post">
+        <button class="btn btn-primary" type="submit">Comprar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<%- include('partials/footer') %>
