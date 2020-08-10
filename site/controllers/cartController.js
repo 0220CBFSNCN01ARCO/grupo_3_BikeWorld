@@ -33,7 +33,9 @@ export const showCart = async (req, res, next) => {
         userId: user.id,
         sale: false
       })
-    } else if (!sale.saleDetails) {
+    }
+
+    if (!sale.saleDetails) {
       sale.saleDetails = []
     }
 
@@ -96,22 +98,13 @@ export const deleteItem = async (req, res, next) => {
       throw new Error('El usuario especificado no existe')
     }
 
-    const sale = await db.Sale.findOne({
-      where: {
-        userId: user.id,
-        sale: false
-      },
-      include: 'saleDetails'
-    })
+    const saleDetail = await db.SaleDetail.findOne({ where: { id: req.body.itemId }})
 
-    if (!sale) {
-      throw new Error('No hay carrito para eliminar el producto')
-    } else if (!sale.saleDetails) {
-      throw new Error('El carrito no tiene productos')
+    if (!saleDetail) {
+      throw new Error('No se encontró el item a eliminar')
     }
 
-    let itemToDelete = sale.saleDetails.find(item => item.id === req.body.itemId)
-    await itemToDelete.destroy()
+    await saleDetail.destroy()
 
     res.redirect('/cart')
   } catch (err) {
