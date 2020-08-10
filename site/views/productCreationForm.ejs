@@ -72,8 +72,8 @@
         <div class="form-group">
           <label for="inputDescription">Descripción</label>
           <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'description'))) { %>
-            <textarea name="description" id="inputDescription" cols="30" rows="10" class="form-control"></textarea>
-            <div id="msjInputDescription" class="invalid-feedback"><%= errors.msg %></div>
+            <textarea name="description" id="inputDescription" cols="30" rows="10" class="form-control is-invalid"></textarea>
+            <div id="msjInputDescription" class="invalid-feedback"><%= error.msg %></div>
           <% } else { %>
             <textarea name="description" id="inputDescription" cols="30" rows="10" class="form-control"></textarea>
             <div id="msjInputDescription" class="invalid-feedback"></div>
