@@ -78,18 +78,20 @@ window.onload = () => {
       status.classList.remove('is-invalid')
     }
 
-    if (image.files.length > 0) {
-      if (image.files.length !== 1) {
-        event.preventDefault()
-        imageMsg.classList.add('d-block')
-        imageMsg.innerText = 'Ingrese solo una imagen'
-      } else if (!validator.isIn(image.files[0].type, ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'])) {
-        event.preventDefault()
-        imageMsg.classList.add('d-block')
-        imageMsg.innerText = 'La imagen seleccionada no es válida'
-      } else {
-        imageMsg.classList.remove('d-block')
-      }
+    if (image.files.length === 0) {
+      event.preventDefault()
+      imageMsg.classList.add('d-block')
+      imageMsg.innerText = 'Seleccione una imagen para el producto'
+    } else if (image.files.length !== 1) {
+      event.preventDefault()
+      imageMsg.classList.add('d-block')
+      imageMsg.innerText = 'Seleccione solo una imagen'
+    } else if (!validator.isIn(image.files[0].type, ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'])) {
+      event.preventDefault()
+      imageMsg.classList.add('d-block')
+      imageMsg.innerText = 'La imagen seleccionada no es válida'
+    } else {
+      imageMsg.classList.remove('d-block')
     }
   }
 }
