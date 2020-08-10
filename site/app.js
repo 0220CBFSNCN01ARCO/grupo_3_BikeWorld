@@ -11,6 +11,7 @@ import createHttpError from 'http-errors'
 import session from 'express-session'
 import { remindMe } from './middlewares/remindMeMiddleware'
 import { isLogged } from './middlewares/isLoggedMiddleware'
+import { isAdmin } from './middlewares/isAdminMiddleware'
 
 const app = express()
 
@@ -28,6 +29,7 @@ app.use(methodOverride('_method'))
 app.use(session({ secret: 'secretTwo', resave: true, saveUninitialized: true }))
 app.use(remindMe)
 app.use(isLogged)
+app.use(isAdmin)
 
 // Configuramos los enrutadores
 app.use('/', indexRouter)

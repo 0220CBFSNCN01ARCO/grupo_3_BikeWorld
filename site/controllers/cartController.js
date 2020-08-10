@@ -47,7 +47,7 @@ export const showCart = async (req, res, next) => {
     res.render('cart', {
       items: sale.saleDetails,
       amountProducts,
-      totalPrice,
+      totalPrice: totalPrice.toFixed(2),
       getProductImagePath: imageFilename => join('/images/products', imageFilename),
       logged: req.logged
     })

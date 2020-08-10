@@ -22,8 +22,6 @@
     </form>
     <% if (logged) { %>
       <div style="margin-left: 10px;"><a href="/cart"><i class="fa fa-shopping-cart carrito"></i></a></div>
-    <% } else { %>
-      <div style="margin-left: 10px;" class="d-none"><a href="/cart"><i class="fa fa-shopping-cart carrito"></i></a></div>
     <% } %>
   </div>
 </div>
@@ -43,39 +41,33 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">
-                Bicis por estilo
-                <i class="fa fa-sort-down"></i>
+              <a class="nav-link" href="/products?selectedCategory=4">
+                Bicicletas
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/products?selectedCategory=5">
                 Ruedas
-                <i class="fa fa-sort-down"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                Componentes
-                <i class="fa fa-sort-down"></i>
+              <a class="nav-link" href="/products?selectedCategory=2">
+                Transmision
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/products?selectedCategory=3">
+                Frenos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/products?selectedCategory=1">
                 Accesorios
-                <i class="fa fa-sort-down"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                Indumentaria
-                <i class="fa fa-sort-down"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Taller
-                <i class="fa fa-sort-down"></i>
+              <a class="nav-link" href="/products">
+                Listado productos
               </a>
             </li>
           </ul>

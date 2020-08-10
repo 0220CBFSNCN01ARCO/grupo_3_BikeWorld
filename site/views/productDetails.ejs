@@ -46,17 +46,19 @@
           </form>
           <!-- Add to cart button -->
 
-          <!-- Edit product button -->
-          <a href="/products/<%= product.id %>/edit" class="btn btn-outline-secondary w-100 mt-2">
-            Editar producto
-          </a>
-          <!-- Edit product button -->
+          <% if (admin) { %>
+            <!-- Edit product button -->
+            <a href="/products/<%= product.id %>/edit" class="btn btn-outline-secondary w-100 mt-2">
+              Editar producto
+            </a>
+            <!-- Edit product button -->
 
-          <!-- Delete product button -->
-          <form action="/products/<%= product.id %>?_method=DELETE" method="post" class="mt-2">
-            <button type="submit" class="btn btn-outline-danger w-100">Borrar producto</button>
-          </form>
-          <!-- Delete product button -->
+            <!-- Delete product button -->
+            <form action="/products/<%= product.id %>?_method=DELETE" method="post" class="mt-2">
+              <button type="submit" class="btn btn-outline-danger w-100">Borrar producto</button>
+            </form>
+            <!-- Delete product button -->
+          <% } %>
 
         </div>
       </div>
