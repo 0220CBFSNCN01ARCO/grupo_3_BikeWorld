@@ -40,8 +40,9 @@
           <p class="card-text"><%- newlineToBr(product.description) %></p>
 
           <!-- Add to cart button -->
-          <form action="" method="post">
-            <button type="submit" class="btn btn-primary w-100">Agregar al carrito</button>
+          <form action="/cart/add" method="post">
+            <button type="submit" class="btn btn-primary w-100"
+              name="productId" value="<%= product.id %>">Agregar al carrito</button>
           </form>
           <!-- Add to cart button -->
 
