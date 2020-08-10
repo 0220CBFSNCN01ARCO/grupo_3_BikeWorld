@@ -46,11 +46,11 @@
       <div class="row mb-3">
         <label for="email-register">Email</label>
         <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'email'))) { %>
-        <input type="email" class="form-control is-invalid" id="email-register" name="email"
-          placeholder="Ingrese su email" value="<%= user.email %>">
+        <input type="email" class="form-control is-invalid" id="email-register" name="email" value="<%= user.email %>"
+          disabled>
         <div class="invalid-feedback" id="msjEmail-register"><%= error.msg %></div>
         <% } else { %>
-        <input type="email" class="form-control" id="email-register" name="email" placeholder="Ingrese su email" value="<%= user.email %>" disabled>
+        <input type="email" class="form-control" id="email-register" name="email" value="<%= user.email %>" disabled>
         <div class="invalid-feedback" id="msjEmail-register"></div>
         <% } %>
       </div>
@@ -58,13 +58,12 @@
       <!-- Password -->
       <div class="row mb-3">
         <label for="password-register">
-          Contraseña (si no desea actualizar su contraseña deje vacíos el campo)</label>
+          Password / Si quiere cambiar su password, ingrésela y répitala.</label>
         <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'password'))) { %>
         <input type="password" class="form-control is-invalid" id="password-register" name="password">
         <div class="invalid-feedback" id="msjPassword-register"><%= error.msg %></div>
         <% } else { %>
-        <input type="password" class="form-control" id="password-register" name="password"
-           disabled>
+        <input type="password" class="form-control" id="password-register" name="password" disabled>
         <div class="invalid-feedback" id="msjPassword-register"></div>
         <% } %>
       </div>
@@ -72,14 +71,13 @@
       <!-- RepeatPassword -->
       <div class="row mb-3">
         <label for="passwordRepeat-register">Repita la contraseña</label>
-      <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'passwordRepeat'))) { %>
+        <% if ((registrationErrors !== undefined) && (error = registrationErrors.find(error => error.param === 'passwordRepeat'))) { %>
         <input type="password" class="form-control is-invalid" id="passwordRepeat-register" name="passwordRepeat">
         <div class="invalid-feedback" id="msjPasswordRepeat-register"><%= error.msg %></div>
-      <% } else { %>
-        <input type="password" class="form-control" id="passwordRepeat-register"
-        name="passwordRepeat" disabled>
+        <% } else { %>
+        <input type="password" class="form-control" id="passwordRepeat-register" name="passwordRepeat" disabled>
         <div class="invalid-feedback" id="msjPasswordRepeat-register"></div>
-      <% } %>
+        <% } %>
       </div>
       <hr>
       <!-- Lista de compras -->
@@ -96,10 +94,21 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">saledetail.id</th>
-              <td>saledetail.product.name</td>
-              <td>saledetail.amount</td>
-              <td>saledetail.price</td>
+              <% if(user.sales.length>0) {%>
+                <% user.sales.forEach(sale => {%>
+                  <% sale.saleDetails.forEach(item => {%>
+                    <th scope="row">item.id</th>
+                    <td>item.product.name</td>
+                    <td>item.amount</td>
+                    <td>item.price</td>
+                  <%});%>
+                <%});%>
+              <%}else{ %>
+                  <th scope="row">s/d</th>
+                  <td>s/d</td>
+                  <td>s/d</td>
+                  <td>s/d</td>
+                <%};%>
             </tr>
           </tbody>
         </table>
