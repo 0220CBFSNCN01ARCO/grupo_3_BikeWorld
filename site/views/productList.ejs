@@ -5,34 +5,38 @@
 <%- include('partials/headerNavbar') %>
 
 <div class="container">
-  <br>
-  <h2 class="titlePage">Filtrar por categoria</h2>
-  <!-- Products selector filter-->
-  <div class="col-sm-3 col-md-2 col-lg" id="selectorFilter">
-    <form action="/products" method="GET">
-      <select name="selectedCategory" id="productList">
-        <option disabled="disabled" selected="selected">Elija una categoría</option>
-        <% categories.forEach(category => { %>
-          <option value="<%= category.id %>"><%= category.name %></option>
-          <% }) %>
-        </select>
-          <button type="submit" class="btn btn-primary">Filtrar</button>
-          <button type="submit" class="btn btn-primary" id=''>Quitar filtros</button>
-      </form>
-        <% if (admin) { %>
-          <a href="/products/create" class="btn btn-secondary">Agregar producto</a>
-        <% } %>
-    </div>
 
-    <div class="row">
-      <div class="sectionContainer">
-        <!-- Products (Section) -->
-        <div class="card-body">
-          <%- include('partials/home/section', { sectionTitle: 'Listado Productos', products: products }) %>
-        </div>
-      </div>
+  <div class="row mt-3">
+    <div class="col-6 d-flex justify-content-start align-items-center">
+      <h2>Filtrar por categoría</h2>
+    </div>
+    <div class="col-6 d-flex justify-content-end align-items-center">
+      <% if (admin) { %>
+        <a href="/products/create" class="btn btn-outline-secondary">Agregar producto</a>
+      <% } %>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-12 d-flex mt-1">
+      <form action="/products" method="get">
+        <select name="selectedCategory">
+          <option disabled="disabled" selected="selected">Elija una categoría</option>
+          <% categories.forEach(category => { %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+          <% }) %>
+        </select>
+        <button type="submit" class="btn btn-primary ml-2">Filtrar</button>
+      </form>
+      <a href="/products" class="btn btn-outline-danger ml-2">Quitar filtros</a>
+    </div>
+  </div>
+
+  <div class="ml-n3 mr-n3">
+    <%- include('partials/home/section', { sectionTitle: 'Listado de productos', products }) %>
+  </div>
+
 </div>
+
 <!-- Footer -->
 <%- include('partials/footer') %>
