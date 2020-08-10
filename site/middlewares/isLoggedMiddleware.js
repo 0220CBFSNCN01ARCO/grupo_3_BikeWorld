@@ -9,6 +9,7 @@ export const isLogged = async (req, res, next) => {
     const payload = await verify(req.session.token, 'our secret')
     const user = await db.User.findOne({ where: { email: payload.user.email } })
     req.logged = user ? true : false
+    next()
   } catch (err) {
     next(err)
   }

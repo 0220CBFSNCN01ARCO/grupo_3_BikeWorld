@@ -4,14 +4,11 @@ import db from '../database/models'
 
 const verify = promisify(_verify)
 
-export const isLogged = async (req, res, next) => {
+export const isAdmin = async (req, res, next) => {
   try {
-    if (req.logged) {
-      const payload = await verify(req.session.token, 'our secret')
-      const user = await db.User.findOne({ where: { email: payload.user.email } })
-      req.admin = user && user.userAdmin
-      next()
-    }
+    const payload = await verify(req.session.token, 'our secret')
+    const user = await db.User.findOne({ where: { email: payload.user.email } })
+    req.admin = user && user.userAdmin
 
     next()
   } catch (err) {
