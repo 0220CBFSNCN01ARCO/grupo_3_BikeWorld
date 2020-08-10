@@ -1,4 +1,15 @@
-export const isLogged = (req, res, next) => {
-  req.logged = req.session.token ? true : false
-  next()
+import { verify as _verify } from 'jsonwebtoken'
+import { promisify } from 'util'
+import db from '../database/models'
+
+const verify = promisify(_verify)
+
+export const isLogged = async (req, res, next) => {
+  try {
+    const payload = await verify(req.session.token, 'our secret')
+    const user = await db.User.findOne({ where: { email: payload.user.email } })
+    req.logged = user ? true : false
+  } catch (err) {
+    next(err)
+  }
 }
