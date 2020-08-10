@@ -11,18 +11,18 @@
   <div class="row">
 
     <!-- Cart articles -->
-    <% items.forEach(product => {%>
+    <% items.forEach(saleDetail => {%>
       <div class="row">
         <div class="col-sm-12 col-md-7 col-lg3">
           <div>
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="<%= getProductImagePath(product.image) %>" class="card-img">
+                <img src="<%= getProductImagePath(saleDetail.product.image) %>" class="card-img">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h3 class="card-title"><%= product.name %></h3>
-                  <h5 class="card-text"><%= product.description %></h5>
+                  <h3 class="card-title"><%= saleDetail.product.name %></h3>
+                  <h5 class="card-text"><%= saleDetail.product.description %></h5>
                 </div>
               </div>
             </div>
@@ -31,13 +31,13 @@
 
         <!-- Price -->
         <div class="row col-sm-6 col-md-2 col-lg1">
-          <div class="col-sm-6 col-md-5 col-lg4">
-            <div class="text-center" id="unitPrice" style="width: 18rem;">
+          <div class="col-sm-6 col-md-5 col-lg4 pl-0 pt-4">
+            <div id="unitPrice" style="width: 18rem;">
               <div class="card-body">
                 <h5>Precio unitario</h5>
-                <h3>$<%= product.price %></h3>
-                  <% if (product.discount > 0) { %>
-                  <span class="badge badge-primary ml-2"><%= product.discount %>% OFF</span>
+                <h3>$<%= saleDetail.product.price %></h3>
+                <% if (saleDetail.product.discount > 0) { %>
+                  <span class="badge badge-primary"><%= saleDetail.product.discount %>% OFF</span>
                   <% } %>
                 </div>
               </div>
@@ -46,49 +46,56 @@
 
           <!-- Quantity -->
           <div class="row col-sm-3 col-md-1 col-lg2">
-            <div class="col-sm-12 col-md-5 col-lg4">
-              <div class="text-center" id="productsQuantity" style="width: 18rem;">
+            <div class="col-sm-12 col-md-5 col-lg4 pl-0">
+              <div id="productsQuantity" style="width: 18rem;">
                 <div class="cart-quantity">
                   <br>
-                  <label for="quantity">Cantidad</label><br>
-                  <input type="number" id="quantity" name="quantity" min="1" max="999">>
+                  <label for="quantity"><h5>Cantidad</h5></label><br>
+                  <h4><%= saleDetail.amount %></h4>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Remove button -->
-          <div class="row col-sm-3 col-md-1 col-lg2">
-            <div class="col-sm-3 col-md-5 col-lg4">
-              <div class="text-center" id="removeFromCart" style="width: 18rem;">
-                <div class="cart-button">
-                  <br>
-                  <br>
-                  <a href="#"></a> <button type="button" class="btn btn-secondary">Eliminar</button></a>
+          <div class="row col-sm-3 col-md-1 col-lg2 pt-0">
+            <form method="POST" action="/cart?_method=delete">
+              <input class="d-none">
+              <div class="col-sm-3 col-md-5 col-lg4 pl-0">
+                <div id="removeFromCart" style="width: 18rem;">
+                  <div class="cart-button text-center">
+                    <br>
+                    <br>
+                    <a href="#"></a>
+                    <button
+                    name="itemId"
+                    value="<%= saleDetail.id %>"
+                    type="button"
+                    class="btn btn-secondary">Eliminar
+                  </button></a>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
-        <hr>
-        <% }) %>
+      </div>
+      <hr id="hrCart">
+      <% }) %>
 
-        <!-- Total amount to pay -->
-        <div class="row col-sm-12 col-md-12 col-lg12">
-          <div class="text-right col-sm-12 col-md-12 col-lg12" id="totalCarrito" style="width: 18rem;">
-            <div class="card-body">
-              <h6 class="card-text">Productos(3)</h6>
-              <h3>$ 25.000</h3>
-              <h5 class="card-text">Costo del envío  $ 130</h5>
-              <br>
-              <h2 class="card-title">Total</h2>
-              <h2>$ 25.130</h2>
+      <!-- Total amount to pay -->
+      <div class="row col-sm-12 col-md-12 col-lg12">
+        <div class="text-right col-sm-12 col-md-12 col-lg12" id="totalCarrito" style="width: 18rem;">
+          <div class="card-body">
+            <h6 class="card-text">Productos(<%= amountProducts %>)</h6>
+            <br>
+            <h2 class="card-title">Total</h2>
+            <h2>$ <%= totalPrice %></h2>
 
-              <a href="#" class="btn btn-primary">Comprar</a>
-            </div>
+            <a href="#" class="btn btn-primary mb-5">Comprar</a>
           </div>
         </div>
       </div>
     </div>
-    <!-- Footer -->
-    <%- include('partials/footer') %>
+  </div>
+  <!-- Footer -->
+  <%- include('partials/footer') %>
