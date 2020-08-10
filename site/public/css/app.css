@@ -20,12 +20,7 @@
 }
 
 .line-title{
-  display:block;
   color: var(--yellow);
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  margin-left: auto;
-  margin-right: auto;
   border-style: inset;
   border-width: 1px;
 }
@@ -108,12 +103,8 @@ hr {
 }
 
 .products-title {
-  font-size: 2em;
   font-weight: 700;
-  font-size: x-large;
   color: #ff6600;
-  letter-spacing: 0.05em;
-
 }
 
 .product-box {
