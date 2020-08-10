@@ -3,7 +3,6 @@ import { hash, compare } from 'bcrypt'
 import { sign as _sign, verify as _verify } from 'jsonwebtoken'
 import { promisify } from 'util'
 import { validationResult } from 'express-validator'
-import { runLoopOnce } from 'deasync'
 
 const sign = promisify(_sign)
 const verify = promisify(_verify)
@@ -71,7 +70,7 @@ export const loginUser = async (req, res, next) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      req.session.loginErrors = errors.array({ onlyFirstError: true})
+      req.session.loginErrors = errors.array({ onlyFirstError: true })
       return res.redirect('/users/login')
     }
 
@@ -152,48 +151,27 @@ export const showUserProfile = async (req, res, next) => {
   try {
     const payload = await verify(req.session.token, 'our secret')
     const user = await db.User.findOne({
-      where: {
-        email: payload.user.email
-      }
-    }, {
+      where: { email: payload.user.email },
       include: [
         {
           association: 'sales',
-          where: { sale: true }
+          where: { sale: true },
+          required: false,
+          include: [
+            {
+              association: 'saleDetails',
+              include: 'product'
+            }
+          ]
         }
       ]
     })
 
     if (!user) {
-      throw 'User specified does not exists!'
+      throw new Error('El usuario especificado no existe')
     } else if (!user.sales) {
       user.sales = []
     }
-
-    user.sales.forEach(sale => {
-      sale.getSaleDetails().then(saleDetails => {
-        sale.saleDetails = saleDetails || []
-      }).catch(err => {
-        throw err
-      })
-
-      // Mientras sale.saleDetails sea indefinido, ejecutamos un while para esperar
-      while (sale.saleDetails === undefined) {
-        runLoopOnce()
-      }
-
-      sale.saleDetails.forEach(saleDetail => {
-        saleDetail.getProduct().then(product => {
-          saleDetail.product = product
-        }).catch(err => {
-          throw err
-        })
-
-        while (saleDetail.product === undefined) {
-          runLoopOnce()
-        }
-      })
-    })
 
     res.render('userProfile', { user, registrationErrors: undefined, logged: req.logged })
   } catch (err) {
