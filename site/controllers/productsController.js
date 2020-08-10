@@ -156,7 +156,7 @@ export const editProduct = async (req, res, next) => {
       return res.redirect(`/products/${req.params.id}/edit`)
     }
 
-    const product = db.Product.findByPk(req.params.id)
+    const product = await db.Product.findByPk(req.params.id)
     if (!product) {
       throw new Error('The product specified does not exists!')
     }
@@ -200,7 +200,7 @@ export const editProduct = async (req, res, next) => {
     }
 
     await product.save()
-    res.redirect('/products')
+    res.redirect(`/products/${product.id}`)
   } catch (err) {
     next(err)
   }
