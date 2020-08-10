@@ -141,7 +141,7 @@ export const updateUserInfo = async (req, res, next) => {
     }
 
     await user.save()
-    res.redirect('/')
+    res.redirect('/users/profile')
   } catch (err) {
     next(err)
   }
