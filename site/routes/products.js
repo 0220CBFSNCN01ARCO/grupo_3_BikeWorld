@@ -10,8 +10,9 @@ import {
   editProduct,
   deleteProduct
 } from '../controllers/productsController'
-import { body } from 'express-validator'
+import { body, checkSchema } from 'express-validator'
 import { doNotAccessIfNotAdmin } from '../middlewares/userRestrictionsMiddleware'
+import validator from 'validatorjs'
 
 const storage = diskStorage({
   destination: (req, file, cb) => cb(null, 'site/public/images/products/'),
@@ -71,30 +72,34 @@ productsRouter.post('/', doNotAccessIfNotAdmin, (req, res, next) => {
       return true
     }),
   body('category').exists({ checkFalsy: true }).withMessage('Ingrese una categoría').trim(),
-  body('description').trim().isLength({ min: 20 }).withMessage('La descripción debe tener al menos 20 caracteres'),
-  body('status').exists({ checkFalsy: true }).withMessage('Ingrese un estado').trim()
+  body('description').trim().custom(value => {
+    if (value !== '' && !validator.isLength(value, { min: 20 })) {
+      throw new Error('La descripción debe tener al menos 20 caracteres')
+    }
+
+    return true
+  }),
+  body('status').exists({ checkFalsy: true }).withMessage('Ingrese un estado').trim(),
+  checkSchema({
+    'image': {
+      custom: {
+        options: (value, { req }) => {
+          if (req.file === undefined) {
+            throw new Error('Seleccione una imagen para el producto')
+          }
+
+          return true
+        }
+      }
+    }
+  })
 ], createProduct)
 
 // GET /products/:id/edit
 productsRouter.get('/:id/edit', doNotAccessIfNotAdmin, showProductEditForm)
 
 // PUT /products/:id
-productsRouter.put('/:id', doNotAccessIfNotAdmin, [
-  body('name').exists({ checkFalsy: true }).withMessage('Ingrese un nombre').trim()
-    .isLength({ min: 5 }).withMessage('El nombre debe tener al menos 5 caracteres de largo'),
-  body('price').exists({ checkFalsy: true }).withMessage('Ingrese un precio')
-    .isNumeric().withMessage('El precio debe ser un número')
-    .toFloat(),
-  body('discount').isNumeric().withMessage('El descuento debe ser un número')
-    .toFloat().custom(value => {
-      if (value > 100) {
-        Promise.reject('El descuento no puede ser más del 100%')
-      }
-    }),
-  body('category').exists({ checkFalsy: true }).withMessage('Ingrese una categoría').trim(),
-  body('description').trim().isLength({ min: 20 }).withMessage('La descripción debe tener al menos 20 caracteres'),
-  body('status').exists({ checkFalsy: true }).withMessage('Ingrese un estado').trim()
-], (req, res, next) => {
+productsRouter.put('/:id', doNotAccessIfNotAdmin, (req, res, next) => {
   upload.single('image')(req, res, err => {
     if (err instanceof MulterError) {
       req.body.multerError = err
@@ -105,7 +110,30 @@ productsRouter.put('/:id', doNotAccessIfNotAdmin, [
       next()
     }
   })
-}, editProduct)
+}, [
+  body('name').exists({ checkFalsy: true }).withMessage('Ingrese un nombre').trim()
+    .isLength({ min: 5 }).withMessage('El nombre debe tener al menos 5 caracteres de largo'),
+  body('price').exists({ checkFalsy: true }).withMessage('Ingrese un precio')
+    .isNumeric().withMessage('El precio debe ser un número')
+    .toFloat(),
+  body('discount').isNumeric().withMessage('El descuento debe ser un número')
+    .toFloat().custom(value => {
+      if (value > 100) {
+        throw new Error('El descuento no puede ser más del 100%')
+      }
+
+      return true
+    }),
+  body('category').exists({ checkFalsy: true }).withMessage('Ingrese una categoría').trim(),
+  body('description').trim().custom(value => {
+    if (value !== '' && !validator.isLength(value, { min: 20 })) {
+      throw new Error('La descripción debe tener al menos 20 caracteres')
+    }
+
+    return true
+  }),
+  body('status').exists({ checkFalsy: true }).withMessage('Ingrese un estado').trim()
+], editProduct)
 
 // DELETE /products/:id
 productsRouter.delete('/:id', doNotAccessIfNotAdmin, deleteProduct)
