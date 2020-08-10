@@ -194,3 +194,9 @@ export const deleteUser = async (req, res, next) => {
     next(err)
   }
 }
+
+export const logoutUser = (req, res) => {
+  req.session.token = undefined
+  res.clearCookie('token')
+  res.redirect('/')
+}

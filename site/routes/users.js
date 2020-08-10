@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { showRegistrationForm, registerUser, loginUser, showUserProfile, updateUserInfo } from '../controllers/usersController'
+import { showRegistrationForm, registerUser, loginUser, showUserProfile, updateUserInfo, logoutUser } from '../controllers/usersController'
 import { body } from 'express-validator'
 import { doNotAccessIfLoggedIn, doNotAccessIfNotLoggedIn } from '../middlewares/userRestrictionsMiddleware'
 import validator from 'validatorjs'
@@ -78,3 +78,5 @@ usersRouter.put('/:id', doNotAccessIfNotLoggedIn, [
     }
   })
 ], updateUserInfo)
+
+usersRouter.post('/logout', doNotAccessIfNotLoggedIn, logoutUser)
