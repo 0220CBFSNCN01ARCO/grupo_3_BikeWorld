@@ -1,7 +1,7 @@
 import db from '../database/models'
 import { verify as _verify } from 'jsonwebtoken'
 import { promisify } from 'util'
-import { runLoopOnce } from 'deasync'
+import { join } from 'path'
 
 const verify = promisify(_verify)
 
@@ -18,15 +18,17 @@ export const showCart = async (req, res, next) => {
       where: {
         userId: user.id,
         sale: false
-      }
-    }, {
+      },
       include: [
-        { association: 'saleDetails' }
+        {
+          association: 'saleDetails',
+          include: 'product'
+        }
       ]
     })
 
     if (!sale) {
-      sale = db.Sale.create({
+      sale = await db.Sale.create({
         date: Date.now(),
         userId: user.id,
         sale: false
@@ -40,22 +42,13 @@ export const showCart = async (req, res, next) => {
     sale.saleDetails.forEach(saleDetail => {
       amountProducts += saleDetail.amount
       totalPrice += saleDetail.amount * (saleDetail.price * (1 - (saleDetail.discount / 100)))
-
-      saleDetail.getProduct().then(product => {
-        saleDetail.product = product
-      }).catch(err => {
-        throw err
-      })
-
-      while (saleDetail.product === undefined) {
-        runLoopOnce()
-      }
     })
 
     res.render('cart', {
       items: sale.saleDetails,
       amountProducts,
       totalPrice,
+      getProductImagePath: imageFilename => join('/images/products', imageFilename),
       logged: req.logged
     })
   } catch (err) {
@@ -76,11 +69,8 @@ export const makePurchase = async (req, res, next) => {
       where: {
         userId: user.id,
         sale: false
-      }
-    }, {
-      include: [
-        { association: 'saleDetails' }
-      ]
+      },
+      include: 'saleDetails'
     })
 
     if (!sale) {
@@ -106,15 +96,12 @@ export const deleteItem = async (req, res, next) => {
       throw new Error('El usuario especificado no existe')
     }
 
-    const sale = db.Sale.findOne({
+    const sale = await db.Sale.findOne({
       where: {
         userId: user.id,
         sale: false
-      }
-    }, {
-      include: [
-        { association: 'saleDetails' }
-      ]
+      },
+      include: 'saleDetails'
     })
 
     if (!sale) {
@@ -141,7 +128,7 @@ export const addProductToCart = async (req, res, next) => {
       throw new Error('El usuario especificado no existe')
     }
 
-    let sale = db.Sale.findOne({
+    let sale = await db.Sale.findOne({
       where: {
         userId: user.id,
         sale: false
@@ -149,20 +136,20 @@ export const addProductToCart = async (req, res, next) => {
     })
 
     if (!sale) {
-      sale = db.Sale.create({
+      sale = await db.Sale.create({
         userId: user.id,
         date: Date.now(),
         sale: false
       })
     }
 
-    const product = db.Product.findByPk(req.body.productId)
+    const product = await db.Product.findByPk(req.body.productId)
 
     if (!product) {
       throw new Error('El producto no existe')
     }
 
-    let saleDetail = db.SaleDetail.findOne({
+    let saleDetail = await db.SaleDetail.findOne({
       where: {
         saleId: sale.id,
         productId: product.id
@@ -170,7 +157,7 @@ export const addProductToCart = async (req, res, next) => {
     })
 
     if (!saleDetail) {
-      saleDetail = db.SaleDetail.create({
+      saleDetail = await db.SaleDetail.create({
         saleId: sale.id,
         productId: product.id,
         amount: 1,
