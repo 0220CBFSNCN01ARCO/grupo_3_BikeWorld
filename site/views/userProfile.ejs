@@ -93,23 +93,27 @@
             </tr>
           </thead>
           <tbody>
+
+            <% if(user.sales.length>0) {%>
+            <% user.sales.forEach(sale => {%>
+            <% sale.saleDetails.forEach(item => {%>
             <tr>
-              <% if(user.sales.length>0) {%>
-                <% user.sales.forEach(sale => {%>
-                  <% sale.saleDetails.forEach(item => {%>
-                    <th scope="row">item.id</th>
-                    <td>item.product.name</td>
-                    <td>item.amount</td>
-                    <td>item.price</td>
-                  <%});%>
-                <%});%>
-              <%}else{ %>
-                  <th scope="row">s/d</th>
-                  <td>s/d</td>
-                  <td>s/d</td>
-                  <td>s/d</td>
-                <%};%>
+              <th scope="row"><%=item.id%></th>
+              <td><%=item.product.name%></td>
+              <td><%=item.amount%></td>
+              <td><%=item.price%></td>
             </tr>
+            <%});%>
+            <%});%>
+            <%}else{ %>
+            <tr></tr>
+            <th scope="row">s/d</th>
+            <td>s/d</td>
+            <td>s/d</td>
+            <td>s/d</td>
+            </tr>
+            <%};%>
+
           </tbody>
         </table>
       </div>
