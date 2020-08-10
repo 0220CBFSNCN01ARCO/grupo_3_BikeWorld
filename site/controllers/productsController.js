@@ -49,7 +49,7 @@ export const showProductCreationForm = async (req, res, next) => {
   try {
     const errors = req.session.errors
     req.session.errors = undefined
-    res.render('productCreationForm', {
+    res.render('productsForm', {
       errors,
       categories: await db.ProductCategory.findAll(),
       states: await db.ProductStatus.findAll(),
@@ -77,24 +77,14 @@ export const createProduct = async (req, res, next) => {
       return res.redirect('/products/create')
     }
 
-    let category = await db.ProductCategory.findOne({ where: { name: req.body.category } })
-    if (category === null) {
-      category = await db.ProductCategory.create({ name: req.body.category })
-    }
-
-    let status = await db.ProductStatus.findOne({ where: { name: req.body.status } })
-    if (status === null) {
-      status = await db.ProductStatus.create({ name: req.body.status })
-    }
-
     await db.Product.create({
       name: req.body.name,
       price: req.body.price,
       discount: req.body.discount,
-      productCategoryId: category.id,
+      productCategoryId: req.body.category,
       description: req.body.description,
       image: req.file.filename,
-      productStatusId: status.id
+      productStatusId: req.body.status
     })
 
     res.redirect('/products')
@@ -121,7 +111,7 @@ export const showProductEditForm = async (req, res, next) => {
   try {
     const errors = req.session.errors
     req.session.errors = undefined
-    res.render('productEditForm', {
+    res.render('productsForm', {
       errors,
       product: await db.Product.findByPk(req.params.id, {
         include: [
@@ -174,12 +164,7 @@ export const editProduct = async (req, res, next) => {
     }
 
     if (req.body.category) {
-      let category = await db.ProductCategory.findOne({ where: { name: req.body.category } })
-      if (!category) {
-        category = await db.ProductCategory.create({ name: req.body.category })
-      }
-
-      product.productCategoryId = category.id
+      product.productCategoryId = req.body.category
     }
 
     if (req.body.description) {
@@ -191,12 +176,7 @@ export const editProduct = async (req, res, next) => {
     }
 
     if (req.body.status) {
-      let status = await db.ProductStatus.findOne({ where: { name: req.body.category } })
-      if (!status) {
-        status = await db.ProductStatus.create({ name: req.body.category })
-      }
-
-      product.productStatusId = status.id
+      product.productStatusId = req.body.status
     }
 
     await product.save()

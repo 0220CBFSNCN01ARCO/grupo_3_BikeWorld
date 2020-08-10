@@ -1,0 +1,158 @@
+<!-- Head -->
+<%- include('partials/head', { title: typeof product !== 'undefined' ? 'Editar producto' : 'Cargar producto' }) %>
+
+<!-- Header -->
+<%- include('partials/headerNavbar') %>
+
+<div class="container mt-5 mb-5">
+
+  <div class="row">
+    <div class="col-12 mb-3">
+      <h2>
+        <%= typeof product !== 'undefined' ? 'Editar producto' : 'Cargar producto' %>
+      </h2>
+    </div>
+  </div>
+
+  <form id="productForm"
+    action="<%= typeof product !== 'undefined' ? `/products/${product.id}?_method=PUT` : '/products' %>" method="post"
+    enctype="multipart/form-data">
+
+    <div class="row">
+      <div class="col-12 col-md-6 pt-3 pt-md-0">
+
+        <div class="form-group">
+          <label for="inputName">Nombre</label>
+          <% let error %>
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'name'))) { %>
+            <input type="text" class="form-control is-invalid" id="inputName" name="name"
+              value="<%= typeof product !== 'undefined' ? product.name : '' %>">
+            <div id="msjInputName" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <input type="text" class="form-control" id="inputName" name="name"
+              value="<%= typeof product !== 'undefined' ? product.name : '' %>">
+            <div id="msjInputName" class="invalid-feedback"></div>
+          <% } %>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPrice">Precio</label>
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'price'))) { %>
+            <input type="number" class="form-control is-invalid" id="inputPrice" name="price"
+              value="<%= typeof product !== 'undefined' ? product.price : '' %>">
+            <div id="msjInputPrice" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <input type="number" class="form-control" id="inputPrice" name="price"
+              value="<%= typeof product !== 'undefined' ? product.price : '' %>">
+            <div id="msjInputPrice" class="invalid-feedback"></div>
+          <% } %>
+        </div>
+
+        <div class="form-group">
+          <label for="inputDiscount">Descuento</label>
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'discount'))) { %>
+            <input type="number" class="form-control is-invalid" id="inputDiscount" name="discount"
+              value="<%= typeof product !== 'undefined' ? product.discount : '' %>">
+            <div id="msjInputDiscount" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <input type="number" class="form-control" id="inputDiscount" name="discount"
+              value="<%= typeof product !== 'undefined' ? product.discount : '' %>">
+            <div id="msjInputDiscount" class="invalid-feedback"></div>
+          <% } %>
+        </div>
+
+        <div class="form-group">
+          <label for="inputCategory">Categoría</label>
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'category'))) { %>
+            <select name="category" id="inputCategory" class="form-control is-invalid">
+              <option disabled="disabled" selected="selected">Elija una categoría</option>
+              <% categories.forEach(category => { %>
+                <option value="<%= category.id %>"
+                  <%= typeof product !== 'undefined' ? product.category.id === category.id ? 'selected' : '' : '' %>>
+                  <%= category.name %>
+                </option>
+              <% }) %>
+            </select>
+            <div id="msjInputCategory" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <select name="category" id="inputCategory" class="form-control">
+              <option disabled="disabled" selected="selected">Elija una categoría</option>
+              <% categories.forEach(category => { %>
+                <option value="<%= category.id %>"
+                  <%= typeof product !== 'undefined' ? product.category.id === category.id ? 'selected' : '' : '' %>>
+                  <%= category.name %>
+                </option>
+              <% }) %>
+            </select>
+            <div id="msjInputCategory" class="invalid-feedback"></div>
+          <% } %>
+        </div>
+
+        <div class="form-group">
+          <label for="inputDescription">Descripción</label>
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'description'))) { %>
+            <textarea name="description" id="inputDescription" cols="30" rows="10"
+              class="form-control is-invalid"><%= typeof product !== 'undefined' ? product.description : '' %></textarea>
+            <div id="msjInputDescription" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <textarea name="description" id="inputDescription" cols="30" rows="10" class="form-control"><%= typeof product !== 'undefined' ? product.description : '' %></textarea>
+            <div id="msjInputDescription" class="invalid-feedback"></div>
+          <% } %>
+        </div>
+
+        <div class="form-group">
+          <label for="inputStatus">Estado</label>
+          <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'status'))) { %>
+            <select name="status" id="inputStatus" class="form-control is-invalid">
+              <option disabled="disabled" selected="selected">Elija un estado</option>
+              <% states.forEach(status => { %>
+                <option value="<%= status.id %>"
+                  <%= typeof product !== 'undefined' ? product.status.id === status.id ? 'selected' : '' : '' %>>
+                  <%= status.name %>
+                </option>
+              <% }) %>
+            </select>
+          <div id="msjInputStatus" class="invalid-feedback"><%= error.msg %></div>
+          <% } else { %>
+            <select name="status" id="inputStatus" class="form-control">
+              <option disabled="disabled" selected="selected">Elija un estado</option>
+              <% states.forEach(status => { %>
+                <option value="<%= status.id %>"
+                  <%= typeof product !== 'undefined' ? product.status.id === status.id ? 'selected' : '' : '' %>>
+                  <%= status.name %>
+                </option>
+              <% }) %>
+            </select>
+            <div id="msjInputStatus" class="invalid-feedback"></div>
+          <% } %>
+        </div>
+
+      </div>
+      <div class="col-12 col-md-6 order-first order-md-last">
+        <label for="inputImage">Imagen</label><br>
+        <input type="file" id="inputImage" name="image" accept="image/png, image/jpg, image/jpeg, image/gif">
+        <% if ((errors !== undefined) && (error = errors.find(error => error.param === 'image'))) { %>
+          <div id="msjInputImage" class="invalid-feedback d-block"><%= error.msg %></div>
+        <% } else { %>
+          <div id="msjInputImage" class="invalid-feedback d-none"></div>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 mb-3">
+        <button class="btn btn-primary form-control" type="submit">
+          <%= typeof product !== 'undefined' ? 'Guardar cambios' : 'Cargar producto' %>
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- Script de validación en front end -->
+<script src="/js/modules/validator.min.js" type="text/javascript"></script>
+<script src="/js/productsValidations.js" type="module"></script>
+
+<!-- Footer -->
+<%- include('partials/footer') %>
