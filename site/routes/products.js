@@ -12,7 +12,7 @@ import {
 } from '../controllers/productsController'
 import { body, checkSchema } from 'express-validator'
 import { doNotAccessIfNotAdmin } from '../middlewares/userRestrictionsMiddleware'
-import validator from 'validatorjs'
+import validator from 'validator'
 
 const storage = diskStorage({
   destination: (req, file, cb) => cb(null, 'site/public/images/products/'),
@@ -79,20 +79,7 @@ productsRouter.post('/', doNotAccessIfNotAdmin, (req, res, next) => {
 
     return true
   }),
-  body('status').exists({ checkFalsy: true }).withMessage('Ingrese un estado').trim(),
-  checkSchema({
-    'image': {
-      custom: {
-        options: (value, { req }) => {
-          if (req.file === undefined) {
-            throw new Error('Seleccione una imagen para el producto')
-          }
-
-          return true
-        }
-      }
-    }
-  })
+  body('status').exists({ checkFalsy: true }).withMessage('Ingrese un estado').trim()
 ], createProduct)
 
 // GET /products/:id/edit
