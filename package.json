@@ -23,7 +23,7 @@
     "multer": "^2.0.2",
     "mysql2": "^3.9.8",
     "sequelize": "^6.29.0",
-    "validator": "^13.15.20"
+    "validator": "^13.15.23"
   },
   "devDependencies": {
     "eslint": "^9.39.1",
