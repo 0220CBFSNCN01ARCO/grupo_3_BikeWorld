@@ -22,7 +22,7 @@
     "morgan": "^1.10.1",
     "multer": "^2.1.1",
     "mysql2": "^3.9.8",
-    "sequelize": "^6.29.0",
+    "sequelize": "^6.37.8",
     "validator": "^13.15.23"
   },
   "devDependencies": {
